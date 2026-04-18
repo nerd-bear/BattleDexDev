@@ -1,0 +1,218 @@
+{
+    "war thunder": {
+        "attack": 999999,
+        "health": 999999,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/warthunder.png",
+        "spawn_image": "./assets/cards/warthunder_spawn.png",
+        "rarity": 1
+    },
+    "Carbon": {
+        "attack": 6954,
+        "health": 8037,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/carbon.png",
+        "spawn_image": "./assets/cards/carbon_spawn.png",
+        "rarity": 1
+    },
+    "Bung": {
+        "attack": 9443,
+        "health": 6700,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/bung.png",
+        "spawn_image": "./assets/cards/bung_spawn.png",
+        "rarity": 1
+    },
+    "B52": {
+        "attack": 677,
+        "health": 500,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/b52.png",
+        "spawn_image": "./assets/cards/b52_spawn.png",
+        "rarity": 1
+    },
+    "B1": {
+        "attack": 4450,
+        "health": 1009,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/b1.png",
+        "spawn_image": "./assets/cards/b1_spawn.png",
+        "rarity": 1
+    },
+    "F15SE": {
+        "attack": 8000,
+        "health": 9000,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/f15se.png",
+        "spawn_image": "./assets/cards/f15se_spawn.png",
+        "rarity": 1
+    },
+    "F18HARV": {
+        "attack": 10500,
+        "health": 6200,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/f18harv.png",
+        "spawn_image": "./assets/cards/f18harv_spawn.png",
+        "rarity": 1
+    },
+    "EF2000": {
+        "attack": 9200,
+        "health": 7800,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/ef2000.png",
+        "spawn_image": "./assets/cards/ef2000_spawn.png",
+        "rarity": 1
+    },
+    "SU34": {
+        "attack": 7000,
+        "health": 4000,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/su34.png",
+        "spawn_image": "./assets/cards/su34_spawn.png",
+        "rarity": 1
+    },
+    "B36": {
+        "attack": 2000,
+        "health": 1,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/b36.png",
+        "spawn_image": "./assets/cards/b36_spawn.png",
+        "rarity": 1
+    },
+    "TU160": {
+        "attack": 10000,
+        "health": 5000,
+        "attack_boost": 10,
+        "health_boost": 5,
+        "image": "./assets/cards/tu160.png",
+        "spawn_image": "./assets/cards/tu160_spawn.png",
+        "rarity": 1
+    },
+    "F14": {
+        "attack": 9800,
+        "health": 5500,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/f14.png",
+        "spawn_image": "./assets/cards/f14_spawn.png",
+        "rarity": 1
+    },
+    "US Private": {
+        "attack": 200,
+        "health": 500,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/us_private.png",
+        "spawn_image": "./assets/cards/us_private_spawn.png",
+        "rarity": 1
+    },
+    "US Spec OP": {
+        "attack": 1600,
+        "health": 1000,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/us_specop.png",
+        "spawn_image": "./assets/cards/us_specop_spawn.png",
+        "rarity": 1
+    },
+    "AH1Z": {
+        "attack": 4200,
+        "health": 1000,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/ah1z.png",
+        "spawn_image": "./assets/cards/ah1z_spawn.png",
+        "rarity": 1
+    },
+    "Sassy": {
+        "attack": 99999999999,
+        "health": 99999999999,
+        "attack_boost": 9999,
+        "health_boost": 9999,
+        "image": "./assets/cards/sassy.png",
+        "spawn_image": "./assets/cards/sassy_spawn.png",
+        "rarity": 1
+    },
+    "YAK130": {
+        "attack": 900,
+        "health": 400,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/yak130.png",
+        "spawn_image": "./assets/cards/yak130_spawn.png",
+        "rarity": 1
+    },
+    "VANGUARD": {
+        "attack": 19000,
+        "health": 50000,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/vanguard.png",
+        "spawn_image": "./assets/cards/vanguard_spawn.png",
+        "rarity": 1
+    },
+    "T55": {
+        "attack": 900,
+        "health": 500,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/t55.png",
+        "spawn_image": "./assets/cards/t55_spawn.png",
+        "rarity": 1
+    },
+    "T62": {
+        "attack": 1100,
+        "health": 1400,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/t62.png",
+        "spawn_image": "./assets/cards/t62_spawn.png",
+        "rarity": 1
+    },
+    "T64": {
+        "attack": 1200,
+        "health": 1100,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/t64.png",
+        "spawn_image": "./assets/cards/t64_spawn.png",
+        "rarity": 1
+    },
+    "T72": {
+        "attack": 900,
+        "health": 2000,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/t72.png",
+        "spawn_image": "./assets/cards/t72_spawn.png",
+        "rarity": 1
+    },
+    "T80": {
+        "attack": 1300,
+        "health": 2200,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/t80.png",
+        "spawn_image": "./assets/cards/t80_spawn.png",
+        "rarity": 1
+    },
+    "T90": {
+        "attack": 1290,
+        "health": 2900,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/t90.png",
+        "spawn_image": "./assets/cards/t90_spawn.png",
+        "rarity": 1
+    }
+}
