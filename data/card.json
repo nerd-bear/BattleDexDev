@@ -241,5 +241,23 @@
         "image": "./assets/cards/tu95.png",
         "spawn_image": "./assets/cards/tu95_spawn.png",
         "rarity": 6
+    },
+    "B47": {
+        "attack": 550,
+        "health": 400,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/b47.png",
+        "spawn_image": "./assets/cards/b47_spawn.png",
+        "rarity": 55
+    },
+    "B58": {
+        "attack": 1200,
+        "health": 500,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/b58.png",
+        "spawn_image": "./assets/cards/b58_spawn.png",
+        "rarity": 35
     }
 }
