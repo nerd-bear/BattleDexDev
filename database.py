@@ -127,7 +127,7 @@ class Database:
         weights = []
         for card in cards:
             rarity = card.rarity if card.rarity > 0 else 1
-            weights.append(1 / rarity)
+            weights.append(rarity)
 
         return random.choices(cards, weights=weights, k=1)[0]
 
