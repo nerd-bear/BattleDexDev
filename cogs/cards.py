@@ -173,26 +173,26 @@ class CardsCog(commands.Cog):
         inter: disnake.ApplicationCommandInteraction,
     ):
         cards = self.db.list_all_card_names()
-        first = True       
 
-        for card in cards:
+        for i, card in enumerate(cards):
             card_obj = self.db.get_card_by_name(card)
             if not card_obj:
-                await inter.response.send_message(
-                    f'Card {card} was not found.', ephemeral=True
-                )
+                msg = f'Card {card} was not found.'
+                if i == 0 and not inter.response.is_done():
+                    await inter.response.send_message(msg, ephemeral=True)
+                else:
+                    await inter.followup.send(msg, ephemeral=True)
                 return
-                
+
             embed, file = await build_card_embed_and_file(card_obj)
-            if first:
+
+            if i == 0:
                 if file:
                     await inter.response.send_message(embed=embed, file=file)
-                    first = False
                 else:
                     await inter.response.send_message(embed=embed)
-                    first = False
             else:
                 if file:
-                    await inter.channel.send_message(embed=embed, file=file)
+                    await inter.followup.send(embed=embed, file=file)
                 else:
-                    await inter.channel.send_message(embed=embed)
+                    await inter.followup.send(embed=embed)
