@@ -143,6 +143,15 @@ class Database:
             """, (like, limit)).fetchall()
 
         return [row['name'] for row in rows]
+    
+    def get_all_cards(self) -> List[Card]:
+        with self.connect() as conn:
+            rows = conn.execute("""
+                SELECT * FROM cards
+                ORDER BY name
+            """).fetchall()
+
+        return [self._row_to_card(row) for row in rows]
 
     def list_all_card_names(self, limit: int = 25) -> List[str]:
         with self.connect() as conn:
