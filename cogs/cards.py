@@ -187,8 +187,10 @@ class CardsCog(commands.Cog):
             if first:
                 if file:
                     await inter.response.send_message(embed=embed, file=file)
+                    first = False
                 else:
                     await inter.response.send_message(embed=embed)
+                    first = False
             else:
                 if file:
                     await inter.channel.send_message(embed=embed, file=file)
