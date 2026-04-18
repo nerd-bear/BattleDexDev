@@ -173,6 +173,7 @@ class CardsCog(commands.Cog):
         inter: disnake.ApplicationCommandInteraction,
     ):
         cards = self.db.list_all_card_names()
+        first = True       
 
         for card in cards:
             card_obj = self.db.get_card_by_name(card)
@@ -183,7 +184,13 @@ class CardsCog(commands.Cog):
                 return
                 
             embed, file = await build_card_embed_and_file(card_obj)
-            if file:
-                await inter.response.send_message(embed=embed, file=file)
+            if first:
+                if file:
+                    await inter.response.send_message(embed=embed, file=file)
+                else:
+                    await inter.response.send_message(embed=embed)
             else:
-                await inter.response.send_message(embed=embed)
+                if file:
+                    await inter.channel.send_message(embed=embed, file=file)
+                else:
+                    await inter.channel.send_message(embed=embed)
