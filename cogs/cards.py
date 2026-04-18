@@ -172,26 +172,18 @@ class CardsCog(commands.Cog):
         self,
         inter: disnake.ApplicationCommandInteraction,
     ):
-        cards = self.db.get_all_cards()
+        cards = self.db.list_all_card_names()
 
-        if not cards:
-            await inter.response.send_message(
-                'No cards were found in the database.',
-                ephemeral=True
-            )
-            return
-
-        embed = disnake.Embed(
-            title='🗂️ All Cards',
-            color=disnake.Color.blurple()
-        )
-
-        embed.description = '\n'.join(
-            f'• **{card.name}** | ATK: {card.attack} | HP: {card.health} | Rarity: {card.rarity:g}'
-            for card in cards[:50]
-        )
-
-        if len(cards) > 50:
-            embed.set_footer(text=f'Showing 50 of {len(cards)} cards.')
-
-        await inter.response.send_message(embed=embed)
+        for card in cards:
+            card_obj = self.db.get_card_by_name(card)
+            if not card_obj:
+                await inter.response.send_message(
+                    f'Card {card} was not found.', ephemeral=True
+                )
+                return
+                
+            embed, file = await build_card_embed_and_file(card_obj)
+            if file:
+                await inter.response.send_message(embed=embed, file=file)
+            else:
+                await inter.response.send_message(embed=embed)
