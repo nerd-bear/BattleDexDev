@@ -214,5 +214,32 @@
         "image": "./assets/cards/t90.png",
         "spawn_image": "./assets/cards/t90_spawn.png",
         "rarity": 30
+    },
+    "TU16": {
+        "attack": 4500,
+        "health": 3500,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/tu16.png",
+        "spawn_image": "./assets/cards/tu16_spawn.png",
+        "rarity": 15
+    },
+    "TU22M": {
+        "attack": 7500,
+        "health": 2800,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/tu22m.png",
+        "spawn_image": "./assets/cards/tu22m_spawn.png",
+        "rarity": 10
+    },
+    "TU95": {
+        "attack": 9000,
+        "health": 8500,
+        "attack_boost": 5,
+        "health_boost": 0,
+        "image": "./assets/cards/tu95.png",
+        "spawn_image": "./assets/cards/tu95_spawn.png",
+        "rarity": 6
     }
 }
