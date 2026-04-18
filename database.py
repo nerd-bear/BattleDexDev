@@ -153,7 +153,7 @@ class Database:
 
         return [self._row_to_card(row) for row in rows]
 
-    def list_all_card_names(self, limit: int = 25) -> List[str]:
+    def list_all_card_names(self, limit: int = 9999) -> List[str]:
         with self.connect() as conn:
             rows = conn.execute("""
                 SELECT name FROM cards ORDER BY name LIMIT ?
