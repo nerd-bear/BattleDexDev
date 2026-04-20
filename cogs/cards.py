@@ -20,7 +20,7 @@ class CardsCog(commands.Cog):
         self, inter: disnake.ApplicationCommandInteraction, card_obj
     ):
         embed, file = await build_spawn_embed_and_file(card_obj)
-        embed.title = "🃏 A wild card appeared!"
+        embed.title = "🃏 A wild card appeared! :3"
         embed.description = (
             "Press **Catch** and type the exact card name to claim it.\n\n"
             f"**Hints**\n"
