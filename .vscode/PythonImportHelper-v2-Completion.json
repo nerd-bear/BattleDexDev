@@ -1,0 +1,479 @@
+[
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "disnake",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "disnake",
+        "description": "disnake",
+        "detail": "disnake",
+        "documentation": {}
+    },
+    {
+        "label": "commands",
+        "importPath": "disnake.ext",
+        "description": "disnake.ext",
+        "isExtraImport": true,
+        "detail": "disnake.ext",
+        "documentation": {}
+    },
+    {
+        "label": "commands",
+        "importPath": "disnake.ext",
+        "description": "disnake.ext",
+        "isExtraImport": true,
+        "detail": "disnake.ext",
+        "documentation": {}
+    },
+    {
+        "label": "commands",
+        "importPath": "disnake.ext",
+        "description": "disnake.ext",
+        "isExtraImport": true,
+        "detail": "disnake.ext",
+        "documentation": {}
+    },
+    {
+        "label": "Database",
+        "importPath": "database",
+        "description": "database",
+        "isExtraImport": true,
+        "detail": "database",
+        "documentation": {}
+    },
+    {
+        "label": "Database",
+        "importPath": "database",
+        "description": "database",
+        "isExtraImport": true,
+        "detail": "database",
+        "documentation": {}
+    },
+    {
+        "label": "SpawnSession",
+        "importPath": "models",
+        "description": "models",
+        "isExtraImport": true,
+        "detail": "models",
+        "documentation": {}
+    },
+    {
+        "label": "Card",
+        "importPath": "models",
+        "description": "models",
+        "isExtraImport": true,
+        "detail": "models",
+        "documentation": {}
+    },
+    {
+        "label": "SpawnSession",
+        "importPath": "models",
+        "description": "models",
+        "isExtraImport": true,
+        "detail": "models",
+        "documentation": {}
+    },
+    {
+        "label": "Card",
+        "importPath": "models",
+        "description": "models",
+        "isExtraImport": true,
+        "detail": "models",
+        "documentation": {}
+    },
+    {
+        "label": "build_card_embed_and_file",
+        "importPath": "services.card_service",
+        "description": "services.card_service",
+        "isExtraImport": true,
+        "detail": "services.card_service",
+        "documentation": {}
+    },
+    {
+        "label": "build_spawn_embed_and_file",
+        "importPath": "services.card_service",
+        "description": "services.card_service",
+        "isExtraImport": true,
+        "detail": "services.card_service",
+        "documentation": {}
+    },
+    {
+        "label": "normalize_name",
+        "importPath": "services.card_service",
+        "description": "services.card_service",
+        "isExtraImport": true,
+        "detail": "services.card_service",
+        "documentation": {}
+    },
+    {
+        "label": "SpawnCardView",
+        "importPath": "views.spawn_view",
+        "description": "views.spawn_view",
+        "isExtraImport": true,
+        "detail": "views.spawn_view",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "BOT_TOKEN",
+        "importPath": "config",
+        "description": "config",
+        "isExtraImport": true,
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "DATABASE_PATH",
+        "importPath": "config",
+        "description": "config",
+        "isExtraImport": true,
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "CARD_FILE",
+        "importPath": "config",
+        "description": "config",
+        "isExtraImport": true,
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "CardsCog",
+        "importPath": "cogs.cards",
+        "description": "cogs.cards",
+        "isExtraImport": true,
+        "detail": "cogs.cards",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "sqlite3",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sqlite3",
+        "description": "sqlite3",
+        "detail": "sqlite3",
+        "documentation": {}
+    },
+    {
+        "label": "contextmanager",
+        "importPath": "contextlib",
+        "description": "contextlib",
+        "isExtraImport": true,
+        "detail": "contextlib",
+        "documentation": {}
+    },
+    {
+        "label": "io",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "io",
+        "description": "io",
+        "detail": "io",
+        "documentation": {}
+    },
+    {
+        "label": "aiohttp",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "aiohttp",
+        "description": "aiohttp",
+        "detail": "aiohttp",
+        "documentation": {}
+    },
+    {
+        "label": "dataclass",
+        "importPath": "dataclasses",
+        "description": "dataclasses",
+        "isExtraImport": true,
+        "detail": "dataclasses",
+        "documentation": {}
+    },
+    {
+        "label": "CardsCog",
+        "kind": 6,
+        "importPath": "cogs.cards",
+        "description": "cogs.cards",
+        "peekOfCode": "class CardsCog(commands.Cog):\n    def __init__(self, bot: commands.InteractionBot, db: Database):\n        self.bot = bot\n        self.db = db\n        self.active_spawns: Dict[int, SpawnSession] = {}\n        self.active_views: Dict[int, SpawnCardView] = {}\n    async def card_autocomplete(\n        self, inter: disnake.ApplicationCommandInteraction, user_input: str\n    ):\n        if not user_input.strip():",
+        "detail": "cogs.cards",
+        "documentation": {}
+    },
+    {
+        "label": "normalize_name",
+        "kind": 2,
+        "importPath": "services.card_service",
+        "description": "services.card_service",
+        "peekOfCode": "def normalize_name(value: str) -> str:\n    value = value.lower().strip()\n    value = re.sub(r'[^a-z0-9]', '', value)\n    return value\ndef build_card_text(card: Card) -> str:\n    atk_text = f\"{card.attack} {card.attack_boost}\".strip()\n    hp_text = f\"{card.health} {card.health_boost}\".strip()\n    return (\n        f\"**ATK:** {atk_text}\\n\"\n        f\"**HP:** {hp_text}\\n\"",
+        "detail": "services.card_service",
+        "documentation": {}
+    },
+    {
+        "label": "build_card_text",
+        "kind": 2,
+        "importPath": "services.card_service",
+        "description": "services.card_service",
+        "peekOfCode": "def build_card_text(card: Card) -> str:\n    atk_text = f\"{card.attack} {card.attack_boost}\".strip()\n    hp_text = f\"{card.health} {card.health_boost}\".strip()\n    return (\n        f\"**ATK:** {atk_text}\\n\"\n        f\"**HP:** {hp_text}\\n\"\n        f\"**Rarity:** {card.rarity:g}\"\n    )\nasync def build_card_embed_and_file(card: Card) -> Tuple[disnake.Embed, Optional[disnake.File]]:\n    embed = disnake.Embed(",
+        "detail": "services.card_service",
+        "documentation": {}
+    },
+    {
+        "label": "CatchCardModal",
+        "kind": 6,
+        "importPath": "views.spawn_view",
+        "description": "views.spawn_view",
+        "peekOfCode": "class CatchCardModal(disnake.ui.Modal):\n    def __init__(self, cog, session: SpawnSession):\n        self.cog = cog\n        self.session = session\n        components = [\n            disnake.ui.TextInput(\n                label=\"Card name\",\n                placeholder=\"Type the exact card name\",\n                custom_id=\"card_name\",\n                style=disnake.TextInputStyle.short,",
+        "detail": "views.spawn_view",
+        "documentation": {}
+    },
+    {
+        "label": "SpawnCardView",
+        "kind": 6,
+        "importPath": "views.spawn_view",
+        "description": "views.spawn_view",
+        "peekOfCode": "class SpawnCardView(disnake.ui.View):\n    def __init__(self, cog, session: SpawnSession, timeout: float = 60):\n        super().__init__(timeout=timeout)\n        self.cog = cog\n        self.session = session\n        self.created_at = time.time()\n        self.message = None\n    @disnake.ui.button(label=\"Catch\", style=disnake.ButtonStyle.green)\n    async def catch_button(self, button: disnake.ui.Button, inter: disnake.MessageInteraction):\n        active = self.cog.active_spawns.get(self.session.message_id)",
+        "detail": "views.spawn_view",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "bot",
+        "description": "bot",
+        "peekOfCode": "def main():\n    db.initialize()\n    db.seed_from_json(CARD_FILE)\n    bot.add_cog(CardsCog(bot, db))\n    bot.run(BOT_TOKEN)\nif __name__ == \"__main__\":\n    main()",
+        "detail": "bot",
+        "documentation": {}
+    },
+    {
+        "label": "intents",
+        "kind": 5,
+        "importPath": "bot",
+        "description": "bot",
+        "peekOfCode": "intents = disnake.Intents.default()\nbot = commands.InteractionBot(intents=intents)\ndb = Database(DATABASE_PATH)\n@bot.event\nasync def on_ready():\n    print(f\"Bot is online as {bot.user}\")\ndef main():\n    db.initialize()\n    db.seed_from_json(CARD_FILE)\n    bot.add_cog(CardsCog(bot, db))",
+        "detail": "bot",
+        "documentation": {}
+    },
+    {
+        "label": "bot",
+        "kind": 5,
+        "importPath": "bot",
+        "description": "bot",
+        "peekOfCode": "bot = commands.InteractionBot(intents=intents)\ndb = Database(DATABASE_PATH)\n@bot.event\nasync def on_ready():\n    print(f\"Bot is online as {bot.user}\")\ndef main():\n    db.initialize()\n    db.seed_from_json(CARD_FILE)\n    bot.add_cog(CardsCog(bot, db))\n    bot.run(BOT_TOKEN)",
+        "detail": "bot",
+        "documentation": {}
+    },
+    {
+        "label": "db",
+        "kind": 5,
+        "importPath": "bot",
+        "description": "bot",
+        "peekOfCode": "db = Database(DATABASE_PATH)\n@bot.event\nasync def on_ready():\n    print(f\"Bot is online as {bot.user}\")\ndef main():\n    db.initialize()\n    db.seed_from_json(CARD_FILE)\n    bot.add_cog(CardsCog(bot, db))\n    bot.run(BOT_TOKEN)\nif __name__ == \"__main__\":",
+        "detail": "bot",
+        "documentation": {}
+    },
+    {
+        "label": "BOT_TOKEN",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "BOT_TOKEN = \"\"\nDATABASE_PATH = \"cards.db\"\nCARD_FILE = \"data/card.json\"\nif not BOT_TOKEN:\n    raise RuntimeError(\"DISCORD_BOT_TOKEN is not set.\")",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "DATABASE_PATH",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "DATABASE_PATH = \"cards.db\"\nCARD_FILE = \"data/card.json\"\nif not BOT_TOKEN:\n    raise RuntimeError(\"DISCORD_BOT_TOKEN is not set.\")",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "CARD_FILE",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "CARD_FILE = \"data/card.json\"\nif not BOT_TOKEN:\n    raise RuntimeError(\"DISCORD_BOT_TOKEN is not set.\")",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "Database",
+        "kind": 6,
+        "importPath": "database",
+        "description": "database",
+        "peekOfCode": "class Database:\n    def __init__(self, path: str):\n        self.path = path\n    @contextmanager\n    def connect(self):\n        conn = sqlite3.connect(self.path)\n        conn.row_factory = sqlite3.Row\n        try:\n            yield conn\n            conn.commit()",
+        "detail": "database",
+        "documentation": {}
+    },
+    {
+        "label": "load_cards",
+        "kind": 2,
+        "importPath": "eppstein",
+        "description": "eppstein",
+        "peekOfCode": "def load_cards() -> dict:\n    with open(CARD_FILE, \"r\", encoding=\"utf-8\") as f:\n        return json.load(f)\ndef build_card_message(card_name: str, card_data: dict) -> str:\n    attack = card_data.get(\"attack\", \"0\")\n    health = card_data.get(\"health\", \"0\")\n    attack_boost = card_data.get(\"attack_boost\", \"\")\n    health_boost = card_data.get(\"health_boost\", \"\")\n    atk_text = f\"{attack} {attack_boost}\".strip()\n    hp_text = f\"{health} {health_boost}\".strip()",
+        "detail": "eppstein",
+        "documentation": {}
+    },
+    {
+        "label": "build_card_message",
+        "kind": 2,
+        "importPath": "eppstein",
+        "description": "eppstein",
+        "peekOfCode": "def build_card_message(card_name: str, card_data: dict) -> str:\n    attack = card_data.get(\"attack\", \"0\")\n    health = card_data.get(\"health\", \"0\")\n    attack_boost = card_data.get(\"attack_boost\", \"\")\n    health_boost = card_data.get(\"health_boost\", \"\")\n    atk_text = f\"{attack} {attack_boost}\".strip()\n    hp_text = f\"{health} {health_boost}\".strip()\n    return (\n        f\"**{card_name}**\\n\"\n        f\"**ATK:** {atk_text}\\n\"",
+        "detail": "eppstein",
+        "documentation": {}
+    },
+    {
+        "label": "intents",
+        "kind": 5,
+        "importPath": "eppstein",
+        "description": "eppstein",
+        "peekOfCode": "intents = disnake.Intents.default()\nbot = commands.InteractionBot(intents=intents)\nCARD_FILE = \"card.json\"\ndef load_cards() -> dict:\n    with open(CARD_FILE, \"r\", encoding=\"utf-8\") as f:\n        return json.load(f)\ndef build_card_message(card_name: str, card_data: dict) -> str:\n    attack = card_data.get(\"attack\", \"0\")\n    health = card_data.get(\"health\", \"0\")\n    attack_boost = card_data.get(\"attack_boost\", \"\")",
+        "detail": "eppstein",
+        "documentation": {}
+    },
+    {
+        "label": "bot",
+        "kind": 5,
+        "importPath": "eppstein",
+        "description": "eppstein",
+        "peekOfCode": "bot = commands.InteractionBot(intents=intents)\nCARD_FILE = \"card.json\"\ndef load_cards() -> dict:\n    with open(CARD_FILE, \"r\", encoding=\"utf-8\") as f:\n        return json.load(f)\ndef build_card_message(card_name: str, card_data: dict) -> str:\n    attack = card_data.get(\"attack\", \"0\")\n    health = card_data.get(\"health\", \"0\")\n    attack_boost = card_data.get(\"attack_boost\", \"\")\n    health_boost = card_data.get(\"health_boost\", \"\")",
+        "detail": "eppstein",
+        "documentation": {}
+    },
+    {
+        "label": "CARD_FILE",
+        "kind": 5,
+        "importPath": "eppstein",
+        "description": "eppstein",
+        "peekOfCode": "CARD_FILE = \"card.json\"\ndef load_cards() -> dict:\n    with open(CARD_FILE, \"r\", encoding=\"utf-8\") as f:\n        return json.load(f)\ndef build_card_message(card_name: str, card_data: dict) -> str:\n    attack = card_data.get(\"attack\", \"0\")\n    health = card_data.get(\"health\", \"0\")\n    attack_boost = card_data.get(\"attack_boost\", \"\")\n    health_boost = card_data.get(\"health_boost\", \"\")\n    atk_text = f\"{attack} {attack_boost}\".strip()",
+        "detail": "eppstein",
+        "documentation": {}
+    },
+    {
+        "label": "Card",
+        "kind": 6,
+        "importPath": "models",
+        "description": "models",
+        "peekOfCode": "class Card:\n    id: int\n    name: str\n    attack: int\n    health: int\n    attack_boost: str\n    health_boost: str\n    rarity: float\n    image: Optional[str]\n    spawn_image: Optional[str]",
+        "detail": "models",
+        "documentation": {}
+    },
+    {
+        "label": "SpawnSession",
+        "kind": 6,
+        "importPath": "models",
+        "description": "models",
+        "peekOfCode": "class SpawnSession:\n    message_id: int\n    channel_id: int\n    card_id: int\n    card_name: str\n    claimed_by: Optional[int] = None",
+        "detail": "models",
+        "documentation": {}
+    }
+]
