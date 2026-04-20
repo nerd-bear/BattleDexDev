@@ -260,15 +260,6 @@
         "spawn_image": "./assets/cards/b58_spawn.png",
         "rarity": 74
     },
-    "DM73": {
-        "attack": 999,
-        "health": 999,
-        "attack_boost": 0,
-        "health_boost": 0,
-        "image": "./assets/cards/dm73.png",
-        "spawn_image": "./assets/cards/dm73_spawn.png",
-        "rarity": 82
-    },
     "F18E": {
         "attack": 8500,
         "health": 7000,
@@ -277,5 +268,14 @@
         "image": "./assets/cards/f18e.png",
         "spawn_image": "./assets/cards/f18e_spawn.png",
         "rarity": 8
+    },
+    "DM73": {
+        "attack": 999,
+        "health": 999,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/dm73.png",
+        "spawn_image": "./assets/cards/dm73_spawn.png",
+        "rarity": 82
     }
 }
