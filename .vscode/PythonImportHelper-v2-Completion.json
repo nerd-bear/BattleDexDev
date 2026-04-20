@@ -301,7 +301,7 @@
         "kind": 6,
         "importPath": "cogs.cards",
         "description": "cogs.cards",
-        "peekOfCode": "class CardsCog(commands.Cog):\n    def __init__(self, bot: commands.InteractionBot, db: Database):\n        self.bot = bot\n        self.db = db\n        self.active_spawns: Dict[int, SpawnSession] = {}\n        self.active_views: Dict[int, SpawnCardView] = {}\n    async def card_autocomplete(\n        self, inter: disnake.ApplicationCommandInteraction, user_input: str\n    ):\n        if not user_input.strip():",
+        "peekOfCode": "class CardsCog(commands.Cog):\n    def __init__(self, bot: commands.InteractionBot, db: Database):\n        self.bot = bot\n        self.db = db\n        self.active_spawns: Dict[int, SpawnSession] = {}\n        self.active_views: Dict[int, SpawnCardView] = {}\n    async def create_spawn_message(\n        self, inter: disnake.ApplicationCommandInteraction, card_obj\n    ):\n        embed, file = await build_spawn_embed_and_file(card_obj)",
         "detail": "cogs.cards",
         "documentation": {}
     },
