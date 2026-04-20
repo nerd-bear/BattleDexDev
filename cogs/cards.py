@@ -16,11 +16,25 @@ class CardsCog(commands.Cog):
         self.active_spawns: Dict[int, SpawnSession] = {}
         self.active_views: Dict[int, SpawnCardView] = {}
 
+    async def card_autocomplete(
+        self,
+        inter: disnake.ApplicationCommandInteraction,
+        user_input: str
+    ):
+        text = user_input.strip()
+
+        if not text:
+            return self.db.list_all_card_names(limit=25)
+
+        return self.db.search_card_names(text, limit=25)
+
     async def create_spawn_message(
-        self, inter: disnake.ApplicationCommandInteraction, card_obj
+        self,
+        inter: disnake.ApplicationCommandInteraction,
+        card_obj
     ):
         embed, file = await build_spawn_embed_and_file(card_obj)
-        embed.title = "🃏 A wild card appeared! :3"
+        embed.title = "🃏 A wild card appeared!"
         embed.description = (
             "Press **Catch** and type the exact card name to claim it.\n\n"
             f"**Hints**\n"
@@ -35,11 +49,12 @@ class CardsCog(commands.Cog):
             await inter.edit_original_response(embed=embed)
 
         message = await inter.original_message()
+
         session = SpawnSession(
             message_id=message.id,
             channel_id=message.channel.id,
             card_id=card_obj.id,
-            card_name=card_obj.name,
+            card_name=card_obj.name
         )
         self.active_spawns[message.id] = session
 
@@ -60,33 +75,33 @@ class CardsCog(commands.Cog):
         self,
         inter: disnake.ApplicationCommandInteraction,
         card: str = commands.Param(
-            description="Type the exact card name"
-        ),
+            description="Choose a card",
+            autocomplete=card_autocomplete
+        )
     ):
         card_obj = self.db.get_card_by_name(card)
         if not card_obj:
             await inter.response.send_message(
                 f"Card `{card}` was not found.",
-                ephemeral=True,
+                ephemeral=True
             )
             return
 
         embed, file = await build_card_embed_and_file(card_obj)
+
         if file:
             await inter.response.send_message(embed=embed, file=file)
         else:
             await inter.response.send_message(embed=embed)
 
-    @battle.sub_command(
-        name="spawn",
-        description="Spawn a specific card that users can catch."
-    )
+    @battle.sub_command(name="spawn", description="Spawn a specific card that users can catch.")
     async def spawn(
         self,
         inter: disnake.ApplicationCommandInteraction,
         card: str = commands.Param(
-            description="Type the exact card name"
-        ),
+            description="Choose a card to spawn",
+            autocomplete=card_autocomplete
+        )
     ):
         await inter.response.defer()
 
@@ -115,14 +130,11 @@ class CardsCog(commands.Cog):
 
         await self.create_spawn_message(inter, card_obj)
 
-    @battle.sub_command(
-        name="inventory",
-        description="View your inventory or another user's inventory."
-    )
+    @battle.sub_command(name="inventory", description="View your inventory or another user's inventory.")
     async def inventory(
         self,
         inter: disnake.ApplicationCommandInteraction,
-        user: disnake.User = commands.Param(default=None, description="User to inspect"),
+        user: disnake.User = commands.Param(default=None, description="User to inspect")
     ):
         target = user or inter.author
         items = self.db.get_user_inventory(target.id)
@@ -130,13 +142,13 @@ class CardsCog(commands.Cog):
         if not items:
             await inter.response.send_message(
                 f"📦 {target.mention} has no cards in their inventory.",
-                ephemeral=False,
+                ephemeral=False
             )
             return
 
         embed = disnake.Embed(
             title=f"{target.display_name}'s Card Inventory",
-            color=disnake.Color.gold(),
+            color=disnake.Color.gold()
         )
         embed.description = "\n".join(
             f"• **{name}** × {qty}" for name, qty in items[:50]
@@ -150,21 +162,22 @@ class CardsCog(commands.Cog):
         inter: disnake.ApplicationCommandInteraction,
         user: disnake.User = commands.Param(description="User to gift the card to"),
         card: str = commands.Param(
-            description="Type the exact card name"
+            description="Card to gift",
+            autocomplete=card_autocomplete
         ),
-        quantity: int = commands.Param(default=1, ge=1, le=100, description="Amount to gift"),
+        quantity: int = commands.Param(default=1, ge=1, le=100, description="Amount to gift")
     ):
         if user.bot:
             await inter.response.send_message(
                 "You cannot gift cards to bots.",
-                ephemeral=True,
+                ephemeral=True
             )
             return
 
         if user.id == inter.author.id:
             await inter.response.send_message(
                 "You cannot gift cards to yourself.",
-                ephemeral=True,
+                ephemeral=True
             )
             return
 
@@ -172,7 +185,7 @@ class CardsCog(commands.Cog):
         if not card_obj:
             await inter.response.send_message(
                 f"Card `{card}` was not found.",
-                ephemeral=True,
+                ephemeral=True
             )
             return
 
@@ -180,7 +193,7 @@ class CardsCog(commands.Cog):
         if not success:
             await inter.response.send_message(
                 f"You do not own enough copies of **✈︎ {card_obj.name}**.",
-                ephemeral=True,
+                ephemeral=True
             )
             return
 
@@ -195,7 +208,7 @@ class CardsCog(commands.Cog):
         if not cards:
             await inter.response.send_message(
                 "No cards were found.",
-                ephemeral=True,
+                ephemeral=True
             )
             return
 
