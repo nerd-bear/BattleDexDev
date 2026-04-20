@@ -17,8 +17,8 @@ class CardsCog(commands.Cog):
         self, inter: disnake.ApplicationCommandInteraction, user_input: str
     ):
         if not user_input.strip():
-            return self.db.list_all_card_names(limit=25)
-        return self.db.search_card_names(user_input, limit=25)
+            return self.db.list_all_card_names(limit=9999)
+        return self.db.search_card_names(user_input, limit=9999)
 
     async def create_spawn_message(
         self, inter: disnake.ApplicationCommandInteraction, card_obj
