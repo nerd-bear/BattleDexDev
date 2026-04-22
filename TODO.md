@@ -1,21 +1,21 @@
 # SHIT TO DO
 
-ADD RARITY
+✅ ADD RARITY
 ADD SORT WHEN CHECKING INV
 ADD SMTH IDK NIGGA
 
 PLANES:
 
-Tu-95
-Tu-22M
-Tu-22
-B-47 Stratojet
-B-58 Hustler
-Avro Vulcan
+✅ Tu-95 
+✅ Tu-22M
+✅ Tu-22
+✅ B-47 Stratojet
+✅ B-58 Hustler
+✅ Tu-16
+✅ Avro Vulcan
+✅ XB-70 Valkyrie
 Handley Page Victor
 Handley Page Halifax
-XB-70 Valkyrie
-Tu-16
 
 Mi-24 Hind
 Mi-28 Havoc

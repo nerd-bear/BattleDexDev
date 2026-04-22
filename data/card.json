@@ -26,7 +26,7 @@
         "spawn_image": "./assets/cards/bung_spawn.png",
         "rarity": 2
     },
-    "B52": {
+    "B-52": {
         "attack": 677,
         "health": 500,
         "attack_boost": 0,
@@ -35,7 +35,7 @@
         "spawn_image": "./assets/cards/b52_spawn.png",
         "rarity": 72
     },
-    "B1": {
+    "B-1": {
         "attack": 4450,
         "health": 1009,
         "attack_boost": 0,
@@ -44,7 +44,7 @@
         "spawn_image": "./assets/cards/b1_spawn.png",
         "rarity": 24
     },
-    "F15SE": {
+    "F-15SE": {
         "attack": 8000,
         "health": 9000,
         "attack_boost": 0,
@@ -53,7 +53,7 @@
         "spawn_image": "./assets/cards/f15se_spawn.png",
         "rarity": 7
     },
-    "F18HARV": {
+    "F-18HARV": {
         "attack": 10500,
         "health": 6200,
         "attack_boost": 0,
@@ -62,7 +62,7 @@
         "spawn_image": "./assets/cards/f18harv_spawn.png",
         "rarity": 5
     },
-    "EF2000": {
+    "EF-2000": {
         "attack": 9200,
         "health": 7800,
         "attack_boost": 0,
@@ -71,7 +71,7 @@
         "spawn_image": "./assets/cards/ef2000_spawn.png",
         "rarity": 6
     },
-    "SU34": {
+    "SU-34": {
         "attack": 7000,
         "health": 4000,
         "attack_boost": 0,
@@ -80,7 +80,7 @@
         "spawn_image": "./assets/cards/su34_spawn.png",
         "rarity": 13
     },
-    "B36": {
+    "B-36": {
         "attack": 2000,
         "health": 1,
         "attack_boost": 0,
@@ -89,7 +89,7 @@
         "spawn_image": "./assets/cards/b36_spawn.png",
         "rarity": 58
     },
-    "TU160": {
+    "TU-160": {
         "attack": 10000,
         "health": 5000,
         "attack_boost": 10,
@@ -98,7 +98,7 @@
         "spawn_image": "./assets/cards/tu160_spawn.png",
         "rarity": 3
     },
-    "F14": {
+    "F-14": {
         "attack": 9800,
         "health": 5500,
         "attack_boost": 0,
@@ -125,7 +125,7 @@
         "spawn_image": "./assets/cards/us_specop_spawn.png",
         "rarity": 45
     },
-    "AH1Z": {
+    "AH-1Z": {
         "attack": 4200,
         "health": 1000,
         "attack_boost": 0,
@@ -143,7 +143,7 @@
         "spawn_image": "./assets/cards/sassy_spawn.png",
         "rarity": 1
     },
-    "YAK130": {
+    "Yak-130": {
         "attack": 900,
         "health": 400,
         "attack_boost": 0,
@@ -161,7 +161,7 @@
         "spawn_image": "./assets/cards/vanguard_spawn.png",
         "rarity": 1
     },
-    "T55": {
+    "T-55": {
         "attack": 900,
         "health": 500,
         "attack_boost": 0,
@@ -170,7 +170,7 @@
         "spawn_image": "./assets/cards/t55_spawn.png",
         "rarity": 92
     },
-    "T62": {
+    "T-62": {
         "attack": 1100,
         "health": 1400,
         "attack_boost": 0,
@@ -179,7 +179,7 @@
         "spawn_image": "./assets/cards/t62_spawn.png",
         "rarity": 76
     },
-    "T64": {
+    "T-64": {
         "attack": 1200,
         "health": 1100,
         "attack_boost": 0,
@@ -188,7 +188,7 @@
         "spawn_image": "./assets/cards/t64_spawn.png",
         "rarity": 68
     },
-    "T72": {
+    "T-72": {
         "attack": 900,
         "health": 2000,
         "attack_boost": 0,
@@ -197,7 +197,7 @@
         "spawn_image": "./assets/cards/t72_spawn.png",
         "rarity": 56
     },
-    "T80": {
+    "T-80": {
         "attack": 1300,
         "health": 2200,
         "attack_boost": 0,
@@ -206,7 +206,7 @@
         "spawn_image": "./assets/cards/t80_spawn.png",
         "rarity": 46
     },
-    "T90": {
+    "T-90": {
         "attack": 1290,
         "health": 2900,
         "attack_boost": 0,
@@ -215,7 +215,7 @@
         "spawn_image": "./assets/cards/t90_spawn.png",
         "rarity": 36
     },
-    "TU16": {
+    "TU-16": {
         "attack": 4500,
         "health": 3500,
         "attack_boost": 0,
@@ -224,7 +224,7 @@
         "spawn_image": "./assets/cards/tu16_spawn.png",
         "rarity": 21
     },
-    "TU22M": {
+    "TU-22M": {
         "attack": 7500,
         "health": 2800,
         "attack_boost": 0,
@@ -233,7 +233,7 @@
         "spawn_image": "./assets/cards/tu22m_spawn.png",
         "rarity": 11
     },
-    "TU95": {
+    "TU-95": {
         "attack": 9000,
         "health": 8500,
         "attack_boost": 5,
@@ -242,7 +242,7 @@
         "spawn_image": "./assets/cards/tu95_spawn.png",
         "rarity": 4
     },
-    "B47": {
+    "B-47": {
         "attack": 550,
         "health": 400,
         "attack_boost": 0,
@@ -251,7 +251,7 @@
         "spawn_image": "./assets/cards/b47_spawn.png",
         "rarity": 95
     },
-    "B58": {
+    "B-58": {
         "attack": 1200,
         "health": 500,
         "attack_boost": 0,
@@ -260,7 +260,7 @@
         "spawn_image": "./assets/cards/b58_spawn.png",
         "rarity": 74
     },
-    "F18E": {
+    "F-18E": {
         "attack": 8500,
         "health": 7000,
         "attack_boost": 0,
@@ -277,5 +277,59 @@
         "image": "./assets/cards/dm73.png",
         "spawn_image": "./assets/cards/dm73_spawn.png",
         "rarity": 82
+    },
+    "Vulcan": {
+        "attack": 8200,
+        "health": 6000,
+        "attack_boost": 0,
+        "health_boost": 5,
+        "image": "./assets/cards/avro_vulcan.png",
+        "spawn_image": "./assets/cards/avro_vulcan_spawn.png",
+        "rarity": 9
+    },
+    "XB-70": {
+        "attack": 15000,
+        "health": 12000,
+        "attack_boost": 20,
+        "health_boost": 0,
+        "image": "./assets/cards/xb70.png",
+        "spawn_image": "./assets/cards/xb70_spawn.png",
+        "rarity": 4
+    },
+    "MI24": {
+        "attack": 3800,
+        "health": 4500,
+        "attack_boost": 0,
+        "health_boost": 10,
+        "image": "./assets/cards/mi24.png",
+        "spawn_image": "./assets/cards/mi24_spawn.png",
+        "rarity": 30
+    },
+    "KA50": {
+        "attack": 5500,
+        "health": 3200,
+        "attack_boost": 5,
+        "health_boost": 0,
+        "image": "./assets/cards/ka50.png",
+        "spawn_image": "./assets/cards/ka50_spawn.png",
+        "rarity": 18
+    },
+    "MI28": {
+        "attack": 6200,
+        "health": 5000,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/mi28.png",
+        "spawn_image": "./assets/cards/mi28_spawn.png",
+        "rarity": 15
+    },
+    "KA52": {
+        "attack": 7800,
+        "health": 5500,
+        "attack_boost": 5,
+        "health_boost": 5,
+        "image": "./assets/cards/ka52.png",
+        "spawn_image": "./assets/cards/ka52_spawn.png",
+        "rarity": 11
     }
 }
