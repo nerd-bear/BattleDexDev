@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv("/home/battledex/BattleDexDev/.env")
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 DATABASE_PATH = "cards.db"
