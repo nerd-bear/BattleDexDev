@@ -75,7 +75,7 @@ class CardsCog(commands.Cog):
         name="admin",
         description="Main command for all card admin features.",
         default_member_permissions=disnake.Permissions(administrator=True),
-        # guild_ids=[1346993156335599676]
+        guild_ids=[1346993156335599676]
     )
     async def admin(self, inter: disnake.ApplicationCommandInteraction):
         pass
@@ -137,7 +137,7 @@ class CardsCog(commands.Cog):
             await self.create_spawn_message(inter, card_obj)
 
     @admin.sub_command(name="give", description="Give a card to a user.")
-    async def give(
+    async def admin_give(
         self,
         inter: disnake.ApplicationCommandInteraction,
         user: disnake.User = commands.Param(
