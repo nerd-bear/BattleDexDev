@@ -75,7 +75,7 @@ class CardsCog(commands.Cog):
         name="admin",
         description="Main command for all card admin features.",
         default_member_permissions=disnake.Permissions(administrator=True),
-        guild_ids=[1346993156335599676]
+        # guild_ids=[1346993156335599676]
     )
     async def admin(self, inter: disnake.ApplicationCommandInteraction):
         pass
