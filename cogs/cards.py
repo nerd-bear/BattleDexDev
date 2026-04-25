@@ -3,7 +3,6 @@ from typing import Dict
 import disnake
 from disnake.ext import commands
 
-from config import MAIN_GUILD_ID
 from database import Database
 from models import SpawnSession
 from services.card_service import build_card_embed_and_file, build_spawn_embed_and_file
