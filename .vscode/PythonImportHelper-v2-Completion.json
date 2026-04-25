@@ -355,7 +355,7 @@
         "kind": 5,
         "importPath": "bot",
         "description": "bot",
-        "peekOfCode": "intents = disnake.Intents.default()\nbot = commands.InteractionBot(intents=intents)\ndb = Database(DATABASE_PATH)\n@bot.event\nasync def on_ready():\n    guild_ids = [guild.id for guild in bot.guilds]\n    await bot.sync_commands(guild_ids=guild_ids)\n    print(f\"Bot is online as {bot.user}\")\ndef main():\n    db.initialize()",
+        "peekOfCode": "intents = disnake.Intents.default()\nbot = commands.InteractionBot(intents=intents)\ndb = Database(DATABASE_PATH)\n@bot.event\nasync def on_ready():\n    # guild_ids = [guild.id for guild in bot.guilds]\n    # await bot.sync_commands(guild_ids=guild_ids)\n    print(f\"Bot is online as {bot.user}\")\ndef main():\n    db.initialize()",
         "detail": "bot",
         "documentation": {}
     },
@@ -364,7 +364,7 @@
         "kind": 5,
         "importPath": "bot",
         "description": "bot",
-        "peekOfCode": "bot = commands.InteractionBot(intents=intents)\ndb = Database(DATABASE_PATH)\n@bot.event\nasync def on_ready():\n    guild_ids = [guild.id for guild in bot.guilds]\n    await bot.sync_commands(guild_ids=guild_ids)\n    print(f\"Bot is online as {bot.user}\")\ndef main():\n    db.initialize()\n    db.seed_from_json(CARD_FILE)",
+        "peekOfCode": "bot = commands.InteractionBot(intents=intents)\ndb = Database(DATABASE_PATH)\n@bot.event\nasync def on_ready():\n    # guild_ids = [guild.id for guild in bot.guilds]\n    # await bot.sync_commands(guild_ids=guild_ids)\n    print(f\"Bot is online as {bot.user}\")\ndef main():\n    db.initialize()\n    db.seed_from_json(CARD_FILE)",
         "detail": "bot",
         "documentation": {}
     },
@@ -373,7 +373,7 @@
         "kind": 5,
         "importPath": "bot",
         "description": "bot",
-        "peekOfCode": "db = Database(DATABASE_PATH)\n@bot.event\nasync def on_ready():\n    guild_ids = [guild.id for guild in bot.guilds]\n    await bot.sync_commands(guild_ids=guild_ids)\n    print(f\"Bot is online as {bot.user}\")\ndef main():\n    db.initialize()\n    db.seed_from_json(CARD_FILE)\n    bot.add_cog(CardsCog(bot, db))",
+        "peekOfCode": "db = Database(DATABASE_PATH)\n@bot.event\nasync def on_ready():\n    # guild_ids = [guild.id for guild in bot.guilds]\n    # await bot.sync_commands(guild_ids=guild_ids)\n    print(f\"Bot is online as {bot.user}\")\ndef main():\n    db.initialize()\n    db.seed_from_json(CARD_FILE)\n    bot.add_cog(CardsCog(bot, db))",
         "detail": "bot",
         "documentation": {}
     },
