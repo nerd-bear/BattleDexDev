@@ -3,6 +3,7 @@ from typing import Dict
 import disnake
 from disnake.ext import commands
 
+from config import MAIN_GUILD_ID
 from database import Database
 from models import SpawnSession
 from services.card_service import build_card_embed_and_file, build_spawn_embed_and_file
@@ -70,6 +71,15 @@ class CardsCog(commands.Cog):
     async def battle(self, inter: disnake.ApplicationCommandInteraction):
         pass
 
+    @commands.slash_command(
+        name="admin",
+        description="Main command for all card admin features.",
+        default_member_permissions=disnake.Permissions(administrator=True),
+        guild_ids=[MAIN_GUILD_ID]
+    )
+    async def admin(self, inter: disnake.ApplicationCommandInteraction):
+        pass
+
     @battle.sub_command(name="info", description="Display information about a card.")
     async def info(
         self,
@@ -94,47 +104,108 @@ class CardsCog(commands.Cog):
         else:
             await inter.response.send_message(embed=embed)
 
-    @battle.sub_command(name="spawn", description="Spawn a specific card that users can catch.")
+    @admin.sub_command(name="spawn", description="Spawn a specific card.")
     async def spawn(
         self,
         inter: disnake.ApplicationCommandInteraction,
         card: str = commands.Param(
             description="Choose a card to spawn",
-            autocomplete=card_autocomplete
-        )
+            autocomplete=card_autocomplete,
+            default=None
+        ),
     ):
         await inter.response.defer()
 
+        if card is not None:  # If a specific card was requested card is not default and this block runs
+            card_obj = self.db.get_card_by_name(card)
+            if not card_obj:
+                await inter.edit_original_response(
+                    content=f"Card `{card}` was not found."
+                )
+                return
+
+            await self.create_spawn_message(inter, card_obj)
+
+        else:
+            card_obj = self.db.get_random_card_by_rarity()
+            if not card_obj:
+                await inter.edit_original_response(
+                    content="No cards are available to spawn."
+                )
+                return
+
+            await self.create_spawn_message(inter, card_obj)
+
+    @admin.sub_command(name="give", description="Give a card to a user.")
+    async def give(
+        self,
+        inter: disnake.ApplicationCommandInteraction,
+        user: disnake.User = commands.Param(
+            description="User to give the card to"),
+        card: str = commands.Param(
+            description="Card to give",
+            autocomplete=card_autocomplete
+        ),
+        quantity: int = commands.Param(
+            default=1, ge=1, le=100, description="Amount to give")
+    ):
+        if user.bot:
+            await inter.response.send_message(
+                "You cannot give cards to bots.",
+                ephemeral=True
+            )
+            return
+
+        if user.id == inter.author.id:
+            await inter.response.send_message(
+                "You cannot give cards to yourself.",
+                ephemeral=True
+            )
+            return
+
         card_obj = self.db.get_card_by_name(card)
         if not card_obj:
-            await inter.edit_original_response(
-                content=f"Card `{card}` was not found."
+            await inter.response.send_message(
+                f"Card `{card}` was not found.",
+                ephemeral=True
             )
             return
 
-        await self.create_spawn_message(inter, card_obj)
-
-    @battle.sub_command(
-        name="spawn_random",
-        description="Spawn a random card using rarity-weighted odds."
-    )
-    async def spawn_random(self, inter: disnake.ApplicationCommandInteraction):
-        await inter.response.defer()
-
-        card_obj = self.db.get_random_card_by_rarity()
-        if not card_obj:
-            await inter.edit_original_response(
-                content="No cards are available to spawn."
+        success = self.db.transfer_card(
+            inter.author.id, user.id, card_obj.id, quantity)
+        if not success:
+            await inter.response.send_message(
+                f"You do not own enough copies of **✈︎ {card_obj.name}**.",
+                ephemeral=True
             )
             return
 
-        await self.create_spawn_message(inter, card_obj)
+        await inter.response.send_message(
+            f"🎁 {inter.author.mention} *ADMIN* gave **✈︎ {card_obj.name}** × {quantity} to {user.mention}."
+        )
+
+    # @battle.sub_command(
+    #     name="spawn_random",
+    #     description="Spawn a random card using rarity-weighted odds."
+    # )
+    # async def spawn_random(self, inter: disnake.ApplicationCommandInteraction):
+    #     await inter.response.defer()
+
+    #     card_obj = self.db.get_random_card_by_rarity()
+    #     if not card_obj:
+    #         await inter.edit_original_response(
+    #             content="No cards are available to spawn."
+    #         )
+    #         return
+
+    #     await self.create_spawn_message(inter, card_obj)
 
     @battle.sub_command(name="inventory", description="View your inventory or another user's inventory.")
     async def inventory(
         self,
         inter: disnake.ApplicationCommandInteraction,
-        user: disnake.User = commands.Param(default=None, description="User to inspect")
+        user: disnake.User = commands.Param(
+            default=None, description="User to inspect")
     ):
         target = user or inter.author
         items = self.db.get_user_inventory(target.id)
@@ -160,12 +231,14 @@ class CardsCog(commands.Cog):
     async def give(
         self,
         inter: disnake.ApplicationCommandInteraction,
-        user: disnake.User = commands.Param(description="User to gift the card to"),
+        user: disnake.User = commands.Param(
+            description="User to gift the card to"),
         card: str = commands.Param(
             description="Card to gift",
             autocomplete=card_autocomplete
         ),
-        quantity: int = commands.Param(default=1, ge=1, le=100, description="Amount to gift")
+        quantity: int = commands.Param(
+            default=1, ge=1, le=100, description="Amount to gift")
     ):
         if user.bot:
             await inter.response.send_message(
@@ -189,7 +262,8 @@ class CardsCog(commands.Cog):
             )
             return
 
-        success = self.db.transfer_card(inter.author.id, user.id, card_obj.id, quantity)
+        success = self.db.transfer_card(
+            inter.author.id, user.id, card_obj.id, quantity)
         if not success:
             await inter.response.send_message(
                 f"You do not own enough copies of **✈︎ {card_obj.name}**.",

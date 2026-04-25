@@ -2,7 +2,6 @@
 
 ✅ ADD RARITY
 ADD SORT WHEN CHECKING INV
-ADD SMTH IDK NIGGA
 
 PLANES:
 
@@ -17,16 +16,22 @@ PLANES:
 Handley Page Victor
 Handley Page Halifax
 
-Mi-24 Hind
-Mi-28 Havoc
-Ka-50 Black Shark
-Ka-52 Alligator
+✅ Mi-24 Hind
+✅ Mi-28 Havoc
+✅ Ka-50 Black Shark
+✅ Ka-52 Alligator
 AH-64 Apache
 AH-64D Apache Longbow
 UH-60 Black Hawk
 CH-47 Chinook
 AH-6 Little Bird
 Eurocopter Tiger
+
+F-16XL SCAMP
+F-16C Fighting Falcon
+JAS 39 Gripen
+JA 37 Viggen
+JA 35 Draken
 
 M1 Abrams
 M60 Patton

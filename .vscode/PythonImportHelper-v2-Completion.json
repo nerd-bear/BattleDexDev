@@ -89,6 +89,38 @@
         "documentation": {}
     },
     {
+        "label": "MAIN_GUILD_ID",
+        "importPath": "config",
+        "description": "config",
+        "isExtraImport": true,
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "BOT_TOKEN",
+        "importPath": "config",
+        "description": "config",
+        "isExtraImport": true,
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "DATABASE_PATH",
+        "importPath": "config",
+        "description": "config",
+        "isExtraImport": true,
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "CARD_FILE",
+        "importPath": "config",
+        "description": "config",
+        "isExtraImport": true,
+        "detail": "config",
+        "documentation": {}
+    },
+    {
         "label": "Database",
         "importPath": "database",
         "description": "database",
@@ -193,30 +225,6 @@
         "importPath": "time",
         "description": "time",
         "detail": "time",
-        "documentation": {}
-    },
-    {
-        "label": "BOT_TOKEN",
-        "importPath": "config",
-        "description": "config",
-        "isExtraImport": true,
-        "detail": "config",
-        "documentation": {}
-    },
-    {
-        "label": "DATABASE_PATH",
-        "importPath": "config",
-        "description": "config",
-        "isExtraImport": true,
-        "detail": "config",
-        "documentation": {}
-    },
-    {
-        "label": "CARD_FILE",
-        "importPath": "config",
-        "description": "config",
-        "isExtraImport": true,
-        "detail": "config",
         "documentation": {}
     },
     {
@@ -382,7 +390,7 @@
         "kind": 5,
         "importPath": "config",
         "description": "config",
-        "peekOfCode": "BOT_TOKEN = \"\"\nDATABASE_PATH = \"cards.db\"\nCARD_FILE = \"data/card.json\"\nif not BOT_TOKEN:\n    raise RuntimeError(\"DISCORD_BOT_TOKEN is not set.\")",
+        "peekOfCode": "BOT_TOKEN = \"\"\nDATABASE_PATH = \"cards.db\"\nCARD_FILE = \"data/card.json\"\nMAIN_GUILD_ID = 1495045506429227178  \nif not BOT_TOKEN:\n    raise RuntimeError(\"DISCORD_BOT_TOKEN is not set.\")",
         "detail": "config",
         "documentation": {}
     },
@@ -391,7 +399,7 @@
         "kind": 5,
         "importPath": "config",
         "description": "config",
-        "peekOfCode": "DATABASE_PATH = \"cards.db\"\nCARD_FILE = \"data/card.json\"\nif not BOT_TOKEN:\n    raise RuntimeError(\"DISCORD_BOT_TOKEN is not set.\")",
+        "peekOfCode": "DATABASE_PATH = \"cards.db\"\nCARD_FILE = \"data/card.json\"\nMAIN_GUILD_ID = 1495045506429227178  \nif not BOT_TOKEN:\n    raise RuntimeError(\"DISCORD_BOT_TOKEN is not set.\")",
         "detail": "config",
         "documentation": {}
     },
@@ -400,7 +408,16 @@
         "kind": 5,
         "importPath": "config",
         "description": "config",
-        "peekOfCode": "CARD_FILE = \"data/card.json\"\nif not BOT_TOKEN:\n    raise RuntimeError(\"DISCORD_BOT_TOKEN is not set.\")",
+        "peekOfCode": "CARD_FILE = \"data/card.json\"\nMAIN_GUILD_ID = 1495045506429227178  \nif not BOT_TOKEN:\n    raise RuntimeError(\"DISCORD_BOT_TOKEN is not set.\")",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "MAIN_GUILD_ID",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "MAIN_GUILD_ID = 1495045506429227178  \nif not BOT_TOKEN:\n    raise RuntimeError(\"DISCORD_BOT_TOKEN is not set.\")",
         "detail": "config",
         "documentation": {}
     },
