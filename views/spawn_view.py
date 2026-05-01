@@ -86,7 +86,7 @@ class CatchCardModal(disnake.ui.Modal):
             await message.edit(embed=embed, view=disabled_view)
 
         await inter.response.send_message(
-            f"{inter.author.mention} just caught the **{active.card_name}** card `{active.card_id}`! {" This is your first one!" if not (self.cog.db.user_has_card(inter.author.id, active.card_id, quantity=1)) else ''}",
+            f"{inter.author.mention} just caught the **{active.card_name}** card `{active.card_id}`! {" This is your first one!" if self.cog.db.user_has_card(inter.author.id, active.card_id, quantity=0) else ''}",
         )
 
         self.cog.active_spawns.pop(self.session.message_id, None)
