@@ -763,7 +763,7 @@
         "kind": 2,
         "importPath": "services.card_service",
         "description": "services.card_service",
-        "peekOfCode": "def build_card_text(card: Card) -> str:\n    atk_text = f\"{card.attack} {card.attack_boost}\".strip()\n    hp_text = f\"{card.health} {card.health_boost}\".strip()\n    return (\n        f\"**ATK:** {atk_text}\\n\"\n        f\"**HP:** {hp_text}\\n\"\n        f\"**Rarity:** {card.rarity:g}\"\n    )\nasync def build_card_embed_and_file(card: Card) -> Tuple[disnake.Embed, Optional[disnake.File]]:\n    embed = disnake.Embed(",
+        "peekOfCode": "def build_card_text(card: Card) -> str:\n    atk_text = f\"{card.attack} {card.attack_boost}\".strip()\n    hp_text = f\"{card.health} {card.health_boost}\".strip()\n    return (\n        f\"**ATK:** {atk_text}\\n\"\n        f\"**HP:** {hp_text}\\n\"\n        f\"**Rarity:** {card.rarity}\"\n    )\nasync def build_card_embed_and_file(card: Card) -> Tuple[disnake.Embed, Optional[disnake.File]]:\n    embed = disnake.Embed(",
         "detail": "services.card_service",
         "documentation": {}
     },

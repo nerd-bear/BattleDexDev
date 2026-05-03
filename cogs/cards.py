@@ -40,7 +40,7 @@ class CardsCog(commands.Cog):
             f"**Hints**\n"
             f"ATK: {card_obj.attack} {card_obj.attack_boost}".strip() + "\n"
             f"HP: {card_obj.health} {card_obj.health_boost}".strip() + "\n"
-            f"Rarity: {card_obj.rarity:g}"
+            f"Rarity: {card_obj.rarity}"
         )
 
         if file:

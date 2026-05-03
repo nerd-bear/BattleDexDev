@@ -20,7 +20,7 @@ def build_card_text(card: Card) -> str:
     return (
         f"**ATK:** {atk_text}\n"
         f"**HP:** {hp_text}\n"
-        f"**Rarity:** {card.rarity:g}"
+        f"**Rarity:** {card.rarity}"
     )
 
 
