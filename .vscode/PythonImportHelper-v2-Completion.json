@@ -66,6 +66,24 @@
         "documentation": {}
     },
     {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
         "label": "Dict",
         "importPath": "typing",
         "description": "typing",
@@ -235,15 +253,6 @@
         "documentation": {}
     },
     {
-        "label": "re",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "re",
-        "description": "re",
-        "detail": "re",
-        "documentation": {}
-    },
-    {
         "label": "time",
         "kind": 6,
         "isExtraImport": true,
@@ -290,15 +299,6 @@
         "description": "dotenv",
         "isExtraImport": true,
         "detail": "dotenv",
-        "documentation": {}
-    },
-    {
-        "label": "json",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "json",
-        "description": "json",
-        "detail": "json",
         "documentation": {}
     },
     {
@@ -372,11 +372,47 @@
         "documentation": {}
     },
     {
+        "label": "round_corners",
+        "kind": 2,
+        "importPath": "CARDCREATOR.card_creator",
+        "description": "CARDCREATOR.card_creator",
+        "peekOfCode": "def round_corners(img, radius):\n    mask = Image.new(\"L\", img.size, 0)\n    draw = ImageDraw.Draw(mask)\n    draw.rounded_rectangle((0, 0, img.size[0], img.size[1]), radius=radius, fill=255)\n    img.putalpha(mask)\n    return img\ndef draw_multiline_text(draw, text, font, max_width, start_pos, max_height=None):\n    words = text.split()\n    lines = []\n    current_line = \"\"",
+        "detail": "CARDCREATOR.card_creator",
+        "documentation": {}
+    },
+    {
         "label": "draw_multiline_text",
         "kind": 2,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "def draw_multiline_text(draw, text, font, max_width, start_pos):\n    words = text.split()\n    lines = []\n    current_line = \"\"\n    for word in words:\n        test_line = current_line + (\" \" if current_line else \"\") + word\n        w = draw.textbbox((0, 0), test_line, font=font)[2]\n        if w <= max_width:\n            current_line = test_line\n        else:",
+        "peekOfCode": "def draw_multiline_text(draw, text, font, max_width, start_pos, max_height=None):\n    words = text.split()\n    lines = []\n    current_line = \"\"\n    for word in words:\n        test_line = current_line + (\" \" if current_line else \"\") + word\n        w = draw.textbbox((0, 0), test_line, font=font)[2]\n        if w <= max_width:\n            current_line = test_line\n        else:",
+        "detail": "CARDCREATOR.card_creator",
+        "documentation": {}
+    },
+    {
+        "label": "draw_wrapped_title",
+        "kind": 2,
+        "importPath": "CARDCREATOR.card_creator",
+        "description": "CARDCREATOR.card_creator",
+        "peekOfCode": "def draw_wrapped_title(draw, text, font, max_width, pos):\n    words = text.split()\n    lines = []\n    current_line = \"\"\n    for word in words:\n        test_line = current_line + (\" \" if current_line else \"\") + word\n        w = draw.textbbox((0, 0), test_line, font=font)[2]\n        if w <= max_width:\n            current_line = test_line\n        else:",
+        "detail": "CARDCREATOR.card_creator",
+        "documentation": {}
+    },
+    {
+        "label": "sanitize_filename",
+        "kind": 2,
+        "importPath": "CARDCREATOR.card_creator",
+        "description": "CARDCREATOR.card_creator",
+        "peekOfCode": "def sanitize_filename(name):\n    return re.sub(r'[^a-z0-9]', '', name.lower())\ndef resize_keep_aspect(img, max_size):\n    img.thumbnail((max_size, max_size), Image.Resampling.LANCZOS)\n    return img\ndef create_card(title, image_path, subtitle, description, icon_filename, basename: str, hp_value: str, atk_value: str):\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\n    if not os.path.exists(BACKGROUND_PATH):\n        raise FileNotFoundError(f\"Background image not found at: {BACKGROUND_PATH}\")\n    bg = Image.open(BACKGROUND_PATH).convert(\"RGBA\")",
+        "detail": "CARDCREATOR.card_creator",
+        "documentation": {}
+    },
+    {
+        "label": "resize_keep_aspect",
+        "kind": 2,
+        "importPath": "CARDCREATOR.card_creator",
+        "description": "CARDCREATOR.card_creator",
+        "peekOfCode": "def resize_keep_aspect(img, max_size):\n    img.thumbnail((max_size, max_size), Image.Resampling.LANCZOS)\n    return img\ndef create_card(title, image_path, subtitle, description, icon_filename, basename: str, hp_value: str, atk_value: str):\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\n    if not os.path.exists(BACKGROUND_PATH):\n        raise FileNotFoundError(f\"Background image not found at: {BACKGROUND_PATH}\")\n    bg = Image.open(BACKGROUND_PATH).convert(\"RGBA\")\n    bg = crop_to_aspect(bg, CARD_WIDTH, CARD_HEIGHT)\n    bg = bg.resize((CARD_WIDTH, CARD_HEIGHT), Image.Resampling.LANCZOS)",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -385,7 +421,16 @@
         "kind": 2,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "def create_card(title, image_path, subtitle, description, icon_filename, basename: str):\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\n    if not os.path.exists(BACKGROUND_PATH):\n        raise FileNotFoundError(f\"Background image not found at: {BACKGROUND_PATH}\")\n    bg = Image.open(BACKGROUND_PATH).convert(\"RGBA\")\n    bg = crop_to_aspect(bg, CARD_WIDTH, CARD_HEIGHT)\n    bg = bg.resize((CARD_WIDTH, CARD_HEIGHT), Image.Resampling.LANCZOS)\n    draw = ImageDraw.Draw(bg)\n    title_font = ImageFont.truetype(TITLE_FONT_PATH, TITLE_SIZE)\n    subtitle_font = ImageFont.truetype(SUBTITLE_FONT_PATH, SUBTITLE_SIZE)",
+        "peekOfCode": "def create_card(title, image_path, subtitle, description, icon_filename, basename: str, hp_value: str, atk_value: str):\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\n    if not os.path.exists(BACKGROUND_PATH):\n        raise FileNotFoundError(f\"Background image not found at: {BACKGROUND_PATH}\")\n    bg = Image.open(BACKGROUND_PATH).convert(\"RGBA\")\n    bg = crop_to_aspect(bg, CARD_WIDTH, CARD_HEIGHT)\n    bg = bg.resize((CARD_WIDTH, CARD_HEIGHT), Image.Resampling.LANCZOS)\n    draw = ImageDraw.Draw(bg)\n    title_font = ImageFont.truetype(TITLE_FONT_PATH, TITLE_SIZE)\n    subtitle_font = ImageFont.truetype(SUBTITLE_FONT_PATH, SUBTITLE_SIZE)",
+        "detail": "CARDCREATOR.card_creator",
+        "documentation": {}
+    },
+    {
+        "label": "save_card_to_json",
+        "kind": 2,
+        "importPath": "CARDCREATOR.card_creator",
+        "description": "CARDCREATOR.card_creator",
+        "peekOfCode": "def save_card_to_json(name, card_filename, spawn_filename, description, rarity, country, hp, atk):\n    os.makedirs(os.path.dirname(JSON_PATH), exist_ok=True)\n    if os.path.exists(JSON_PATH):\n        with open(JSON_PATH, \"r\") as f:\n            data = json.load(f)\n    else:\n        data = {}\n    data[name] = {\n        \"attack\": int(atk),\n        \"health\": int(hp),",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -394,7 +439,16 @@
         "kind": 2,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "def run_app():\n    root = tk.Tk()\n    root.title(\"GoonDex Card Creator\")\n    root.geometry(\"450x600\") \n    root.configure(padx=20, pady=20)\n    COUNTRY_MAP = {\n        \"Russia\": \"RU.png\",\n        \"UK\": \"UK.png\",\n        \"US\": \"US.png\",\n        \"Germany\": \"DE.png\"",
+        "peekOfCode": "def run_app():\n    root = tk.Tk()\n    root.title(\"GoonDex Card Creator\")\n    root.geometry(\"450x600\")\n    root.configure(padx=20, pady=20)\n    def browse_image():\n        filepath = filedialog.askopenfilename(\n            title=\"Select Main Image\",\n            filetypes=[(\"Image Files\", \"*.png;*.jpg;*.jpeg;*.webp\")]\n        )",
+        "detail": "CARDCREATOR.card_creator",
+        "documentation": {}
+    },
+    {
+        "label": "run_from_json",
+        "kind": 2,
+        "importPath": "CARDCREATOR.card_creator",
+        "description": "CARDCREATOR.card_creator",
+        "peekOfCode": "def run_from_json():\n    if not os.path.exists(JSON_PATH):\n        print(f\"Error: JSON file not found at {JSON_PATH}\")\n        return\n    print(\"Loading JSON data...\")\n    with open(JSON_PATH, \"r\") as f:\n        card_data = json.load(f)\n    for card_name, data in card_data.items():\n        print(f\"Generating card: {card_name}...\")\n        # Format the relative path to absolute",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -403,7 +457,16 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\nOUTPUT_DIR = r\"C:\\Users\\nerdb\\OneDrive\\Desktop\\coding-projects\\GoonDex\\assets\\cards\"\nSCALE = 3 \nCARD_WIDTH = 357 * SCALE\nCARD_HEIGHT = 500 * SCALE\nBACKGROUND_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"STD_BG.jpg\")\nTITLE_TOP_MARGIN = 10 * SCALE\nTITLE_TO_IMAGE_GAP = 20 * SCALE\nIMAGE_SIDE_MARGIN = 10 * SCALE\nIMAGE_TO_SUBTITLE_GAP = 25 * SCALE",
+        "peekOfCode": "SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\n# Base project directory mapped from your path\nPROJECT_ROOT = r\"C:\\Users\\nerdb\\OneDrive\\Desktop\\coding-projects\\GoonDex\"\nOUTPUT_DIR = os.path.join(PROJECT_ROOT, \"assets\", \"cards\")\nJSON_PATH = os.path.join(PROJECT_ROOT, \"data\", \"card.json\")\n# Country Map moved to Global so JSON script can use it too!\nCOUNTRY_MAP = {\n    \"Russia\": \"RU.png\",\n    \"UK\": \"UK.png\",\n    \"US\": \"US.png\",",
+        "detail": "CARDCREATOR.card_creator",
+        "documentation": {}
+    },
+    {
+        "label": "PROJECT_ROOT",
+        "kind": 5,
+        "importPath": "CARDCREATOR.card_creator",
+        "description": "CARDCREATOR.card_creator",
+        "peekOfCode": "PROJECT_ROOT = r\"C:\\Users\\nerdb\\OneDrive\\Desktop\\coding-projects\\GoonDex\"\nOUTPUT_DIR = os.path.join(PROJECT_ROOT, \"assets\", \"cards\")\nJSON_PATH = os.path.join(PROJECT_ROOT, \"data\", \"card.json\")\n# Country Map moved to Global so JSON script can use it too!\nCOUNTRY_MAP = {\n    \"Russia\": \"RU.png\",\n    \"UK\": \"UK.png\",\n    \"US\": \"US.png\",\n    \"Germany\": \"DE.png\"\n}",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -412,7 +475,25 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "OUTPUT_DIR = r\"C:\\Users\\nerdb\\OneDrive\\Desktop\\coding-projects\\GoonDex\\assets\\cards\"\nSCALE = 3 \nCARD_WIDTH = 357 * SCALE\nCARD_HEIGHT = 500 * SCALE\nBACKGROUND_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"STD_BG.jpg\")\nTITLE_TOP_MARGIN = 10 * SCALE\nTITLE_TO_IMAGE_GAP = 20 * SCALE\nIMAGE_SIDE_MARGIN = 10 * SCALE\nIMAGE_TO_SUBTITLE_GAP = 25 * SCALE\nTEXT_SIDE_MARGIN = 20 * SCALE",
+        "peekOfCode": "OUTPUT_DIR = os.path.join(PROJECT_ROOT, \"assets\", \"cards\")\nJSON_PATH = os.path.join(PROJECT_ROOT, \"data\", \"card.json\")\n# Country Map moved to Global so JSON script can use it too!\nCOUNTRY_MAP = {\n    \"Russia\": \"RU.png\",\n    \"UK\": \"UK.png\",\n    \"US\": \"US.png\",\n    \"Germany\": \"DE.png\"\n}\nSCALE = 3",
+        "detail": "CARDCREATOR.card_creator",
+        "documentation": {}
+    },
+    {
+        "label": "JSON_PATH",
+        "kind": 5,
+        "importPath": "CARDCREATOR.card_creator",
+        "description": "CARDCREATOR.card_creator",
+        "peekOfCode": "JSON_PATH = os.path.join(PROJECT_ROOT, \"data\", \"card.json\")\n# Country Map moved to Global so JSON script can use it too!\nCOUNTRY_MAP = {\n    \"Russia\": \"RU.png\",\n    \"UK\": \"UK.png\",\n    \"US\": \"US.png\",\n    \"Germany\": \"DE.png\"\n}\nSCALE = 3\nCARD_WIDTH = 357 * SCALE",
+        "detail": "CARDCREATOR.card_creator",
+        "documentation": {}
+    },
+    {
+        "label": "COUNTRY_MAP",
+        "kind": 5,
+        "importPath": "CARDCREATOR.card_creator",
+        "description": "CARDCREATOR.card_creator",
+        "peekOfCode": "COUNTRY_MAP = {\n    \"Russia\": \"RU.png\",\n    \"UK\": \"UK.png\",\n    \"US\": \"US.png\",\n    \"Germany\": \"DE.png\"\n}\nSCALE = 3\nCARD_WIDTH = 357 * SCALE\nCARD_HEIGHT = 500 * SCALE\nBACKGROUND_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"STD_BG.jpg\")",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -421,7 +502,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "SCALE = 3 \nCARD_WIDTH = 357 * SCALE\nCARD_HEIGHT = 500 * SCALE\nBACKGROUND_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"STD_BG.jpg\")\nTITLE_TOP_MARGIN = 10 * SCALE\nTITLE_TO_IMAGE_GAP = 20 * SCALE\nIMAGE_SIDE_MARGIN = 10 * SCALE\nIMAGE_TO_SUBTITLE_GAP = 25 * SCALE\nTEXT_SIDE_MARGIN = 20 * SCALE\nSUBTITLE_TO_DESC_GAP = 15 * SCALE",
+        "peekOfCode": "SCALE = 3\nCARD_WIDTH = 357 * SCALE\nCARD_HEIGHT = 500 * SCALE\nBACKGROUND_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"STD_BG.jpg\")\nTITLE_TOP_MARGIN = 10 * SCALE\nTITLE_TO_IMAGE_GAP = 20 * SCALE\nIMAGE_SIDE_MARGIN = 10 * SCALE\nIMAGE_TO_SUBTITLE_GAP = 25 * SCALE\nTEXT_SIDE_MARGIN = 20 * SCALE\nSUBTITLE_TO_DESC_GAP = 15 * SCALE",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -457,7 +538,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "TITLE_TOP_MARGIN = 10 * SCALE\nTITLE_TO_IMAGE_GAP = 20 * SCALE\nIMAGE_SIDE_MARGIN = 10 * SCALE\nIMAGE_TO_SUBTITLE_GAP = 25 * SCALE\nTEXT_SIDE_MARGIN = 20 * SCALE\nSUBTITLE_TO_DESC_GAP = 15 * SCALE\nBOTTOM_MARGIN = 20 * SCALE\nICON_RIGHT_MARGIN = 10 * SCALE\nICON_TOP_MARGIN = 8 * SCALE\nICON_SCALE_MULTIPLIER = 1.3 ",
+        "peekOfCode": "TITLE_TOP_MARGIN = 10 * SCALE\nTITLE_TO_IMAGE_GAP = 20 * SCALE\nIMAGE_SIDE_MARGIN = 10 * SCALE\nIMAGE_TO_SUBTITLE_GAP = 25 * SCALE\nTEXT_SIDE_MARGIN = 20 * SCALE\nSUBTITLE_TO_DESC_GAP = 15 * SCALE\nBOTTOM_MARGIN = 20 * SCALE\nICON_RIGHT_MARGIN = 10 * SCALE\nICON_TOP_MARGIN = 8 * SCALE\nICON_SCALE_MULTIPLIER = 1.7 * 0.8",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -466,7 +547,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "TITLE_TO_IMAGE_GAP = 20 * SCALE\nIMAGE_SIDE_MARGIN = 10 * SCALE\nIMAGE_TO_SUBTITLE_GAP = 25 * SCALE\nTEXT_SIDE_MARGIN = 20 * SCALE\nSUBTITLE_TO_DESC_GAP = 15 * SCALE\nBOTTOM_MARGIN = 20 * SCALE\nICON_RIGHT_MARGIN = 10 * SCALE\nICON_TOP_MARGIN = 8 * SCALE\nICON_SCALE_MULTIPLIER = 1.3 \nTITLE_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")",
+        "peekOfCode": "TITLE_TO_IMAGE_GAP = 20 * SCALE\nIMAGE_SIDE_MARGIN = 10 * SCALE\nIMAGE_TO_SUBTITLE_GAP = 25 * SCALE\nTEXT_SIDE_MARGIN = 20 * SCALE\nSUBTITLE_TO_DESC_GAP = 15 * SCALE\nBOTTOM_MARGIN = 20 * SCALE\nICON_RIGHT_MARGIN = 10 * SCALE\nICON_TOP_MARGIN = 8 * SCALE\nICON_SCALE_MULTIPLIER = 1.7 * 0.8\nSTAT_BAR_HEIGHT = 40 * SCALE",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -475,7 +556,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "IMAGE_SIDE_MARGIN = 10 * SCALE\nIMAGE_TO_SUBTITLE_GAP = 25 * SCALE\nTEXT_SIDE_MARGIN = 20 * SCALE\nSUBTITLE_TO_DESC_GAP = 15 * SCALE\nBOTTOM_MARGIN = 20 * SCALE\nICON_RIGHT_MARGIN = 10 * SCALE\nICON_TOP_MARGIN = 8 * SCALE\nICON_SCALE_MULTIPLIER = 1.3 \nTITLE_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")\nSUBTITLE_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")",
+        "peekOfCode": "IMAGE_SIDE_MARGIN = 10 * SCALE\nIMAGE_TO_SUBTITLE_GAP = 25 * SCALE\nTEXT_SIDE_MARGIN = 20 * SCALE\nSUBTITLE_TO_DESC_GAP = 15 * SCALE\nBOTTOM_MARGIN = 20 * SCALE\nICON_RIGHT_MARGIN = 10 * SCALE\nICON_TOP_MARGIN = 8 * SCALE\nICON_SCALE_MULTIPLIER = 1.7 * 0.8\nSTAT_BAR_HEIGHT = 40 * SCALE\nSTAT_ICON_SIZE = 28 * SCALE",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -484,7 +565,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "IMAGE_TO_SUBTITLE_GAP = 25 * SCALE\nTEXT_SIDE_MARGIN = 20 * SCALE\nSUBTITLE_TO_DESC_GAP = 15 * SCALE\nBOTTOM_MARGIN = 20 * SCALE\nICON_RIGHT_MARGIN = 10 * SCALE\nICON_TOP_MARGIN = 8 * SCALE\nICON_SCALE_MULTIPLIER = 1.3 \nTITLE_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")\nSUBTITLE_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")\nDESC_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")",
+        "peekOfCode": "IMAGE_TO_SUBTITLE_GAP = 25 * SCALE\nTEXT_SIDE_MARGIN = 20 * SCALE\nSUBTITLE_TO_DESC_GAP = 15 * SCALE\nBOTTOM_MARGIN = 20 * SCALE\nICON_RIGHT_MARGIN = 10 * SCALE\nICON_TOP_MARGIN = 8 * SCALE\nICON_SCALE_MULTIPLIER = 1.7 * 0.8\nSTAT_BAR_HEIGHT = 40 * SCALE\nSTAT_ICON_SIZE = 28 * SCALE\nSTAT_GAP = 10 * SCALE",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -493,7 +574,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "TEXT_SIDE_MARGIN = 20 * SCALE\nSUBTITLE_TO_DESC_GAP = 15 * SCALE\nBOTTOM_MARGIN = 20 * SCALE\nICON_RIGHT_MARGIN = 10 * SCALE\nICON_TOP_MARGIN = 8 * SCALE\nICON_SCALE_MULTIPLIER = 1.3 \nTITLE_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")\nSUBTITLE_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")\nDESC_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")\nTITLE_SIZE = 31 * SCALE",
+        "peekOfCode": "TEXT_SIDE_MARGIN = 20 * SCALE\nSUBTITLE_TO_DESC_GAP = 15 * SCALE\nBOTTOM_MARGIN = 20 * SCALE\nICON_RIGHT_MARGIN = 10 * SCALE\nICON_TOP_MARGIN = 8 * SCALE\nICON_SCALE_MULTIPLIER = 1.7 * 0.8\nSTAT_BAR_HEIGHT = 40 * SCALE\nSTAT_ICON_SIZE = 28 * SCALE\nSTAT_GAP = 10 * SCALE\n# --- UPDATED FONTS & SIZES ---",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -502,7 +583,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "SUBTITLE_TO_DESC_GAP = 15 * SCALE\nBOTTOM_MARGIN = 20 * SCALE\nICON_RIGHT_MARGIN = 10 * SCALE\nICON_TOP_MARGIN = 8 * SCALE\nICON_SCALE_MULTIPLIER = 1.3 \nTITLE_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")\nSUBTITLE_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")\nDESC_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")\nTITLE_SIZE = 31 * SCALE\nSUBTITLE_SIZE = 22 * SCALE",
+        "peekOfCode": "SUBTITLE_TO_DESC_GAP = 15 * SCALE\nBOTTOM_MARGIN = 20 * SCALE\nICON_RIGHT_MARGIN = 10 * SCALE\nICON_TOP_MARGIN = 8 * SCALE\nICON_SCALE_MULTIPLIER = 1.7 * 0.8\nSTAT_BAR_HEIGHT = 40 * SCALE\nSTAT_ICON_SIZE = 28 * SCALE\nSTAT_GAP = 10 * SCALE\n# --- UPDATED FONTS & SIZES ---\nBOLD_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -511,7 +592,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "BOTTOM_MARGIN = 20 * SCALE\nICON_RIGHT_MARGIN = 10 * SCALE\nICON_TOP_MARGIN = 8 * SCALE\nICON_SCALE_MULTIPLIER = 1.3 \nTITLE_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")\nSUBTITLE_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")\nDESC_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")\nTITLE_SIZE = 31 * SCALE\nSUBTITLE_SIZE = 22 * SCALE\nDESC_SIZE = 16 * SCALE",
+        "peekOfCode": "BOTTOM_MARGIN = 20 * SCALE\nICON_RIGHT_MARGIN = 10 * SCALE\nICON_TOP_MARGIN = 8 * SCALE\nICON_SCALE_MULTIPLIER = 1.7 * 0.8\nSTAT_BAR_HEIGHT = 40 * SCALE\nSTAT_ICON_SIZE = 28 * SCALE\nSTAT_GAP = 10 * SCALE\n# --- UPDATED FONTS & SIZES ---\nBOLD_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")\nMEDIUM_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -520,7 +601,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "ICON_RIGHT_MARGIN = 10 * SCALE\nICON_TOP_MARGIN = 8 * SCALE\nICON_SCALE_MULTIPLIER = 1.3 \nTITLE_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")\nSUBTITLE_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")\nDESC_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")\nTITLE_SIZE = 31 * SCALE\nSUBTITLE_SIZE = 22 * SCALE\nDESC_SIZE = 16 * SCALE\n# --- HELPERS ---",
+        "peekOfCode": "ICON_RIGHT_MARGIN = 10 * SCALE\nICON_TOP_MARGIN = 8 * SCALE\nICON_SCALE_MULTIPLIER = 1.7 * 0.8\nSTAT_BAR_HEIGHT = 40 * SCALE\nSTAT_ICON_SIZE = 28 * SCALE\nSTAT_GAP = 10 * SCALE\n# --- UPDATED FONTS & SIZES ---\nBOLD_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")\nMEDIUM_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")\nREGULAR_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -529,7 +610,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "ICON_TOP_MARGIN = 8 * SCALE\nICON_SCALE_MULTIPLIER = 1.3 \nTITLE_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")\nSUBTITLE_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")\nDESC_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")\nTITLE_SIZE = 31 * SCALE\nSUBTITLE_SIZE = 22 * SCALE\nDESC_SIZE = 16 * SCALE\n# --- HELPERS ---\ndef crop_to_16_9(img):",
+        "peekOfCode": "ICON_TOP_MARGIN = 8 * SCALE\nICON_SCALE_MULTIPLIER = 1.7 * 0.8\nSTAT_BAR_HEIGHT = 40 * SCALE\nSTAT_ICON_SIZE = 28 * SCALE\nSTAT_GAP = 10 * SCALE\n# --- UPDATED FONTS & SIZES ---\nBOLD_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")\nMEDIUM_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")\nREGULAR_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")\nTITLE_FONT_PATH = MEDIUM_FONT_PATH",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -538,7 +619,61 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "ICON_SCALE_MULTIPLIER = 1.3 \nTITLE_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")\nSUBTITLE_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")\nDESC_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")\nTITLE_SIZE = 31 * SCALE\nSUBTITLE_SIZE = 22 * SCALE\nDESC_SIZE = 16 * SCALE\n# --- HELPERS ---\ndef crop_to_16_9(img):\n    width, height = img.size",
+        "peekOfCode": "ICON_SCALE_MULTIPLIER = 1.7 * 0.8\nSTAT_BAR_HEIGHT = 40 * SCALE\nSTAT_ICON_SIZE = 28 * SCALE\nSTAT_GAP = 10 * SCALE\n# --- UPDATED FONTS & SIZES ---\nBOLD_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")\nMEDIUM_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")\nREGULAR_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")\nTITLE_FONT_PATH = MEDIUM_FONT_PATH\nSUBTITLE_FONT_PATH = BOLD_FONT_PATH",
+        "detail": "CARDCREATOR.card_creator",
+        "documentation": {}
+    },
+    {
+        "label": "STAT_BAR_HEIGHT",
+        "kind": 5,
+        "importPath": "CARDCREATOR.card_creator",
+        "description": "CARDCREATOR.card_creator",
+        "peekOfCode": "STAT_BAR_HEIGHT = 40 * SCALE\nSTAT_ICON_SIZE = 28 * SCALE\nSTAT_GAP = 10 * SCALE\n# --- UPDATED FONTS & SIZES ---\nBOLD_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")\nMEDIUM_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")\nREGULAR_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")\nTITLE_FONT_PATH = MEDIUM_FONT_PATH\nSUBTITLE_FONT_PATH = BOLD_FONT_PATH\nDESC_FONT_PATH = REGULAR_FONT_PATH",
+        "detail": "CARDCREATOR.card_creator",
+        "documentation": {}
+    },
+    {
+        "label": "STAT_ICON_SIZE",
+        "kind": 5,
+        "importPath": "CARDCREATOR.card_creator",
+        "description": "CARDCREATOR.card_creator",
+        "peekOfCode": "STAT_ICON_SIZE = 28 * SCALE\nSTAT_GAP = 10 * SCALE\n# --- UPDATED FONTS & SIZES ---\nBOLD_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")\nMEDIUM_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")\nREGULAR_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")\nTITLE_FONT_PATH = MEDIUM_FONT_PATH\nSUBTITLE_FONT_PATH = BOLD_FONT_PATH\nDESC_FONT_PATH = REGULAR_FONT_PATH\nTITLE_SIZE = 22 * SCALE       ",
+        "detail": "CARDCREATOR.card_creator",
+        "documentation": {}
+    },
+    {
+        "label": "STAT_GAP",
+        "kind": 5,
+        "importPath": "CARDCREATOR.card_creator",
+        "description": "CARDCREATOR.card_creator",
+        "peekOfCode": "STAT_GAP = 10 * SCALE\n# --- UPDATED FONTS & SIZES ---\nBOLD_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")\nMEDIUM_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")\nREGULAR_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")\nTITLE_FONT_PATH = MEDIUM_FONT_PATH\nSUBTITLE_FONT_PATH = BOLD_FONT_PATH\nDESC_FONT_PATH = REGULAR_FONT_PATH\nTITLE_SIZE = 22 * SCALE       \nSUBTITLE_SIZE = 34 * SCALE    ",
+        "detail": "CARDCREATOR.card_creator",
+        "documentation": {}
+    },
+    {
+        "label": "BOLD_FONT_PATH",
+        "kind": 5,
+        "importPath": "CARDCREATOR.card_creator",
+        "description": "CARDCREATOR.card_creator",
+        "peekOfCode": "BOLD_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")\nMEDIUM_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")\nREGULAR_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")\nTITLE_FONT_PATH = MEDIUM_FONT_PATH\nSUBTITLE_FONT_PATH = BOLD_FONT_PATH\nDESC_FONT_PATH = REGULAR_FONT_PATH\nTITLE_SIZE = 22 * SCALE       \nSUBTITLE_SIZE = 34 * SCALE    \nDESC_SIZE = 19 * SCALE        # Adjusted down slightly to be smaller but readable\nSTAT_SIZE = 20 * SCALE",
+        "detail": "CARDCREATOR.card_creator",
+        "documentation": {}
+    },
+    {
+        "label": "MEDIUM_FONT_PATH",
+        "kind": 5,
+        "importPath": "CARDCREATOR.card_creator",
+        "description": "CARDCREATOR.card_creator",
+        "peekOfCode": "MEDIUM_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")\nREGULAR_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")\nTITLE_FONT_PATH = MEDIUM_FONT_PATH\nSUBTITLE_FONT_PATH = BOLD_FONT_PATH\nDESC_FONT_PATH = REGULAR_FONT_PATH\nTITLE_SIZE = 22 * SCALE       \nSUBTITLE_SIZE = 34 * SCALE    \nDESC_SIZE = 19 * SCALE        # Adjusted down slightly to be smaller but readable\nSTAT_SIZE = 20 * SCALE\n# --- HELPERS ---",
+        "detail": "CARDCREATOR.card_creator",
+        "documentation": {}
+    },
+    {
+        "label": "REGULAR_FONT_PATH",
+        "kind": 5,
+        "importPath": "CARDCREATOR.card_creator",
+        "description": "CARDCREATOR.card_creator",
+        "peekOfCode": "REGULAR_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")\nTITLE_FONT_PATH = MEDIUM_FONT_PATH\nSUBTITLE_FONT_PATH = BOLD_FONT_PATH\nDESC_FONT_PATH = REGULAR_FONT_PATH\nTITLE_SIZE = 22 * SCALE       \nSUBTITLE_SIZE = 34 * SCALE    \nDESC_SIZE = 19 * SCALE        # Adjusted down slightly to be smaller but readable\nSTAT_SIZE = 20 * SCALE\n# --- HELPERS ---\ndef crop_to_16_9(img):",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -547,7 +682,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "TITLE_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")\nSUBTITLE_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")\nDESC_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")\nTITLE_SIZE = 31 * SCALE\nSUBTITLE_SIZE = 22 * SCALE\nDESC_SIZE = 16 * SCALE\n# --- HELPERS ---\ndef crop_to_16_9(img):\n    width, height = img.size\n    target_ratio = 16 / 9",
+        "peekOfCode": "TITLE_FONT_PATH = MEDIUM_FONT_PATH\nSUBTITLE_FONT_PATH = BOLD_FONT_PATH\nDESC_FONT_PATH = REGULAR_FONT_PATH\nTITLE_SIZE = 22 * SCALE       \nSUBTITLE_SIZE = 34 * SCALE    \nDESC_SIZE = 19 * SCALE        # Adjusted down slightly to be smaller but readable\nSTAT_SIZE = 20 * SCALE\n# --- HELPERS ---\ndef crop_to_16_9(img):\n    width, height = img.size",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -556,7 +691,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "SUBTITLE_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")\nDESC_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")\nTITLE_SIZE = 31 * SCALE\nSUBTITLE_SIZE = 22 * SCALE\nDESC_SIZE = 16 * SCALE\n# --- HELPERS ---\ndef crop_to_16_9(img):\n    width, height = img.size\n    target_ratio = 16 / 9\n    current_ratio = width / height",
+        "peekOfCode": "SUBTITLE_FONT_PATH = BOLD_FONT_PATH\nDESC_FONT_PATH = REGULAR_FONT_PATH\nTITLE_SIZE = 22 * SCALE       \nSUBTITLE_SIZE = 34 * SCALE    \nDESC_SIZE = 19 * SCALE        # Adjusted down slightly to be smaller but readable\nSTAT_SIZE = 20 * SCALE\n# --- HELPERS ---\ndef crop_to_16_9(img):\n    width, height = img.size\n    target_ratio = 16 / 9",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -565,7 +700,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "DESC_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")\nTITLE_SIZE = 31 * SCALE\nSUBTITLE_SIZE = 22 * SCALE\nDESC_SIZE = 16 * SCALE\n# --- HELPERS ---\ndef crop_to_16_9(img):\n    width, height = img.size\n    target_ratio = 16 / 9\n    current_ratio = width / height\n    if current_ratio > target_ratio:",
+        "peekOfCode": "DESC_FONT_PATH = REGULAR_FONT_PATH\nTITLE_SIZE = 22 * SCALE       \nSUBTITLE_SIZE = 34 * SCALE    \nDESC_SIZE = 19 * SCALE        # Adjusted down slightly to be smaller but readable\nSTAT_SIZE = 20 * SCALE\n# --- HELPERS ---\ndef crop_to_16_9(img):\n    width, height = img.size\n    target_ratio = 16 / 9\n    current_ratio = width / height",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -574,7 +709,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "TITLE_SIZE = 31 * SCALE\nSUBTITLE_SIZE = 22 * SCALE\nDESC_SIZE = 16 * SCALE\n# --- HELPERS ---\ndef crop_to_16_9(img):\n    width, height = img.size\n    target_ratio = 16 / 9\n    current_ratio = width / height\n    if current_ratio > target_ratio:\n        new_width = int(height * target_ratio)",
+        "peekOfCode": "TITLE_SIZE = 22 * SCALE       \nSUBTITLE_SIZE = 34 * SCALE    \nDESC_SIZE = 19 * SCALE        # Adjusted down slightly to be smaller but readable\nSTAT_SIZE = 20 * SCALE\n# --- HELPERS ---\ndef crop_to_16_9(img):\n    width, height = img.size\n    target_ratio = 16 / 9\n    current_ratio = width / height\n    if current_ratio > target_ratio:",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -583,7 +718,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "SUBTITLE_SIZE = 22 * SCALE\nDESC_SIZE = 16 * SCALE\n# --- HELPERS ---\ndef crop_to_16_9(img):\n    width, height = img.size\n    target_ratio = 16 / 9\n    current_ratio = width / height\n    if current_ratio > target_ratio:\n        new_width = int(height * target_ratio)\n        left = (width - new_width) // 2",
+        "peekOfCode": "SUBTITLE_SIZE = 34 * SCALE    \nDESC_SIZE = 19 * SCALE        # Adjusted down slightly to be smaller but readable\nSTAT_SIZE = 20 * SCALE\n# --- HELPERS ---\ndef crop_to_16_9(img):\n    width, height = img.size\n    target_ratio = 16 / 9\n    current_ratio = width / height\n    if current_ratio > target_ratio:\n        new_width = int(height * target_ratio)",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -592,7 +727,16 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "DESC_SIZE = 16 * SCALE\n# --- HELPERS ---\ndef crop_to_16_9(img):\n    width, height = img.size\n    target_ratio = 16 / 9\n    current_ratio = width / height\n    if current_ratio > target_ratio:\n        new_width = int(height * target_ratio)\n        left = (width - new_width) // 2\n        return img.crop((left, 0, left + new_width, height))",
+        "peekOfCode": "DESC_SIZE = 19 * SCALE        # Adjusted down slightly to be smaller but readable\nSTAT_SIZE = 20 * SCALE\n# --- HELPERS ---\ndef crop_to_16_9(img):\n    width, height = img.size\n    target_ratio = 16 / 9\n    current_ratio = width / height\n    if current_ratio > target_ratio:\n        new_width = int(height * target_ratio)\n        left = (width - new_width) // 2",
+        "detail": "CARDCREATOR.card_creator",
+        "documentation": {}
+    },
+    {
+        "label": "STAT_SIZE",
+        "kind": 5,
+        "importPath": "CARDCREATOR.card_creator",
+        "description": "CARDCREATOR.card_creator",
+        "peekOfCode": "STAT_SIZE = 20 * SCALE\n# --- HELPERS ---\ndef crop_to_16_9(img):\n    width, height = img.size\n    target_ratio = 16 / 9\n    current_ratio = width / height\n    if current_ratio > target_ratio:\n        new_width = int(height * target_ratio)\n        left = (width - new_width) // 2\n        return img.crop((left, 0, left + new_width, height))",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -710,6 +854,15 @@
         "importPath": "database",
         "description": "database",
         "peekOfCode": "class Database:\n    def __init__(self, path: str):\n        self.path = path\n    @contextmanager\n    def connect(self):\n        conn = sqlite3.connect(self.path)\n        conn.row_factory = sqlite3.Row\n        try:\n            yield conn\n            conn.commit()",
+        "detail": "database",
+        "documentation": {}
+    },
+    {
+        "label": "rarity_to_weight",
+        "kind": 2,
+        "importPath": "database",
+        "description": "database",
+        "peekOfCode": "def rarity_to_weight(rarity: str) -> float:\n    rarity = str(rarity).upper()\n    if rarity == \"Y\":\n        return 0.01\n    if rarity == \"X\":\n        return 0.05\n    try:\n        tier = int(rarity)\n        # Higher tier = rarer → lower weight\n        return max(0.1, 15 - tier)",
         "detail": "database",
         "documentation": {}
     },

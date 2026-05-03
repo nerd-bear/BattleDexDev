@@ -7,6 +7,21 @@ from typing import List, Optional, Tuple
 from models import Card
 
 
+def rarity_to_weight(rarity: str) -> float:
+    rarity = str(rarity).upper()
+
+    if rarity == "Y":
+        return 0.01
+    if rarity == "X":
+        return 0.05
+
+    try:
+        tier = int(rarity)
+        # Higher tier = rarer → lower weight
+        return max(0.1, 15 - tier)
+    except:
+        return 10.0
+
 class Database:
     def __init__(self, path: str):
         self.path = path
@@ -31,15 +46,66 @@ class Database:
                     health INTEGER NOT NULL DEFAULT 0,
                     attack_boost TEXT NOT NULL DEFAULT '',
                     health_boost TEXT NOT NULL DEFAULT '',
-                    rarity REAL NOT NULL DEFAULT 1,
+                    rarity TEXT NOT NULL DEFAULT '1',
                     image TEXT,
                     spawn_image TEXT
                 )
             """)
 
-            columns = {row['name'] for row in conn.execute('PRAGMA table_info(cards)').fetchall()}
-            if 'rarity' not in columns:
-                conn.execute("ALTER TABLE cards ADD COLUMN rarity REAL NOT NULL DEFAULT 1")
+            columns = {row['name']: row['type'] for row in conn.execute('PRAGMA table_info(cards)').fetchall()}
+
+            # 🔥 MIGRATION: convert REAL → TEXT safely
+            if 'rarity' in columns and columns['rarity'] != 'TEXT':
+                print("[DB] Migrating rarity column to TEXT...")
+
+                conn.execute("ALTER TABLE cards RENAME TO cards_old")
+
+                conn.execute("""
+                    CREATE TABLE cards (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        name TEXT NOT NULL UNIQUE,
+                        attack INTEGER NOT NULL DEFAULT 0,
+                        health INTEGER NOT NULL DEFAULT 0,
+                        attack_boost TEXT NOT NULL DEFAULT '',
+                        health_boost TEXT NOT NULL DEFAULT '',
+                        rarity TEXT NOT NULL DEFAULT '1',
+                        image TEXT,
+                        spawn_image TEXT
+                    )
+                """)
+
+                old_rows = conn.execute("SELECT * FROM cards_old").fetchall()
+
+                for row in old_rows:
+                    old_rarity = row['rarity']
+
+                    # convert numeric → string tier
+                    try:
+                        r = float(old_rarity)
+                        tier = str(int(min(max(1, r), 14)))
+                    except:
+                        tier = "1"
+
+                    conn.execute("""
+                        INSERT INTO cards (
+                            id, name, attack, health,
+                            attack_boost, health_boost,
+                            rarity, image, spawn_image
+                        )
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    """, (
+                        row['id'],
+                        row['name'],
+                        row['attack'],
+                        row['health'],
+                        row['attack_boost'],
+                        row['health_boost'],
+                        tier,
+                        row['image'],
+                        row['spawn_image']
+                    ))
+
+                conn.execute("DROP TABLE cards_old")
 
             conn.execute("""
                 CREATE TABLE IF NOT EXISTS inventories (
@@ -57,9 +123,7 @@ class Database:
 
         with self.connect() as conn:
             for name, data in cards.items():
-                rarity = float(data.get('rarity', 1))
-                if rarity <= 0:
-                    rarity = 1.0
+                rarity = str(data.get('rarity', "1")).upper()
 
                 conn.execute("""
                     INSERT INTO cards (
@@ -100,7 +164,7 @@ class Database:
             health=row['health'],
             attack_boost=row['attack_boost'],
             health_boost=row['health_boost'],
-            rarity=float(row['rarity'] or 1),
+            rarity=str(row['rarity'] or "1"),
             image=row['image'],
             spawn_image=row['spawn_image']
         )
@@ -124,10 +188,10 @@ class Database:
             return None
 
         cards = [self._row_to_card(row) for row in rows]
+
         weights = []
         for card in cards:
-            rarity = card.rarity if card.rarity > 0 else 1
-            weights.append(rarity)
+            weights.append(rarity_to_weight(card.rarity))
 
         return random.choices(cards, weights=weights, k=1)[0]
 

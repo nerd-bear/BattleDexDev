@@ -6,7 +6,9 @@
         "health_boost": 0,
         "image": "./assets/cards/warthunder.png",
         "spawn_image": "./assets/cards/warthunder_spawn.png",
-        "rarity": 1
+        "rarity": "Y",
+        "description": "The ultimate vehicular combat experience where armor, wings, and naval guns clash in relentless, massive-scale warfare.",
+        "country": "Russia"
     },
     "Carbon": {
         "attack": 6954,
@@ -15,7 +17,9 @@
         "health_boost": 0,
         "image": "./assets/cards/carbon.png",
         "spawn_image": "./assets/cards/carbon_spawn.png",
-        "rarity": 2
+        "rarity": "Y",
+        "description": "Forged under immense pressure, this ultra-lightweight composite structure absorbs catastrophic damage while retaining lethal structural integrity.",
+        "country": "US"
     },
     "Bung": {
         "attack": 9443,
@@ -24,115 +28,9 @@
         "health_boost": 0,
         "image": "./assets/cards/bung.png",
         "spawn_image": "./assets/cards/bung_spawn.png",
-        "rarity": 2
-    },
-    "B-52": {
-        "attack": 677,
-        "health": 500,
-        "attack_boost": 0,
-        "health_boost": 0,
-        "image": "./assets/cards/b52.png",
-        "spawn_image": "./assets/cards/b52_spawn.png",
-        "rarity": 72
-    },
-    "B-1": {
-        "attack": 4450,
-        "health": 1009,
-        "attack_boost": 0,
-        "health_boost": 0,
-        "image": "./assets/cards/b1.png",
-        "spawn_image": "./assets/cards/b1_spawn.png",
-        "rarity": 24
-    },
-    "F-15SE": {
-        "attack": 8000,
-        "health": 9000,
-        "attack_boost": 0,
-        "health_boost": 0,
-        "image": "./assets/cards/f15se.png",
-        "spawn_image": "./assets/cards/f15se_spawn.png",
-        "rarity": 7
-    },
-    "F-18HARV": {
-        "attack": 10500,
-        "health": 6200,
-        "attack_boost": 0,
-        "health_boost": 0,
-        "image": "./assets/cards/f18harv.png",
-        "spawn_image": "./assets/cards/f18harv_spawn.png",
-        "rarity": 5
-    },
-    "EF-2000": {
-        "attack": 9200,
-        "health": 7800,
-        "attack_boost": 0,
-        "health_boost": 0,
-        "image": "./assets/cards/ef2000.png",
-        "spawn_image": "./assets/cards/ef2000_spawn.png",
-        "rarity": 6
-    },
-    "SU-34": {
-        "attack": 7000,
-        "health": 4000,
-        "attack_boost": 0,
-        "health_boost": 0,
-        "image": "./assets/cards/su34.png",
-        "spawn_image": "./assets/cards/su34_spawn.png",
-        "rarity": 13
-    },
-    "B-36": {
-        "attack": 2000,
-        "health": 1,
-        "attack_boost": 0,
-        "health_boost": 0,
-        "image": "./assets/cards/b36.png",
-        "spawn_image": "./assets/cards/b36_spawn.png",
-        "rarity": 58
-    },
-    "TU-160": {
-        "attack": 10000,
-        "health": 5000,
-        "attack_boost": 10,
-        "health_boost": 5,
-        "image": "./assets/cards/tu160.png",
-        "spawn_image": "./assets/cards/tu160_spawn.png",
-        "rarity": 3
-    },
-    "F-14": {
-        "attack": 9800,
-        "health": 5500,
-        "attack_boost": 0,
-        "health_boost": 0,
-        "image": "./assets/cards/f14.png",
-        "spawn_image": "./assets/cards/f14_spawn.png",
-        "rarity": 6
-    },
-    "US Private": {
-        "attack": 200,
-        "health": 500,
-        "attack_boost": 0,
-        "health_boost": 0,
-        "image": "./assets/cards/us_private.png",
-        "spawn_image": "./assets/cards/us_private_spawn.png",
-        "rarity": 100
-    },
-    "US Spec OP": {
-        "attack": 1600,
-        "health": 1000,
-        "attack_boost": 0,
-        "health_boost": 0,
-        "image": "./assets/cards/us_specop.png",
-        "spawn_image": "./assets/cards/us_specop_spawn.png",
-        "rarity": 45
-    },
-    "AH-1Z": {
-        "attack": 4200,
-        "health": 1000,
-        "attack_boost": 0,
-        "health_boost": 0,
-        "image": "./assets/cards/ah1z.png",
-        "spawn_image": "./assets/cards/ah1z_spawn.png",
-        "rarity": 26
+        "rarity": "Y",
+        "description": "A seemingly innocuous plug that seals explosive pressure, holding back catastrophic forces until the perfect moment of release.",
+        "country": "UK"
     },
     "Sassy": {
         "attack": 99999999999,
@@ -141,16 +39,9 @@
         "health_boost": 9999,
         "image": "./assets/cards/sassy.png",
         "spawn_image": "./assets/cards/sassy_spawn.png",
-        "rarity": 1
-    },
-    "Yak-130": {
-        "attack": 900,
-        "health": 400,
-        "attack_boost": 0,
-        "health_boost": 0,
-        "image": "./assets/cards/yak130.png",
-        "spawn_image": "./assets/cards/yak130_spawn.png",
-        "rarity": 88
+        "rarity": "Y",
+        "description": "An unstoppable force of pure attitude, shattering enemy morale with devastating side-eyes and reality-bending comebacks.",
+        "country": "US"
     },
     "VANGUARD": {
         "attack": 19000,
@@ -159,133 +50,9 @@
         "health_boost": 0,
         "image": "./assets/cards/vanguard.png",
         "spawn_image": "./assets/cards/vanguard_spawn.png",
-        "rarity": 1
-    },
-    "T-55": {
-        "attack": 900,
-        "health": 500,
-        "attack_boost": 0,
-        "health_boost": 0,
-        "image": "./assets/cards/t55.png",
-        "spawn_image": "./assets/cards/t55_spawn.png",
-        "rarity": 92
-    },
-    "T-62": {
-        "attack": 1100,
-        "health": 1400,
-        "attack_boost": 0,
-        "health_boost": 0,
-        "image": "./assets/cards/t62.png",
-        "spawn_image": "./assets/cards/t62_spawn.png",
-        "rarity": 76
-    },
-    "T-64": {
-        "attack": 1200,
-        "health": 1100,
-        "attack_boost": 0,
-        "health_boost": 0,
-        "image": "./assets/cards/t64.png",
-        "spawn_image": "./assets/cards/t64_spawn.png",
-        "rarity": 68
-    },
-    "T-72": {
-        "attack": 900,
-        "health": 2000,
-        "attack_boost": 0,
-        "health_boost": 0,
-        "image": "./assets/cards/t72.png",
-        "spawn_image": "./assets/cards/t72_spawn.png",
-        "rarity": 56
-    },
-    "T-80": {
-        "attack": 1300,
-        "health": 2200,
-        "attack_boost": 0,
-        "health_boost": 0,
-        "image": "./assets/cards/t80.png",
-        "spawn_image": "./assets/cards/t80_spawn.png",
-        "rarity": 46
-    },
-    "T-90": {
-        "attack": 1290,
-        "health": 2900,
-        "attack_boost": 0,
-        "health_boost": 0,
-        "image": "./assets/cards/t90.png",
-        "spawn_image": "./assets/cards/t90_spawn.png",
-        "rarity": 36
-    },
-    "TU-16": {
-        "attack": 4500,
-        "health": 3500,
-        "attack_boost": 0,
-        "health_boost": 0,
-        "image": "./assets/cards/tu16.png",
-        "spawn_image": "./assets/cards/tu16_spawn.png",
-        "rarity": 21
-    },
-    "TU-22M": {
-        "attack": 7500,
-        "health": 2800,
-        "attack_boost": 0,
-        "health_boost": 0,
-        "image": "./assets/cards/tu22m.png",
-        "spawn_image": "./assets/cards/tu22m_spawn.png",
-        "rarity": 11
-    },
-    "TU-95": {
-        "attack": 9000,
-        "health": 8500,
-        "attack_boost": 5,
-        "health_boost": 0,
-        "image": "./assets/cards/tu95.png",
-        "spawn_image": "./assets/cards/tu95_spawn.png",
-        "rarity": 4
-    },
-    "B-47": {
-        "attack": 550,
-        "health": 400,
-        "attack_boost": 0,
-        "health_boost": 0,
-        "image": "./assets/cards/b47.png",
-        "spawn_image": "./assets/cards/b47_spawn.png",
-        "rarity": 95
-    },
-    "B-58": {
-        "attack": 1200,
-        "health": 500,
-        "attack_boost": 0,
-        "health_boost": 0,
-        "image": "./assets/cards/b58.png",
-        "spawn_image": "./assets/cards/b58_spawn.png",
-        "rarity": 74
-    },
-    "F-18E": {
-        "attack": 8500,
-        "health": 7000,
-        "attack_boost": 0,
-        "health_boost": 0,
-        "image": "./assets/cards/f18e.png",
-        "spawn_image": "./assets/cards/f18e_spawn.png",
-        "rarity": 8
-    },
-    "DM73": {
-        "attack": 999,
-        "health": 999,
-        "attack_boost": 0,
-        "health_boost": 0,
-        "image": "./assets/cards/dm73.png",
-        "spawn_image": "./assets/cards/dm73_spawn.png",
-        "rarity": 82
-    },
-    "Vulcan": {
-        "attack": 8200,
-        "health": 6000,
-        "attack_boost": 0,
-        "health_boost": 5,
-        "image": "./assets/cards/avro_vulcan.png",
-        "spawn_image": "./assets/cards/avro_vulcan_spawn.png",
-        "rarity": 9
+        "rarity": "X",
+        "description": "A towering juggernaut of bleeding-edge tech, breaking the frontline with impenetrable energy shields and world-ending artillery.",
+        "country": "Russia"
     },
     "XB-70": {
         "attack": 15000,
@@ -294,34 +61,97 @@
         "health_boost": 0,
         "image": "./assets/cards/xb70.png",
         "spawn_image": "./assets/cards/xb70_spawn.png",
-        "rarity": 4
+        "rarity": "1",
+        "description": "Riding its own supersonic shockwave, the Valkyrie cruises at Mach 3, a titanium spearhead untouchable by anything less than a surface-to-air missile.",
+        "country": "US"
     },
-    "MI24": {
-        "attack": 3800,
-        "health": 4500,
+    "F-18HARV": {
+        "attack": 10500,
+        "health": 6200,
         "attack_boost": 0,
-        "health_boost": 10,
-        "image": "./assets/cards/mi24.png",
-        "spawn_image": "./assets/cards/mi24_spawn.png",
-        "rarity": 30
+        "health_boost": 0,
+        "image": "./assets/cards/f18harv.png",
+        "spawn_image": "./assets/cards/f18harv_spawn.png",
+        "rarity": "2",
+        "description": "The High Alpha Research Vehicle bends the laws of aerodynamics, utilizing thrust vectoring to outmaneuver any adversary in a deadly high-angle stall.",
+        "country": "US"
     },
-    "KA50": {
-        "attack": 5500,
-        "health": 3200,
+    "TU-160": {
+        "attack": 10000,
+        "health": 5000,
+        "attack_boost": 10,
+        "health_boost": 5,
+        "image": "./assets/cards/tu160.png",
+        "spawn_image": "./assets/cards/tu160_spawn.png",
+        "rarity": "2",
+        "description": "The White Swan tears through the sky at Mach 2, delivering strategic devastation with unmatched elegance and raw, terrifying power.",
+        "country": "Russia"
+    },
+    "F-14": {
+        "attack": 9800,
+        "health": 5500,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/f14.png",
+        "spawn_image": "./assets/cards/f14_spawn.png",
+        "rarity": "3",
+        "description": "The legendary Tomcat sweeps its wings back and dominates the horizon, intercepting threats from beyond visual range with the deadly Phoenix missile.",
+        "country": "US"
+    },
+    "EF-2000": {
+        "attack": 9200,
+        "health": 7800,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/ef2000.png",
+        "spawn_image": "./assets/cards/ef2000_spawn.png",
+        "rarity": "3",
+        "description": "The Eurofighter Typhoon dances through the skies with delta-wing agility, unleashing a storm of precision-guided munitions on any who dare challenge it.",
+        "country": "UK"
+    },
+    "TU-95": {
+        "attack": 9000,
+        "health": 8500,
         "attack_boost": 5,
         "health_boost": 0,
-        "image": "./assets/cards/ka50.png",
-        "spawn_image": "./assets/cards/ka50_spawn.png",
-        "rarity": 18
+        "image": "./assets/cards/tu95.png",
+        "spawn_image": "./assets/cards/tu95_spawn.png",
+        "rarity": "4",
+        "description": "The deafening roar of contra-rotating propellers announces the Bear, a relentless strategic bomber that haunts enemy borders with nuclear shadows.",
+        "country": "Russia"
     },
-    "MI28": {
-        "attack": 6200,
-        "health": 5000,
+    "F-18E": {
+        "attack": 8500,
+        "health": 7000,
         "attack_boost": 0,
         "health_boost": 0,
-        "image": "./assets/cards/mi28.png",
-        "spawn_image": "./assets/cards/mi28_spawn.png",
-        "rarity": 15
+        "image": "./assets/cards/f18e.png",
+        "spawn_image": "./assets/cards/f18e_spawn.png",
+        "rarity": "4",
+        "description": "The Super Hornet commands the carrier deck, dominating dogfights and ground strikes alike with its massive weapons payload and unmatched versatility.",
+        "country": "US"
+    },
+    "Vulcan": {
+        "attack": 8200,
+        "health": 6000,
+        "attack_boost": 0,
+        "health_boost": 5,
+        "image": "./assets/cards/avro_vulcan.png",
+        "spawn_image": "./assets/cards/avro_vulcan_spawn.png",
+        "rarity": "5",
+        "description": "The delta-winged avenger howls through the clouds, delivering a thundering payload with an iconic, terrifying silhouette.",
+        "country": "UK"
+    },
+    "F-15SE": {
+        "attack": 8000,
+        "health": 9000,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/f15se.png",
+        "spawn_image": "./assets/cards/f15se_spawn.png",
+        "rarity": "5",
+        "description": "The Silent Eagle blends legendary dogfighting prowess with radar-evading stealth technology, striking from the shadows before vanishing into the ether.",
+        "country": "US"
     },
     "KA52": {
         "attack": 7800,
@@ -330,6 +160,250 @@
         "health_boost": 5,
         "image": "./assets/cards/ka52.png",
         "spawn_image": "./assets/cards/ka52_spawn.png",
-        "rarity": 11
+        "rarity": "6",
+        "description": "The Kamov Ka-52 Alligator features side by side seating and coaxial rotors to dominate the battlefield with heavy ordnance and extreme agility.",
+        "country": "Russia"
+    },
+    "TU-22M": {
+        "attack": 7500,
+        "health": 2800,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/tu22m.png",
+        "spawn_image": "./assets/cards/tu22m_spawn.png",
+        "rarity": "6",
+        "description": "The swing-wing Backfire terrorizes the oceans, launching hypersonic anti-ship missiles to obliterate entire fleets in the blink of an eye.",
+        "country": "Russia"
+    },
+    "SU-34": {
+        "attack": 7000,
+        "health": 4000,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/su34.png",
+        "spawn_image": "./assets/cards/su34_spawn.png",
+        "rarity": "7",
+        "description": "The Fullback acts as a heavily armored flying tank, delivering devastating tactical strikes while shrugging off enemy air defenses with ease.",
+        "country": "Russia"
+    },
+    "MI28": {
+        "attack": 6200,
+        "health": 5000,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/mi28.png",
+        "spawn_image": "./assets/cards/mi28_spawn.png",
+        "rarity": "7",
+        "description": "The Mil Mi-28 Havoc features heavy cockpit armor and an undernose cannon to annihilate ground targets in all weather conditions.",
+        "country": "Russia"
+    },
+    "KA50": {
+        "attack": 5500,
+        "health": 3200,
+        "attack_boost": 5,
+        "health_boost": 0,
+        "image": "./assets/cards/ka50.png",
+        "spawn_image": "./assets/cards/ka50_spawn.png",
+        "rarity": "8",
+        "description": "The Kamov Ka-50 Black Shark uses a unique single seat cockpit and high speed maneuverability to hunt enemy armor with surgical precision.",
+        "country": "Russia"
+    },
+    "TU-16": {
+        "attack": 4500,
+        "health": 3500,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/tu16.png",
+        "spawn_image": "./assets/cards/tu16_spawn.png",
+        "rarity": "8",
+        "description": "The Badger carves a path of destruction, hunting carrier strike groups and heavily fortified land installations with devastating cruise missiles.",
+        "country": "Russia"
+    },
+    "B-1": {
+        "attack": 4450,
+        "health": 1009,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/b1.png",
+        "spawn_image": "./assets/cards/b1_spawn.png",
+        "rarity": "9",
+        "description": "The 'Bone' pierces enemy airspace at supersonic speeds, hugging the terrain to deliver a catastrophic payload before the enemy even hears it coming.",
+        "country": "US"
+    },
+    "AH-1Z": {
+        "attack": 4200,
+        "health": 1000,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/ah1z.png",
+        "spawn_image": "./assets/cards/ah1z_spawn.png",
+        "rarity": "9",
+        "description": "The Viper strikes with lethal venom, utilizing state-of-the-art targeting to turn enemy armor into burning scrap metal from miles away.",
+        "country": "US"
+    },
+    "MI24": {
+        "attack": 3800,
+        "health": 4500,
+        "attack_boost": 0,
+        "health_boost": 10,
+        "image": "./assets/cards/mi24.png",
+        "spawn_image": "./assets/cards/mi24_spawn.png",
+        "rarity": "10",
+        "description": "The Mil Mi-24 Hind combines massive firepower with a troop transport cabin to serve as a flying infantry fighting vehicle.",
+        "country": "Russia"
+    },
+    "B-36": {
+        "attack": 2000,
+        "health": 1,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/b36.png",
+        "spawn_image": "./assets/cards/b36_spawn.png",
+        "rarity": "10",
+        "description": "The colossal Peacemaker eclipses the sun with its massive wingspan, carrying an arsenal capable of turning entire cities into smoldering craters.",
+        "country": "US"
+    },
+    "US Spec OP": {
+        "attack": 1600,
+        "health": 1000,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/us_specop.png",
+        "spawn_image": "./assets/cards/us_specop_spawn.png",
+        "rarity": "11",
+        "description": "Operating deep behind enemy lines, this phantom warrior executes high-value targets with silenced weapons and surgical, terrifying precision.",
+        "country": "US"
+    },
+    "T-80": {
+        "attack": 1300,
+        "health": 2200,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/t80.png",
+        "spawn_image": "./assets/cards/t80_spawn.png",
+        "rarity": "11",
+        "description": "Powered by a screaming gas turbine engine, this flying tank blitzes enemy positions with terrifying speed and devastating firepower.",
+        "country": "Russia"
+    },
+    "T-90": {
+        "attack": 1290,
+        "health": 2900,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/t90.png",
+        "spawn_image": "./assets/cards/t90_spawn.png",
+        "rarity": "12",
+        "description": "The glowing red eyes of the Shtora system stare down incoming missiles, turning this heavily armored predator into an unstoppable mechanized nightmare.",
+        "country": "Russia"
+    },
+    "T-64": {
+        "attack": 1200,
+        "health": 1100,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/t64.png",
+        "spawn_image": "./assets/cards/t64_spawn.png",
+        "rarity": "12",
+        "description": "A technological terror of its time, featuring a lethal autoloader and composite armor to outgun and outlast anything in its path.",
+        "country": "Russia"
+    },
+    "T-62": {
+        "attack": 1100,
+        "health": 1400,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/t62.png",
+        "spawn_image": "./assets/cards/t62_spawn.png",
+        "rarity": "13",
+        "description": "Introducing the smoothbore revolution, this steel beast pierces enemy armor with terrifying kinetic penetrators on the brutal frontlines.",
+        "country": "Russia"
+    },
+    "Yak-130": {
+        "attack": 900,
+        "health": 400,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/yak130.png",
+        "spawn_image": "./assets/cards/yak130_spawn.png",
+        "rarity": "13",
+        "description": "The agile Mitten acts as the ultimate stepping stone, training the next generation of lethal aces while packing a surprising punch of its own.",
+        "country": "Russia"
+    },
+    "T-55": {
+        "attack": 900,
+        "health": 500,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/t55.png",
+        "spawn_image": "./assets/cards/t55_spawn.png",
+        "rarity": "14",
+        "description": "The reliable workhorse of the Cold War, swarming the battlefield in endless numbers to overwhelm sophisticated armor through sheer volume.",
+        "country": "Russia"
+    },
+    "US Private": {
+        "attack": 200,
+        "health": 500,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/us_private.png",
+        "spawn_image": "./assets/cards/us_private_spawn.png",
+        "rarity": "14",
+        "description": "The backbone of the infantry, charging into the meat grinder with an assault rifle, unwavering resolve, and a pocket full of sheer grit.",
+        "country": "US"
+    },
+    "AH-64": {
+        "attack": 100,
+        "health": 100,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/ah64.png",
+        "spawn_image": "./assets/cards/ah64_spawn.png",
+        "rarity": "14",
+        "description": "The Boeing AH-64 Apache features a nose-mounted sensor suite and a 30mm chain gun to destroy enemy armor with Hellfire missiles.",
+        "country": "US"
+    },
+    "B-52": {
+        "attack": 677,
+        "health": 500,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/b52.png",
+        "spawn_image": "./assets/cards/b52_spawn.png",
+        "rarity": "13",
+        "description": "The legendary Stratofortress rains apocalyptic payloads from the stratosphere, devastating entire grid squares with unrelenting carpet bombing.",
+        "country": "US"
+    },
+    "B-47": {
+        "attack": 550,
+        "health": 400,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/b47.png",
+        "spawn_image": "./assets/cards/b47_spawn.png",
+        "rarity": "14",
+        "description": "The swept-wing Stratojet slices through the skies, pioneering modern bomber design while carrying the ultimate atomic threat.",
+        "country": "US"
+    },
+    "B-58": {
+        "attack": 1200,
+        "health": 500,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/b58.png",
+        "spawn_image": "./assets/cards/b58_spawn.png",
+        "rarity": "12",
+        "description": "The Hustler breaks the sound barrier in a delta-wing flash, outrunning interceptors to deliver tactical nuclear strikes with blazing speed.",
+        "country": "US"
+    },
+    "DM73": {
+        "attack": 999,
+        "health": 999,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/dm73.png",
+        "spawn_image": "./assets/cards/dm73_spawn.png",
+        "rarity": "13",
+        "description": "The apex predator of kinetic penetrators, this advanced APFSDS round punches through composite armor like butter at hypersonic velocities.",
+        "country": "Germany"
     }
 }
