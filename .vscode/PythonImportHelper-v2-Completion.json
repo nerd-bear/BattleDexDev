@@ -205,14 +205,6 @@
         "documentation": {}
     },
     {
-        "label": "Database",
-        "importPath": "database",
-        "description": "database",
-        "isExtraImport": true,
-        "detail": "database",
-        "documentation": {}
-    },
-    {
         "label": "SpawnSession",
         "importPath": "models",
         "description": "models",

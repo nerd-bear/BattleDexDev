@@ -3,7 +3,6 @@ from datetime import datetime
 import disnake
 from disnake.ext import commands
 
-from database import Database
 from services.tracker import get_flight_data
 
 
@@ -26,20 +25,37 @@ class FL24Cog(commands.Cog):
             description="Enter a flight number",
         )
     ):
-        results = get_flight_data(flight_number)
-        callsign = results['callsign']
-        registration = results['registration']
-        aircraft_model = results['aircraft_model']
-        latitude = results['latitude']
-        longitude = results['longitude']
-        altitude = results['altitude_ft']
-        vertical_speed_trend = results['vertical_speed_trend']
-        ground_speed = results['ground_speed_kts']
-        heading = results['heading_deg']
-        squawk = results['squawk']
-        updated_at = results['updated_at']
-        image_url = results['image_url']
+        # 1. Fetch the data
+        # Since this involves a blocking web request (requests.get and time.sleep),
+        # it's best practice to defer the response so the interaction doesn't fail
+        # if the rate limiter pauses for a few seconds.
+        await inter.response.defer() 
         
+        results = get_flight_data(flight_number)
+        
+        # 2. Check if we actually found anything
+        if not results:
+            await inter.edit_original_response(content=f"No active live flights found matching `{flight_number}`.")
+            return
+            
+        # 3. Grab the FIRST flight in the returned list
+        flight = results[0] 
+
+        # 4. Extract data from the dictionary
+        callsign = flight['callsign']
+        registration = flight['registration']
+        aircraft_model = flight['aircraft_model']
+        latitude = flight['latitude']
+        longitude = flight['longitude']
+        altitude = flight['altitude_ft']
+        vertical_speed_trend = flight['vertical_speed_trend']
+        ground_speed = flight['ground_speed_kts']
+        heading = flight['heading_deg']
+        squawk = flight['squawk']
+        updated_at = flight['updated_at']
+        image_url = flight['image_url']
+        
+        # 5. Build the embed
         embed = disnake.Embed(description=f"**{aircraft_model}** | REG: **{registration}**",
                             colour=0x303030,
                             timestamp=datetime.now())
@@ -65,9 +81,11 @@ class FL24Cog(commands.Cog):
                         value=f"{updated_at}",
                         inline=True)
 
-        embed.set_image(url=image_url)
+        if image_url != "N/A":
+            embed.set_image(url=image_url)
 
         embed.set_footer(text="Data Provided by FlightRadar24",
                         icon_url="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/webp/flightradar24-light.webp")
         
-        inter.response.send_message(embed=embed)
+        # 6. Send the result using edit_original_response because we deferred earlier
+        await inter.edit_original_response(embed=embed)
