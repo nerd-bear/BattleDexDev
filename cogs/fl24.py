@@ -89,12 +89,22 @@ class FL24Cog(commands.Cog):
                         icon_url="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/webp/flightradar24-light.webp")
         
         # 6. Image Handling (Bypass JetPhotos Hotlink Protection)
+        print(f"--- DEBUG: Image URL from scraper: {image_url} ---")
+        
         if image_url != "N/A":
             try:
+                # We need a much stronger disguise to fool Cloudflare
                 headers = {
-                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+                    'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
+                    'Referer': 'https://www.flightradar24.com/', # Tell JetPhotos we came from FR24
                 }
-                img_response = requests.get(image_url, headers=headers, timeout=5)
+                
+                print("--- DEBUG: Attempting to download image... ---")
+                # Increased timeout to 10s just in case Discord or JetPhotos is being slow
+                img_response = requests.get(image_url, headers=headers, timeout=10) 
+                
+                print(f"--- DEBUG: Download status code: {img_response.status_code} ---")
                 img_response.raise_for_status()
                 
                 # Save raw image data into memory
@@ -106,16 +116,17 @@ class FL24Cog(commands.Cog):
                 
                 # Send both embed and file
                 await inter.edit_original_response(embed=embed, file=discord_file)
+                print("--- DEBUG: Image successfully attached and sent! ---")
                 return
                 
             except Exception as e:
-                print(f"Image download failed: {e}")
+                print(f"--- DEBUG: Image download FAILED: {e} ---")
                 # Fallback: Send embed without image if download fails
                 await inter.edit_original_response(embed=embed)
                 return
 
         # 7. Send standard embed if no image exists
-        await inter.edit_original_response(embed=embed)
+        await inter.edit_original_response(embed=embed) 
 
 
 def setup(bot: commands.InteractionBot):
