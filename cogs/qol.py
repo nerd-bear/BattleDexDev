@@ -47,7 +47,7 @@ class QoLCog(commands.Cog):
 
         # 3. Handle the image attachment
         # Make sure the file is actually on your machine at this path
-        file_path = "0f663482e9a64b46e77775806ca60479.png" 
+        file_path = "assets/promotional/promo_banner_alpha.png" 
         try:
             image_file = disnake.File(file_path, filename="battledex.png")
             embed.set_image(url="attachment://battledex.png")
