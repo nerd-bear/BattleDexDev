@@ -913,7 +913,7 @@
         "kind": 6,
         "importPath": "cogs.qol",
         "description": "cogs.qol",
-        "peekOfCode": "class Components(disnake.ui.LayoutView):    \n    container1 = disnake.ui.Container(\n        disnake.ui.TextDisplay(content=\"# Battle Dex is now here! Fuck yeah\"),\n        disnake.ui.MediaGallery(\n            disnake.MediaGalleryItem(\n                media=\"attachment://0f663482e9a64b46e77775806ca60479.png\",\n            ),\n        ),\n        disnake.ui.ActionRow(\n                disnake.ui.Button(",
+        "peekOfCode": "class Components(disnake.ui.View):\n    def __init__(self):\n        # timeout=None ensures the buttons don't stop working after 3 minutes\n        super().__init__(timeout=None)\n        # Add the \"Set channel\" button\n        self.add_item(disnake.ui.Button(\n            style=disnake.ButtonStyle.primary,\n            label=\"Set channel\",\n            emoji=\"🔩\",\n            custom_id=\"cdc2a0083fcc4521e53f1bf21a83517f\"",
         "detail": "cogs.qol",
         "documentation": {}
     },
@@ -922,7 +922,7 @@
         "kind": 6,
         "importPath": "cogs.qol",
         "description": "cogs.qol",
-        "peekOfCode": "class QoLCog(commands.Cog):\n    def __init__(self, bot: commands.InteractionBot):\n        self.bot = bot\n    @commands.Cog.listener()\n    async def on_guild_join(self, guild: disnake.Guild):\n        channel = None\n        for ch in guild.text_channels:\n            if ch.permissions_for(guild.default_role).send_messages:\n                channel = ch\n                break",
+        "peekOfCode": "class QoLCog(commands.Cog):\n    def __init__(self, bot: commands.InteractionBot):\n        self.bot = bot\n    @commands.Cog.listener()\n    async def on_guild_join(self, guild: disnake.Guild):\n        # Find the first channel the bot can speak in\n        channel = None\n        for ch in guild.text_channels:\n            if ch.permissions_for(guild.me).send_messages: # Note: checked against bot's perms, not default_role\n                channel = ch",
         "detail": "cogs.qol",
         "documentation": {}
     },
