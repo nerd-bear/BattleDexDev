@@ -144,7 +144,7 @@ def get_flight_data(flight_identifier: str, api_token: str = None) -> list[dict]
                 registration = raw_data.get('reg', 'N/A')
                 flight_id = raw_data.get('fr24_id', 'N/A')
                 
-                # This function also has a rate limiter inside it!
+                # Fetch extended info
                 extended_info = get_extended_flight_info(flight_id)
                 
                 aircraft_model = extended_info['aircraft_model']
@@ -159,7 +159,7 @@ def get_flight_data(flight_identifier: str, api_token: str = None) -> list[dict]
                     "longitude": raw_data.get('lon', 'N/A'),
                     "altitude_ft": raw_data.get('alt', 0),
                     "vertical_speed_trend": v_trend,
-                    "ground_speed_kts": raw_data.get('gspeed', 0),
+                    "gnd_speed_kts": raw_data.get('gspeed', 0),
                     "heading_deg": raw_data.get('track', 'N/A'),
                     "squawk": str(raw_data.get('squawk', 'N/A')).lstrip('0'),
                     "updated_at": formatted_time,
@@ -196,7 +196,7 @@ def main():
             print("=" * 60)
             print(f"  🗺️ Position : {data['latitude']}, {data['longitude']}")
             print(f"  🗻 Altitude : {data['altitude_ft']:,} ft ({data['vertical_speed_trend']})")
-            print(f"  💨 Speed    : {data['ground_speed_kts']} knots")
+            print(f"  💨 Speed    : {data['gnd_speed_kts']} knots")
             print(f"  🧭 Heading  : {data['heading_deg']}°")
             print(f"  📜 Squawk   : {data['squawk']}")
             print(f"  🕛 Updated  : {data['updated_at']}")

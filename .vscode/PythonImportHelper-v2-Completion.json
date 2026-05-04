@@ -205,6 +205,14 @@
         "documentation": {}
     },
     {
+        "label": "Database",
+        "importPath": "database",
+        "description": "database",
+        "isExtraImport": true,
+        "detail": "database",
+        "documentation": {}
+    },
+    {
         "label": "SpawnSession",
         "importPath": "models",
         "description": "models",
@@ -269,6 +277,24 @@
         "documentation": {}
     },
     {
+        "label": "io",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "io",
+        "description": "io",
+        "detail": "io",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
         "label": "datetime",
         "importPath": "datetime",
         "description": "datetime",
@@ -317,15 +343,6 @@
         "importPath": "time",
         "description": "time",
         "detail": "time",
-        "documentation": {}
-    },
-    {
-        "label": "requests",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "requests",
-        "description": "requests",
-        "detail": "requests",
         "documentation": {}
     },
     {
@@ -424,15 +441,6 @@
         "description": "contextlib",
         "isExtraImport": true,
         "detail": "contextlib",
-        "documentation": {}
-    },
-    {
-        "label": "io",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "io",
-        "description": "io",
-        "detail": "io",
         "documentation": {}
     },
     {
@@ -872,6 +880,15 @@
         "importPath": "cogs.fl24",
         "description": "cogs.fl24",
         "peekOfCode": "class FL24Cog(commands.Cog):\n    def __init__(self, bot: commands.InteractionBot):\n        self.bot = bot\n    @commands.slash_command(\n        name=\"fl24\",\n        description=\"Main command for Flight Radar 24 features.\"\n    )\n    async def fl24(self, inter: disnake.ApplicationCommandInteraction):\n        pass\n    @fl24.sub_command(name=\"track\", description=\"Display information about a flight.\")",
+        "detail": "cogs.fl24",
+        "documentation": {}
+    },
+    {
+        "label": "setup",
+        "kind": 2,
+        "importPath": "cogs.fl24",
+        "description": "cogs.fl24",
+        "peekOfCode": "def setup(bot: commands.InteractionBot):\n    bot.add_cog(FL24Cog(bot))",
         "detail": "cogs.fl24",
         "documentation": {}
     },

@@ -1,8 +1,12 @@
+import io
+import requests
 from datetime import datetime
 
 import disnake
 from disnake.ext import commands
 
+# Assuming you still need your database import for future use
+from database import Database 
 from services.tracker import get_flight_data
 
 
@@ -25,15 +29,12 @@ class FL24Cog(commands.Cog):
             description="Enter a flight number",
         )
     ):
-        # 1. Fetch the data
-        # Since this involves a blocking web request (requests.get and time.sleep),
-        # it's best practice to defer the response so the interaction doesn't fail
-        # if the rate limiter pauses for a few seconds.
+        # 1. Defer the response because scraping/downloading might take longer than 3 seconds
         await inter.response.defer() 
         
         results = get_flight_data(flight_number)
         
-        # 2. Check if we actually found anything
+        # 2. Handle no results
         if not results:
             await inter.edit_original_response(content=f"No active live flights found matching `{flight_number}`.")
             return
@@ -41,7 +42,7 @@ class FL24Cog(commands.Cog):
         # 3. Grab the FIRST flight in the returned list
         flight = results[0] 
 
-        # 4. Extract data from the dictionary
+        # 4. Extract data
         callsign = flight['callsign']
         registration = flight['registration']
         aircraft_model = flight['aircraft_model']
@@ -49,7 +50,10 @@ class FL24Cog(commands.Cog):
         longitude = flight['longitude']
         altitude = flight['altitude_ft']
         vertical_speed_trend = flight['vertical_speed_trend']
-        ground_speed = flight['ground_speed_kts']
+        
+        # Using .get() here just in case you named it ground_speed_kts or gnd_speed_kts
+        ground_speed = flight.get('gnd_speed_kts', flight.get('ground_speed_kts', 0)) 
+        
         heading = flight['heading_deg']
         squawk = flight['squawk']
         updated_at = flight['updated_at']
@@ -81,11 +85,38 @@ class FL24Cog(commands.Cog):
                         value=f"{updated_at}",
                         inline=True)
 
-        if image_url != "N/A":
-            embed.set_image(url=image_url)
-
         embed.set_footer(text="Data Provided by FlightRadar24",
                         icon_url="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/webp/flightradar24-light.webp")
         
-        # 6. Send the result using edit_original_response because we deferred earlier
+        # 6. Image Handling (Bypass JetPhotos Hotlink Protection)
+        if image_url != "N/A":
+            try:
+                headers = {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+                }
+                img_response = requests.get(image_url, headers=headers, timeout=5)
+                img_response.raise_for_status()
+                
+                # Save raw image data into memory
+                image_bytes = io.BytesIO(img_response.content)
+                discord_file = disnake.File(fp=image_bytes, filename="aircraft.jpg")
+                
+                # Attach to embed
+                embed.set_image(url="attachment://aircraft.jpg")
+                
+                # Send both embed and file
+                await inter.edit_original_response(embed=embed, file=discord_file)
+                return
+                
+            except Exception as e:
+                print(f"Image download failed: {e}")
+                # Fallback: Send embed without image if download fails
+                await inter.edit_original_response(embed=embed)
+                return
+
+        # 7. Send standard embed if no image exists
         await inter.edit_original_response(embed=embed)
+
+
+def setup(bot: commands.InteractionBot):
+    bot.add_cog(FL24Cog(bot))
