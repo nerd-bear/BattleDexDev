@@ -120,8 +120,14 @@ def get_flight_data(flight_identifier: str, api_token: str = None) -> list[dict]
 
                 registration = raw_data.get('reg', 'N/A')
                 
-                # Use official payload ICAO code for the model (e.g., B738)
-                aircraft_model = raw_data.get('equip', 'N/A')
+                # Aggressively hunt for the aircraft model in all known FR24 SDK keys
+                aircraft_model = (
+                    raw_data.get('aircraft_code') or 
+                    raw_data.get('equip') or 
+                    raw_data.get('equipment') or 
+                    raw_data.get('type') or 
+                    "Unknown Aircraft"
+                )
                 
                 # Fetch image from Planespotters
                 image_url = get_planespotters_image(registration)
