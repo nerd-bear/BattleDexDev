@@ -9,7 +9,7 @@ from fr24sdk.client import Client
 from fr24sdk.exceptions import ApiError
 
 # ==========================================
-# RATE LIMITER SETUP
+# RATE LIMITER SETUP (Still useful for FR24 SDK)
 # ==========================================
 class RateLimiter:
     """A sliding window rate limiter to prevent API bans."""
@@ -22,73 +22,52 @@ class RateLimiter:
         """Blocks execution if the rate limit has been reached."""
         now = time.time()
         
-        # Remove timestamps that are older than our time window (60 seconds)
         while self.calls and now - self.calls[0] >= self.period:
             self.calls.popleft()
 
-        # If we've hit our limit, calculate how long to sleep
         if len(self.calls) >= self.max_calls:
             sleep_time = self.period - (now - self.calls[0])
             if sleep_time > 0:
-                print(f"⏱️ Rate limit reached (10 req/min). Pausing for {sleep_time:.1f} seconds...")
+                print(f"⏱️ Rate limit reached. Pausing for {sleep_time:.1f} seconds...")
                 time.sleep(sleep_time)
         
-        # Record the timestamp of this new request
         self.calls.append(time.time())
 
-# Global instance: 10 requests per 60 seconds
 global_limiter = RateLimiter(max_calls=10, period=60.0)
 
 
 # ==========================================
 # FLIGHT DATA FUNCTIONS
 # ==========================================
-def get_extended_flight_info(flight_id: str) -> dict:
+def get_planespotters_image(registration: str) -> str:
     """
-    Fetches the high-resolution JetPhotos image URL AND the full aircraft 
-    model name using Flightradar24's internal web clickhandler endpoint.
+    Fetches the aircraft image URL from the free Planespotters.net API 
+    using the aircraft's tail registration.
     """
-    result = {
-        "image_url": "N/A",
-        "aircraft_model": "N/A"
-    }
-
-    if not flight_id or flight_id == 'N/A':
-        return result
+    if not registration or registration == 'N/A':
+        return "N/A"
         
-    url = f"https://data-live.flightradar24.com/clickhandler/?version=1.5&flight={flight_id}"
-    
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        'Accept': 'application/json'
-    }
+    url = f"https://api.planespotters.net/pub/photos/reg/{registration}"
     
     try:
-        # 🚦 Trigger Rate Limiter before the web request
-        global_limiter.wait()
-        
+        # Planespotters just requires a polite user-agent
+        headers = {'User-Agent': 'DiscordBot/1.0 FlightTracker (Python requests)'}
         response = requests.get(url, headers=headers, timeout=5)
         response.raise_for_status()
         data = response.json()
         
-        aircraft_data = data.get('aircraft', {})
-        
-        model_info = aircraft_data.get('model', {})
-        result['aircraft_model'] = model_info.get('text', 'N/A')
-        
-        images = aircraft_data.get('images', {})
-        large_images = images.get('large', [])
-        if large_images:
-            result['image_url'] = large_images[0].get('src', 'N/A')
+        if data.get('photos') and len(data['photos']) > 0:
+            return data['photos'][0]['thumbnail_large']['src']
             
     except Exception as e:
-        pass
+        print(f"Planespotters API Error: {e}")
         
-    return result
+    return "N/A"
 
 
 def get_flight_data(flight_identifier: str, api_token: str = None) -> list[dict]:
-    target_flight = flight_identifier.upper()
+    # .strip() prevents accidental spaces pasted by Discord users
+    target_flight = flight_identifier.upper().strip()
     token = api_token or os.environ.get("FR24_API_TOKEN")
     
     if not token:
@@ -99,13 +78,11 @@ def get_flight_data(flight_identifier: str, api_token: str = None) -> list[dict]
     try:
         with Client(api_token=token) as client:
             
-            # 🚦 Trigger Rate Limiter before SDK request
             global_limiter.wait()
             response = client.live.flight_positions.get_full(flights=[target_flight])
             flight_data = getattr(response, 'data', [])
             
             if not flight_data:
-                # 🚦 Trigger Rate Limiter before fallback SDK request
                 global_limiter.wait()
                 response = client.live.flight_positions.get_full(callsigns=[target_flight])
                 flight_data = getattr(response, 'data', [])
@@ -142,14 +119,12 @@ def get_flight_data(flight_identifier: str, api_token: str = None) -> list[dict]
                     formatted_time = timestamp_str or "N/A"
 
                 registration = raw_data.get('reg', 'N/A')
-                flight_id = raw_data.get('fr24_id', 'N/A')
                 
-                # Fetch extended info
-                extended_info = get_extended_flight_info(flight_id)
+                # Use official payload ICAO code for the model (e.g., B738)
+                aircraft_model = raw_data.get('equip', 'N/A')
                 
-                aircraft_model = extended_info['aircraft_model']
-                if aircraft_model == 'N/A':
-                    aircraft_model = raw_data.get('equip', 'N/A')
+                # Fetch image from Planespotters
+                image_url = get_planespotters_image(registration)
 
                 processed_flights.append({
                     "callsign": raw_data.get('callsign', 'N/A'),
@@ -163,7 +138,7 @@ def get_flight_data(flight_identifier: str, api_token: str = None) -> list[dict]
                     "heading_deg": raw_data.get('track', 'N/A'),
                     "squawk": str(raw_data.get('squawk', 'N/A')).lstrip('0'),
                     "updated_at": formatted_time,
-                    "image_url": extended_info['image_url'],
+                    "image_url": image_url,
                     "raw_data": raw_data 
                 })
 

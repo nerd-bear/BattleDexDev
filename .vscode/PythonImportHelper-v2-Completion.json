@@ -277,24 +277,6 @@
         "documentation": {}
     },
     {
-        "label": "io",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "io",
-        "description": "io",
-        "detail": "io",
-        "documentation": {}
-    },
-    {
-        "label": "requests",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "requests",
-        "description": "requests",
-        "detail": "requests",
-        "documentation": {}
-    },
-    {
         "label": "datetime",
         "importPath": "datetime",
         "description": "datetime",
@@ -343,6 +325,15 @@
         "importPath": "time",
         "description": "time",
         "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
         "documentation": {}
     },
     {
@@ -441,6 +432,15 @@
         "description": "contextlib",
         "isExtraImport": true,
         "detail": "contextlib",
+        "documentation": {}
+    },
+    {
+        "label": "io",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "io",
+        "description": "io",
+        "detail": "io",
         "documentation": {}
     },
     {
@@ -915,16 +915,16 @@
         "kind": 6,
         "importPath": "services.tracker",
         "description": "services.tracker",
-        "peekOfCode": "class RateLimiter:\n    \"\"\"A sliding window rate limiter to prevent API bans.\"\"\"\n    def __init__(self, max_calls: int, period: float):\n        self.max_calls = max_calls\n        self.period = period\n        self.calls = deque()\n    def wait(self):\n        \"\"\"Blocks execution if the rate limit has been reached.\"\"\"\n        now = time.time()\n        # Remove timestamps that are older than our time window (60 seconds)",
+        "peekOfCode": "class RateLimiter:\n    \"\"\"A sliding window rate limiter to prevent API bans.\"\"\"\n    def __init__(self, max_calls: int, period: float):\n        self.max_calls = max_calls\n        self.period = period\n        self.calls = deque()\n    def wait(self):\n        \"\"\"Blocks execution if the rate limit has been reached.\"\"\"\n        now = time.time()\n        while self.calls and now - self.calls[0] >= self.period:",
         "detail": "services.tracker",
         "documentation": {}
     },
     {
-        "label": "get_extended_flight_info",
+        "label": "get_planespotters_image",
         "kind": 2,
         "importPath": "services.tracker",
         "description": "services.tracker",
-        "peekOfCode": "def get_extended_flight_info(flight_id: str) -> dict:\n    \"\"\"\n    Fetches the high-resolution JetPhotos image URL AND the full aircraft \n    model name using Flightradar24's internal web clickhandler endpoint.\n    \"\"\"\n    result = {\n        \"image_url\": \"N/A\",\n        \"aircraft_model\": \"N/A\"\n    }\n    if not flight_id or flight_id == 'N/A':",
+        "peekOfCode": "def get_planespotters_image(registration: str) -> str:\n    \"\"\"\n    Fetches the aircraft image URL from the free Planespotters.net API \n    using the aircraft's tail registration.\n    \"\"\"\n    if not registration or registration == 'N/A':\n        return \"N/A\"\n    url = f\"https://api.planespotters.net/pub/photos/reg/{registration}\"\n    try:\n        # Planespotters just requires a polite user-agent",
         "detail": "services.tracker",
         "documentation": {}
     },
@@ -933,7 +933,7 @@
         "kind": 2,
         "importPath": "services.tracker",
         "description": "services.tracker",
-        "peekOfCode": "def get_flight_data(flight_identifier: str, api_token: str = None) -> list[dict]:\n    target_flight = flight_identifier.upper()\n    token = api_token or os.environ.get(\"FR24_API_TOKEN\")\n    if not token:\n        raise ValueError(\"FR24_API_TOKEN is missing. Set it as an environment variable or pass it to the function.\")\n    processed_flights = []\n    try:\n        with Client(api_token=token) as client:\n            # 🚦 Trigger Rate Limiter before SDK request\n            global_limiter.wait()",
+        "peekOfCode": "def get_flight_data(flight_identifier: str, api_token: str = None) -> list[dict]:\n    # .strip() prevents accidental spaces pasted by Discord users\n    target_flight = flight_identifier.upper().strip()\n    token = api_token or os.environ.get(\"FR24_API_TOKEN\")\n    if not token:\n        raise ValueError(\"FR24_API_TOKEN is missing. Set it as an environment variable or pass it to the function.\")\n    processed_flights = []\n    try:\n        with Client(api_token=token) as client:\n            global_limiter.wait()",
         "detail": "services.tracker",
         "documentation": {}
     },
@@ -951,7 +951,7 @@
         "kind": 5,
         "importPath": "services.tracker",
         "description": "services.tracker",
-        "peekOfCode": "global_limiter = RateLimiter(max_calls=10, period=60.0)\n# ==========================================\n# FLIGHT DATA FUNCTIONS\n# ==========================================\ndef get_extended_flight_info(flight_id: str) -> dict:\n    \"\"\"\n    Fetches the high-resolution JetPhotos image URL AND the full aircraft \n    model name using Flightradar24's internal web clickhandler endpoint.\n    \"\"\"\n    result = {",
+        "peekOfCode": "global_limiter = RateLimiter(max_calls=10, period=60.0)\n# ==========================================\n# FLIGHT DATA FUNCTIONS\n# ==========================================\ndef get_planespotters_image(registration: str) -> str:\n    \"\"\"\n    Fetches the aircraft image URL from the free Planespotters.net API \n    using the aircraft's tail registration.\n    \"\"\"\n    if not registration or registration == 'N/A':",
         "detail": "services.tracker",
         "documentation": {}
     },
