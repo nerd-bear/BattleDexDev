@@ -1,4 +1,5 @@
-# THIS IS A VIBE CODED CARD CREATOR, THE REST IS NOT VIBE CODED
+#this is required to gen descriptions
+# pip install -q -U google-genai
 
 
 
@@ -8,20 +9,34 @@ from PIL import Image, ImageDraw, ImageFont
 import os
 import re
 import json
+from google import genai
+
+client = genai.Client(api_key="AIzaSyD9jEIw1OktxRjjpiqHwA_FZkw_I4-HyDM")
+
+SYSTEM_PROMPT = "Provide a single sentence description of the aircraft provided. Use clear, simple language. Use active voice. Focus on practical, actionable insights. Avoid metaphors, clichés, and generalizations. Do not use em dashes."
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# Base project directory mapped from your path
 PROJECT_ROOT = r"C:\Users\nerdb\OneDrive\Desktop\coding-projects\GoonDex"
 OUTPUT_DIR = os.path.join(PROJECT_ROOT, "assets", "cards")
 JSON_PATH = os.path.join(PROJECT_ROOT, "data", "card.json")
 
-# Country Map moved to Global so JSON script can use it too!
 COUNTRY_MAP = {
-    "Russia": "RU.png",
-    "UK": "UK.png",
-    "US": "US.png",
-    "Germany": "DE.png"
+    "Belgium": "belgium.png",
+    "Canada": "canada.png",
+    "Chile": "chile.png",
+    "China": "china.png",
+    "Colombia": "colombia.png",
+    "France": "france.png",
+    "Germany": "germany.png",
+    "Japan": "japan.png",
+    "Russia": "russia.png",
+    "Singapore": "singapore.png",
+    "Spain": "spain.png",
+    "Sweden": "sweden.png",
+    "United Kingdom": "united-kingdom.png",
+    "United States": "united-states.png",
+    "Vietnam": "vietnam.png"
 }
 
 SCALE = 3
@@ -50,7 +65,6 @@ STAT_BAR_HEIGHT = 40 * SCALE
 STAT_ICON_SIZE = 28 * SCALE
 STAT_GAP = 10 * SCALE
 
-# --- UPDATED FONTS & SIZES ---
 BOLD_FONT_PATH = os.path.join(SCRIPT_DIR, "Assets", "Oswald", "static", "Oswald-Bold.ttf")
 MEDIUM_FONT_PATH = os.path.join(SCRIPT_DIR, "Assets", "Oswald", "static", "Oswald-Medium.ttf")
 REGULAR_FONT_PATH = os.path.join(SCRIPT_DIR, "Assets", "Oswald", "static", "Oswald-Regular.ttf")
@@ -61,10 +75,9 @@ DESC_FONT_PATH = REGULAR_FONT_PATH
 
 TITLE_SIZE = 22 * SCALE       
 SUBTITLE_SIZE = 34 * SCALE    
-DESC_SIZE = 19 * SCALE        # Adjusted down slightly to be smaller but readable
+DESC_SIZE = 19 * SCALE        
 STAT_SIZE = 20 * SCALE
 
-# --- HELPERS ---
 def crop_to_16_9(img):
     width, height = img.size
     target_ratio = 16 / 9
@@ -249,7 +262,6 @@ def create_card(title, image_path, subtitle, description, icon_filename, basenam
         max_height=max_text_height
     )
 
-    # --- STATS ---
     jet_icon_path = os.path.join(SCRIPT_DIR, "Assets", "jet.png")
     msl_icon_path = os.path.join(SCRIPT_DIR, "Assets", "msl.png")
 
@@ -320,19 +332,37 @@ def save_card_to_json(name, card_filename, spawn_filename, description, rarity, 
         "image": f"./assets/cards/{card_filename}",
         "spawn_image": f"./assets/cards/{spawn_filename}",
         "description": description,
-        "rarity": str(rarity),  # ✅ force string
+        "rarity": str(rarity),  
         "country": country
     }
 
     with open(JSON_PATH, "w") as f:
         json.dump(data, f, indent=4)
 
-# --- GUI ---
 def run_app():
     root = tk.Tk()
-    root.title("GoonDex Card Creator")
-    root.geometry("450x600")
+    root.title("BattleDex Card Creator")
+    root.geometry("450x640")
     root.configure(padx=20, pady=20)
+    
+    def generate_ai_description():
+        name = name_entry.get().strip()
+        if not name:
+            messagebox.showwarning("Input Error", "Enter a card name first.")
+            return
+
+        try:
+            response = client.models.generate_content(
+                model="gemini-3-flash-preview",
+                config=genai.types.GenerateContentConfig(
+                    system_instruction=SYSTEM_PROMPT
+                ),
+                contents=name
+            )
+            desc_text.delete("1.0", tk.END)
+            desc_text.insert("1.0", response.text.strip().replace("-", " "))
+        except Exception as e:
+            messagebox.showerror("AI Error", f"Failed to generate description: {e}")
 
     def browse_image():
         filepath = filedialog.askopenfilename(
@@ -401,7 +431,7 @@ def run_app():
     
     tk.Label(root, text="Rarity:").pack(anchor="w")
 
-    rarity_values = [str(i) for i in range(1, 15)] + ["X", "Y"]
+    rarity_values = ["Y", "X"] + [str(i) for i in range(1, 15)]
     rarity_var = tk.StringVar(value="1")
 
     ttk.Combobox(
@@ -429,13 +459,21 @@ def run_app():
     tk.Label(root, text="Description:").pack(anchor="w")
     desc_text = tk.Text(root, width=50, height=8, wrap="word")
     desc_text.pack(pady=(0, 20))
+    
+    tk.Button(
+        root, 
+        text="Generate AI Description", 
+        command=generate_ai_description,
+        bg="#2196F3", 
+        fg="white"
+    ).pack(pady=(0, 10))
 
     tk.Button(root, text="Generate Card", font=("Arial", 12, "bold"), bg="#4CAF50", fg="white", command=handle_generate).pack()
 
     root.mainloop()
 
 
-# --- HEADLESS / JSON MODE ---
+# HEADLESS
 def run_from_json():
     if not os.path.exists(JSON_PATH):
         print(f"Error: JSON file not found at {JSON_PATH}")
@@ -448,7 +486,6 @@ def run_from_json():
     for card_name, data in card_data.items():
         print(f"Generating card: {card_name}...")
         
-        # Format the relative path to absolute
         raw_image_path = data.get("spawn_image", "")
         if raw_image_path.startswith("./"):
             raw_image_path = raw_image_path[2:]
@@ -463,17 +500,16 @@ def run_from_json():
         hp_val = str(data.get("health", 0))
         desc = data.get("description", "")
         
-        # Grab country from JSON, default to Russia if missing, and lookup in map
         country_key = data.get("country", "Russia")
         icon_filename = COUNTRY_MAP.get(country_key, "RU.png")
 
         try:
             create_card(
-                title=card_name,             # Title is now Card Name
+                title=card_name,             
                 image_path=absolute_image_path,
-                subtitle=card_name,          # Subtitle is also Card Name!
+                subtitle=card_name,          
                 description=desc, 
-                icon_filename=icon_filename, # Uses dynamic country!
+                icon_filename=icon_filename, 
                 basename=card_name,
                 hp_value=hp_val,
                 atk_value=atk_val
@@ -486,7 +522,6 @@ def run_from_json():
 
 
 if __name__ == "__main__":
-    # SET THIS VARIABLE: True to open the app, False to build from JSON
     USE_GUI = True  
     
     if USE_GUI:

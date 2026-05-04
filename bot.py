@@ -1,6 +1,7 @@
 import disnake
 from disnake.ext import commands
 
+from cogs.fl24 import FL24Cog
 from config import BOT_TOKEN, DATABASE_PATH, CARD_FILE
 from database import Database
 from cogs.cards import CardsCog
@@ -21,6 +22,7 @@ def main():
     db.initialize()
     db.seed_from_json(CARD_FILE)
     bot.add_cog(CardsCog(bot, db))
+    bot.add_cog(FL24Cog(bot))
     bot.run(BOT_TOKEN)
     
 

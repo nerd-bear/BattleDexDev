@@ -20,18 +20,18 @@ Handley Page Halifax
 ✅ Mi-28 Havoc
 ✅ Ka-50 Black Shark
 ✅ Ka-52 Alligator
-AH-64 Apache
-AH-64D Apache Longbow
+✅ AH-64 Apache
+❌ AH-64D Apache Longbow
 UH-60 Black Hawk
-CH-47 Chinook
+✅ CH-47 Chinook
 AH-6 Little Bird
 Eurocopter Tiger
 
 F-16XL SCAMP
 F-16C Fighting Falcon
-JAS 39 Gripen
-JA 37 Viggen
-JA 35 Draken
+✅ JAS 39 Gripen
+✅ JA 37 Viggen
+✅ JA 35 Draken
 
 M1 Abrams
 M60 Patton

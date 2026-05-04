@@ -84,6 +84,14 @@
         "documentation": {}
     },
     {
+        "label": "genai",
+        "importPath": "google",
+        "description": "google",
+        "isExtraImport": true,
+        "detail": "google",
+        "documentation": {}
+    },
+    {
         "label": "Dict",
         "importPath": "typing",
         "description": "typing",
@@ -173,6 +181,22 @@
         "documentation": {}
     },
     {
+        "label": "commands",
+        "importPath": "disnake.ext",
+        "description": "disnake.ext",
+        "isExtraImport": true,
+        "detail": "disnake.ext",
+        "documentation": {}
+    },
+    {
+        "label": "Database",
+        "importPath": "database",
+        "description": "database",
+        "isExtraImport": true,
+        "detail": "database",
+        "documentation": {}
+    },
+    {
         "label": "Database",
         "importPath": "database",
         "description": "database",
@@ -253,12 +277,95 @@
         "documentation": {}
     },
     {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "get_flight_data",
+        "importPath": "services.tracker",
+        "description": "services.tracker",
+        "isExtraImport": true,
+        "detail": "services.tracker",
+        "documentation": {}
+    },
+    {
+        "label": "argparse",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "argparse",
+        "description": "argparse",
+        "detail": "argparse",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
         "label": "time",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "time",
         "description": "time",
         "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "deque",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "Client",
+        "importPath": "fr24sdk.client",
+        "description": "fr24sdk.client",
+        "isExtraImport": true,
+        "detail": "fr24sdk.client",
+        "documentation": {}
+    },
+    {
+        "label": "ApiError",
+        "importPath": "fr24sdk.exceptions",
+        "description": "fr24sdk.exceptions",
+        "isExtraImport": true,
+        "detail": "fr24sdk.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "FL24Cog",
+        "importPath": "cogs.fl24",
+        "description": "cogs.fl24",
+        "isExtraImport": true,
+        "detail": "cogs.fl24",
         "documentation": {}
     },
     {
@@ -439,7 +546,7 @@
         "kind": 2,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "def run_app():\n    root = tk.Tk()\n    root.title(\"GoonDex Card Creator\")\n    root.geometry(\"450x600\")\n    root.configure(padx=20, pady=20)\n    def browse_image():\n        filepath = filedialog.askopenfilename(\n            title=\"Select Main Image\",\n            filetypes=[(\"Image Files\", \"*.png;*.jpg;*.jpeg;*.webp\")]\n        )",
+        "peekOfCode": "def run_app():\n    root = tk.Tk()\n    root.title(\"BattleDex Card Creator\")\n    root.geometry(\"450x640\")\n    root.configure(padx=20, pady=20)\n    def generate_ai_description():\n        name = name_entry.get().strip()\n        if not name:\n            messagebox.showwarning(\"Input Error\", \"Enter a card name first.\")\n            return",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -448,7 +555,25 @@
         "kind": 2,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "def run_from_json():\n    if not os.path.exists(JSON_PATH):\n        print(f\"Error: JSON file not found at {JSON_PATH}\")\n        return\n    print(\"Loading JSON data...\")\n    with open(JSON_PATH, \"r\") as f:\n        card_data = json.load(f)\n    for card_name, data in card_data.items():\n        print(f\"Generating card: {card_name}...\")\n        # Format the relative path to absolute",
+        "peekOfCode": "def run_from_json():\n    if not os.path.exists(JSON_PATH):\n        print(f\"Error: JSON file not found at {JSON_PATH}\")\n        return\n    print(\"Loading JSON data...\")\n    with open(JSON_PATH, \"r\") as f:\n        card_data = json.load(f)\n    for card_name, data in card_data.items():\n        print(f\"Generating card: {card_name}...\")\n        raw_image_path = data.get(\"spawn_image\", \"\")",
+        "detail": "CARDCREATOR.card_creator",
+        "documentation": {}
+    },
+    {
+        "label": "client",
+        "kind": 5,
+        "importPath": "CARDCREATOR.card_creator",
+        "description": "CARDCREATOR.card_creator",
+        "peekOfCode": "client = genai.Client(api_key=\"AIzaSyD9jEIw1OktxRjjpiqHwA_FZkw_I4-HyDM\")\nSYSTEM_PROMPT = \"Provide a single sentence description of the aircraft provided. Use clear, simple language. Use active voice. Focus on practical, actionable insights. Avoid metaphors, clichés, and generalizations. Do not use em dashes.\"\nSCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\nPROJECT_ROOT = r\"C:\\Users\\nerdb\\OneDrive\\Desktop\\coding-projects\\GoonDex\"\nOUTPUT_DIR = os.path.join(PROJECT_ROOT, \"assets\", \"cards\")\nJSON_PATH = os.path.join(PROJECT_ROOT, \"data\", \"card.json\")\nCOUNTRY_MAP = {\n    \"Belgium\": \"belgium.png\",\n    \"Canada\": \"canada.png\",\n    \"Chile\": \"chile.png\",",
+        "detail": "CARDCREATOR.card_creator",
+        "documentation": {}
+    },
+    {
+        "label": "SYSTEM_PROMPT",
+        "kind": 5,
+        "importPath": "CARDCREATOR.card_creator",
+        "description": "CARDCREATOR.card_creator",
+        "peekOfCode": "SYSTEM_PROMPT = \"Provide a single sentence description of the aircraft provided. Use clear, simple language. Use active voice. Focus on practical, actionable insights. Avoid metaphors, clichés, and generalizations. Do not use em dashes.\"\nSCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\nPROJECT_ROOT = r\"C:\\Users\\nerdb\\OneDrive\\Desktop\\coding-projects\\GoonDex\"\nOUTPUT_DIR = os.path.join(PROJECT_ROOT, \"assets\", \"cards\")\nJSON_PATH = os.path.join(PROJECT_ROOT, \"data\", \"card.json\")\nCOUNTRY_MAP = {\n    \"Belgium\": \"belgium.png\",\n    \"Canada\": \"canada.png\",\n    \"Chile\": \"chile.png\",\n    \"China\": \"china.png\",",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -457,7 +582,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\n# Base project directory mapped from your path\nPROJECT_ROOT = r\"C:\\Users\\nerdb\\OneDrive\\Desktop\\coding-projects\\GoonDex\"\nOUTPUT_DIR = os.path.join(PROJECT_ROOT, \"assets\", \"cards\")\nJSON_PATH = os.path.join(PROJECT_ROOT, \"data\", \"card.json\")\n# Country Map moved to Global so JSON script can use it too!\nCOUNTRY_MAP = {\n    \"Russia\": \"RU.png\",\n    \"UK\": \"UK.png\",\n    \"US\": \"US.png\",",
+        "peekOfCode": "SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\nPROJECT_ROOT = r\"C:\\Users\\nerdb\\OneDrive\\Desktop\\coding-projects\\GoonDex\"\nOUTPUT_DIR = os.path.join(PROJECT_ROOT, \"assets\", \"cards\")\nJSON_PATH = os.path.join(PROJECT_ROOT, \"data\", \"card.json\")\nCOUNTRY_MAP = {\n    \"Belgium\": \"belgium.png\",\n    \"Canada\": \"canada.png\",\n    \"Chile\": \"chile.png\",\n    \"China\": \"china.png\",\n    \"Colombia\": \"colombia.png\",",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -466,7 +591,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "PROJECT_ROOT = r\"C:\\Users\\nerdb\\OneDrive\\Desktop\\coding-projects\\GoonDex\"\nOUTPUT_DIR = os.path.join(PROJECT_ROOT, \"assets\", \"cards\")\nJSON_PATH = os.path.join(PROJECT_ROOT, \"data\", \"card.json\")\n# Country Map moved to Global so JSON script can use it too!\nCOUNTRY_MAP = {\n    \"Russia\": \"RU.png\",\n    \"UK\": \"UK.png\",\n    \"US\": \"US.png\",\n    \"Germany\": \"DE.png\"\n}",
+        "peekOfCode": "PROJECT_ROOT = r\"C:\\Users\\nerdb\\OneDrive\\Desktop\\coding-projects\\GoonDex\"\nOUTPUT_DIR = os.path.join(PROJECT_ROOT, \"assets\", \"cards\")\nJSON_PATH = os.path.join(PROJECT_ROOT, \"data\", \"card.json\")\nCOUNTRY_MAP = {\n    \"Belgium\": \"belgium.png\",\n    \"Canada\": \"canada.png\",\n    \"Chile\": \"chile.png\",\n    \"China\": \"china.png\",\n    \"Colombia\": \"colombia.png\",\n    \"France\": \"france.png\",",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -475,7 +600,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "OUTPUT_DIR = os.path.join(PROJECT_ROOT, \"assets\", \"cards\")\nJSON_PATH = os.path.join(PROJECT_ROOT, \"data\", \"card.json\")\n# Country Map moved to Global so JSON script can use it too!\nCOUNTRY_MAP = {\n    \"Russia\": \"RU.png\",\n    \"UK\": \"UK.png\",\n    \"US\": \"US.png\",\n    \"Germany\": \"DE.png\"\n}\nSCALE = 3",
+        "peekOfCode": "OUTPUT_DIR = os.path.join(PROJECT_ROOT, \"assets\", \"cards\")\nJSON_PATH = os.path.join(PROJECT_ROOT, \"data\", \"card.json\")\nCOUNTRY_MAP = {\n    \"Belgium\": \"belgium.png\",\n    \"Canada\": \"canada.png\",\n    \"Chile\": \"chile.png\",\n    \"China\": \"china.png\",\n    \"Colombia\": \"colombia.png\",\n    \"France\": \"france.png\",\n    \"Germany\": \"germany.png\",",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -484,7 +609,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "JSON_PATH = os.path.join(PROJECT_ROOT, \"data\", \"card.json\")\n# Country Map moved to Global so JSON script can use it too!\nCOUNTRY_MAP = {\n    \"Russia\": \"RU.png\",\n    \"UK\": \"UK.png\",\n    \"US\": \"US.png\",\n    \"Germany\": \"DE.png\"\n}\nSCALE = 3\nCARD_WIDTH = 357 * SCALE",
+        "peekOfCode": "JSON_PATH = os.path.join(PROJECT_ROOT, \"data\", \"card.json\")\nCOUNTRY_MAP = {\n    \"Belgium\": \"belgium.png\",\n    \"Canada\": \"canada.png\",\n    \"Chile\": \"chile.png\",\n    \"China\": \"china.png\",\n    \"Colombia\": \"colombia.png\",\n    \"France\": \"france.png\",\n    \"Germany\": \"germany.png\",\n    \"Japan\": \"japan.png\",",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -493,7 +618,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "COUNTRY_MAP = {\n    \"Russia\": \"RU.png\",\n    \"UK\": \"UK.png\",\n    \"US\": \"US.png\",\n    \"Germany\": \"DE.png\"\n}\nSCALE = 3\nCARD_WIDTH = 357 * SCALE\nCARD_HEIGHT = 500 * SCALE\nBACKGROUND_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"STD_BG.jpg\")",
+        "peekOfCode": "COUNTRY_MAP = {\n    \"Belgium\": \"belgium.png\",\n    \"Canada\": \"canada.png\",\n    \"Chile\": \"chile.png\",\n    \"China\": \"china.png\",\n    \"Colombia\": \"colombia.png\",\n    \"France\": \"france.png\",\n    \"Germany\": \"germany.png\",\n    \"Japan\": \"japan.png\",\n    \"Russia\": \"russia.png\",",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -574,7 +699,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "TEXT_SIDE_MARGIN = 20 * SCALE\nSUBTITLE_TO_DESC_GAP = 15 * SCALE\nBOTTOM_MARGIN = 20 * SCALE\nICON_RIGHT_MARGIN = 10 * SCALE\nICON_TOP_MARGIN = 8 * SCALE\nICON_SCALE_MULTIPLIER = 1.7 * 0.8\nSTAT_BAR_HEIGHT = 40 * SCALE\nSTAT_ICON_SIZE = 28 * SCALE\nSTAT_GAP = 10 * SCALE\n# --- UPDATED FONTS & SIZES ---",
+        "peekOfCode": "TEXT_SIDE_MARGIN = 20 * SCALE\nSUBTITLE_TO_DESC_GAP = 15 * SCALE\nBOTTOM_MARGIN = 20 * SCALE\nICON_RIGHT_MARGIN = 10 * SCALE\nICON_TOP_MARGIN = 8 * SCALE\nICON_SCALE_MULTIPLIER = 1.7 * 0.8\nSTAT_BAR_HEIGHT = 40 * SCALE\nSTAT_ICON_SIZE = 28 * SCALE\nSTAT_GAP = 10 * SCALE\nBOLD_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -583,7 +708,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "SUBTITLE_TO_DESC_GAP = 15 * SCALE\nBOTTOM_MARGIN = 20 * SCALE\nICON_RIGHT_MARGIN = 10 * SCALE\nICON_TOP_MARGIN = 8 * SCALE\nICON_SCALE_MULTIPLIER = 1.7 * 0.8\nSTAT_BAR_HEIGHT = 40 * SCALE\nSTAT_ICON_SIZE = 28 * SCALE\nSTAT_GAP = 10 * SCALE\n# --- UPDATED FONTS & SIZES ---\nBOLD_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")",
+        "peekOfCode": "SUBTITLE_TO_DESC_GAP = 15 * SCALE\nBOTTOM_MARGIN = 20 * SCALE\nICON_RIGHT_MARGIN = 10 * SCALE\nICON_TOP_MARGIN = 8 * SCALE\nICON_SCALE_MULTIPLIER = 1.7 * 0.8\nSTAT_BAR_HEIGHT = 40 * SCALE\nSTAT_ICON_SIZE = 28 * SCALE\nSTAT_GAP = 10 * SCALE\nBOLD_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")\nMEDIUM_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -592,7 +717,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "BOTTOM_MARGIN = 20 * SCALE\nICON_RIGHT_MARGIN = 10 * SCALE\nICON_TOP_MARGIN = 8 * SCALE\nICON_SCALE_MULTIPLIER = 1.7 * 0.8\nSTAT_BAR_HEIGHT = 40 * SCALE\nSTAT_ICON_SIZE = 28 * SCALE\nSTAT_GAP = 10 * SCALE\n# --- UPDATED FONTS & SIZES ---\nBOLD_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")\nMEDIUM_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")",
+        "peekOfCode": "BOTTOM_MARGIN = 20 * SCALE\nICON_RIGHT_MARGIN = 10 * SCALE\nICON_TOP_MARGIN = 8 * SCALE\nICON_SCALE_MULTIPLIER = 1.7 * 0.8\nSTAT_BAR_HEIGHT = 40 * SCALE\nSTAT_ICON_SIZE = 28 * SCALE\nSTAT_GAP = 10 * SCALE\nBOLD_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")\nMEDIUM_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")\nREGULAR_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -601,7 +726,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "ICON_RIGHT_MARGIN = 10 * SCALE\nICON_TOP_MARGIN = 8 * SCALE\nICON_SCALE_MULTIPLIER = 1.7 * 0.8\nSTAT_BAR_HEIGHT = 40 * SCALE\nSTAT_ICON_SIZE = 28 * SCALE\nSTAT_GAP = 10 * SCALE\n# --- UPDATED FONTS & SIZES ---\nBOLD_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")\nMEDIUM_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")\nREGULAR_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")",
+        "peekOfCode": "ICON_RIGHT_MARGIN = 10 * SCALE\nICON_TOP_MARGIN = 8 * SCALE\nICON_SCALE_MULTIPLIER = 1.7 * 0.8\nSTAT_BAR_HEIGHT = 40 * SCALE\nSTAT_ICON_SIZE = 28 * SCALE\nSTAT_GAP = 10 * SCALE\nBOLD_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")\nMEDIUM_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")\nREGULAR_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")\nTITLE_FONT_PATH = MEDIUM_FONT_PATH",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -610,7 +735,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "ICON_TOP_MARGIN = 8 * SCALE\nICON_SCALE_MULTIPLIER = 1.7 * 0.8\nSTAT_BAR_HEIGHT = 40 * SCALE\nSTAT_ICON_SIZE = 28 * SCALE\nSTAT_GAP = 10 * SCALE\n# --- UPDATED FONTS & SIZES ---\nBOLD_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")\nMEDIUM_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")\nREGULAR_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")\nTITLE_FONT_PATH = MEDIUM_FONT_PATH",
+        "peekOfCode": "ICON_TOP_MARGIN = 8 * SCALE\nICON_SCALE_MULTIPLIER = 1.7 * 0.8\nSTAT_BAR_HEIGHT = 40 * SCALE\nSTAT_ICON_SIZE = 28 * SCALE\nSTAT_GAP = 10 * SCALE\nBOLD_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")\nMEDIUM_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")\nREGULAR_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")\nTITLE_FONT_PATH = MEDIUM_FONT_PATH\nSUBTITLE_FONT_PATH = BOLD_FONT_PATH",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -619,7 +744,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "ICON_SCALE_MULTIPLIER = 1.7 * 0.8\nSTAT_BAR_HEIGHT = 40 * SCALE\nSTAT_ICON_SIZE = 28 * SCALE\nSTAT_GAP = 10 * SCALE\n# --- UPDATED FONTS & SIZES ---\nBOLD_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")\nMEDIUM_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")\nREGULAR_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")\nTITLE_FONT_PATH = MEDIUM_FONT_PATH\nSUBTITLE_FONT_PATH = BOLD_FONT_PATH",
+        "peekOfCode": "ICON_SCALE_MULTIPLIER = 1.7 * 0.8\nSTAT_BAR_HEIGHT = 40 * SCALE\nSTAT_ICON_SIZE = 28 * SCALE\nSTAT_GAP = 10 * SCALE\nBOLD_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")\nMEDIUM_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")\nREGULAR_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")\nTITLE_FONT_PATH = MEDIUM_FONT_PATH\nSUBTITLE_FONT_PATH = BOLD_FONT_PATH\nDESC_FONT_PATH = REGULAR_FONT_PATH",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -628,7 +753,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "STAT_BAR_HEIGHT = 40 * SCALE\nSTAT_ICON_SIZE = 28 * SCALE\nSTAT_GAP = 10 * SCALE\n# --- UPDATED FONTS & SIZES ---\nBOLD_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")\nMEDIUM_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")\nREGULAR_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")\nTITLE_FONT_PATH = MEDIUM_FONT_PATH\nSUBTITLE_FONT_PATH = BOLD_FONT_PATH\nDESC_FONT_PATH = REGULAR_FONT_PATH",
+        "peekOfCode": "STAT_BAR_HEIGHT = 40 * SCALE\nSTAT_ICON_SIZE = 28 * SCALE\nSTAT_GAP = 10 * SCALE\nBOLD_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")\nMEDIUM_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")\nREGULAR_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")\nTITLE_FONT_PATH = MEDIUM_FONT_PATH\nSUBTITLE_FONT_PATH = BOLD_FONT_PATH\nDESC_FONT_PATH = REGULAR_FONT_PATH\nTITLE_SIZE = 22 * SCALE       ",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -637,7 +762,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "STAT_ICON_SIZE = 28 * SCALE\nSTAT_GAP = 10 * SCALE\n# --- UPDATED FONTS & SIZES ---\nBOLD_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")\nMEDIUM_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")\nREGULAR_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")\nTITLE_FONT_PATH = MEDIUM_FONT_PATH\nSUBTITLE_FONT_PATH = BOLD_FONT_PATH\nDESC_FONT_PATH = REGULAR_FONT_PATH\nTITLE_SIZE = 22 * SCALE       ",
+        "peekOfCode": "STAT_ICON_SIZE = 28 * SCALE\nSTAT_GAP = 10 * SCALE\nBOLD_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")\nMEDIUM_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")\nREGULAR_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")\nTITLE_FONT_PATH = MEDIUM_FONT_PATH\nSUBTITLE_FONT_PATH = BOLD_FONT_PATH\nDESC_FONT_PATH = REGULAR_FONT_PATH\nTITLE_SIZE = 22 * SCALE       \nSUBTITLE_SIZE = 34 * SCALE    ",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -646,7 +771,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "STAT_GAP = 10 * SCALE\n# --- UPDATED FONTS & SIZES ---\nBOLD_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")\nMEDIUM_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")\nREGULAR_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")\nTITLE_FONT_PATH = MEDIUM_FONT_PATH\nSUBTITLE_FONT_PATH = BOLD_FONT_PATH\nDESC_FONT_PATH = REGULAR_FONT_PATH\nTITLE_SIZE = 22 * SCALE       \nSUBTITLE_SIZE = 34 * SCALE    ",
+        "peekOfCode": "STAT_GAP = 10 * SCALE\nBOLD_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")\nMEDIUM_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")\nREGULAR_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")\nTITLE_FONT_PATH = MEDIUM_FONT_PATH\nSUBTITLE_FONT_PATH = BOLD_FONT_PATH\nDESC_FONT_PATH = REGULAR_FONT_PATH\nTITLE_SIZE = 22 * SCALE       \nSUBTITLE_SIZE = 34 * SCALE    \nDESC_SIZE = 19 * SCALE        ",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -655,7 +780,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "BOLD_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")\nMEDIUM_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")\nREGULAR_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")\nTITLE_FONT_PATH = MEDIUM_FONT_PATH\nSUBTITLE_FONT_PATH = BOLD_FONT_PATH\nDESC_FONT_PATH = REGULAR_FONT_PATH\nTITLE_SIZE = 22 * SCALE       \nSUBTITLE_SIZE = 34 * SCALE    \nDESC_SIZE = 19 * SCALE        # Adjusted down slightly to be smaller but readable\nSTAT_SIZE = 20 * SCALE",
+        "peekOfCode": "BOLD_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Bold.ttf\")\nMEDIUM_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")\nREGULAR_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")\nTITLE_FONT_PATH = MEDIUM_FONT_PATH\nSUBTITLE_FONT_PATH = BOLD_FONT_PATH\nDESC_FONT_PATH = REGULAR_FONT_PATH\nTITLE_SIZE = 22 * SCALE       \nSUBTITLE_SIZE = 34 * SCALE    \nDESC_SIZE = 19 * SCALE        \nSTAT_SIZE = 20 * SCALE",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -664,7 +789,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "MEDIUM_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")\nREGULAR_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")\nTITLE_FONT_PATH = MEDIUM_FONT_PATH\nSUBTITLE_FONT_PATH = BOLD_FONT_PATH\nDESC_FONT_PATH = REGULAR_FONT_PATH\nTITLE_SIZE = 22 * SCALE       \nSUBTITLE_SIZE = 34 * SCALE    \nDESC_SIZE = 19 * SCALE        # Adjusted down slightly to be smaller but readable\nSTAT_SIZE = 20 * SCALE\n# --- HELPERS ---",
+        "peekOfCode": "MEDIUM_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Medium.ttf\")\nREGULAR_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")\nTITLE_FONT_PATH = MEDIUM_FONT_PATH\nSUBTITLE_FONT_PATH = BOLD_FONT_PATH\nDESC_FONT_PATH = REGULAR_FONT_PATH\nTITLE_SIZE = 22 * SCALE       \nSUBTITLE_SIZE = 34 * SCALE    \nDESC_SIZE = 19 * SCALE        \nSTAT_SIZE = 20 * SCALE\ndef crop_to_16_9(img):",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -673,7 +798,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "REGULAR_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")\nTITLE_FONT_PATH = MEDIUM_FONT_PATH\nSUBTITLE_FONT_PATH = BOLD_FONT_PATH\nDESC_FONT_PATH = REGULAR_FONT_PATH\nTITLE_SIZE = 22 * SCALE       \nSUBTITLE_SIZE = 34 * SCALE    \nDESC_SIZE = 19 * SCALE        # Adjusted down slightly to be smaller but readable\nSTAT_SIZE = 20 * SCALE\n# --- HELPERS ---\ndef crop_to_16_9(img):",
+        "peekOfCode": "REGULAR_FONT_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"Oswald\", \"static\", \"Oswald-Regular.ttf\")\nTITLE_FONT_PATH = MEDIUM_FONT_PATH\nSUBTITLE_FONT_PATH = BOLD_FONT_PATH\nDESC_FONT_PATH = REGULAR_FONT_PATH\nTITLE_SIZE = 22 * SCALE       \nSUBTITLE_SIZE = 34 * SCALE    \nDESC_SIZE = 19 * SCALE        \nSTAT_SIZE = 20 * SCALE\ndef crop_to_16_9(img):\n    width, height = img.size",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -682,7 +807,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "TITLE_FONT_PATH = MEDIUM_FONT_PATH\nSUBTITLE_FONT_PATH = BOLD_FONT_PATH\nDESC_FONT_PATH = REGULAR_FONT_PATH\nTITLE_SIZE = 22 * SCALE       \nSUBTITLE_SIZE = 34 * SCALE    \nDESC_SIZE = 19 * SCALE        # Adjusted down slightly to be smaller but readable\nSTAT_SIZE = 20 * SCALE\n# --- HELPERS ---\ndef crop_to_16_9(img):\n    width, height = img.size",
+        "peekOfCode": "TITLE_FONT_PATH = MEDIUM_FONT_PATH\nSUBTITLE_FONT_PATH = BOLD_FONT_PATH\nDESC_FONT_PATH = REGULAR_FONT_PATH\nTITLE_SIZE = 22 * SCALE       \nSUBTITLE_SIZE = 34 * SCALE    \nDESC_SIZE = 19 * SCALE        \nSTAT_SIZE = 20 * SCALE\ndef crop_to_16_9(img):\n    width, height = img.size\n    target_ratio = 16 / 9",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -691,7 +816,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "SUBTITLE_FONT_PATH = BOLD_FONT_PATH\nDESC_FONT_PATH = REGULAR_FONT_PATH\nTITLE_SIZE = 22 * SCALE       \nSUBTITLE_SIZE = 34 * SCALE    \nDESC_SIZE = 19 * SCALE        # Adjusted down slightly to be smaller but readable\nSTAT_SIZE = 20 * SCALE\n# --- HELPERS ---\ndef crop_to_16_9(img):\n    width, height = img.size\n    target_ratio = 16 / 9",
+        "peekOfCode": "SUBTITLE_FONT_PATH = BOLD_FONT_PATH\nDESC_FONT_PATH = REGULAR_FONT_PATH\nTITLE_SIZE = 22 * SCALE       \nSUBTITLE_SIZE = 34 * SCALE    \nDESC_SIZE = 19 * SCALE        \nSTAT_SIZE = 20 * SCALE\ndef crop_to_16_9(img):\n    width, height = img.size\n    target_ratio = 16 / 9\n    current_ratio = width / height",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -700,7 +825,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "DESC_FONT_PATH = REGULAR_FONT_PATH\nTITLE_SIZE = 22 * SCALE       \nSUBTITLE_SIZE = 34 * SCALE    \nDESC_SIZE = 19 * SCALE        # Adjusted down slightly to be smaller but readable\nSTAT_SIZE = 20 * SCALE\n# --- HELPERS ---\ndef crop_to_16_9(img):\n    width, height = img.size\n    target_ratio = 16 / 9\n    current_ratio = width / height",
+        "peekOfCode": "DESC_FONT_PATH = REGULAR_FONT_PATH\nTITLE_SIZE = 22 * SCALE       \nSUBTITLE_SIZE = 34 * SCALE    \nDESC_SIZE = 19 * SCALE        \nSTAT_SIZE = 20 * SCALE\ndef crop_to_16_9(img):\n    width, height = img.size\n    target_ratio = 16 / 9\n    current_ratio = width / height\n    if current_ratio > target_ratio:",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -709,7 +834,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "TITLE_SIZE = 22 * SCALE       \nSUBTITLE_SIZE = 34 * SCALE    \nDESC_SIZE = 19 * SCALE        # Adjusted down slightly to be smaller but readable\nSTAT_SIZE = 20 * SCALE\n# --- HELPERS ---\ndef crop_to_16_9(img):\n    width, height = img.size\n    target_ratio = 16 / 9\n    current_ratio = width / height\n    if current_ratio > target_ratio:",
+        "peekOfCode": "TITLE_SIZE = 22 * SCALE       \nSUBTITLE_SIZE = 34 * SCALE    \nDESC_SIZE = 19 * SCALE        \nSTAT_SIZE = 20 * SCALE\ndef crop_to_16_9(img):\n    width, height = img.size\n    target_ratio = 16 / 9\n    current_ratio = width / height\n    if current_ratio > target_ratio:\n        new_width = int(height * target_ratio)",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -718,7 +843,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "SUBTITLE_SIZE = 34 * SCALE    \nDESC_SIZE = 19 * SCALE        # Adjusted down slightly to be smaller but readable\nSTAT_SIZE = 20 * SCALE\n# --- HELPERS ---\ndef crop_to_16_9(img):\n    width, height = img.size\n    target_ratio = 16 / 9\n    current_ratio = width / height\n    if current_ratio > target_ratio:\n        new_width = int(height * target_ratio)",
+        "peekOfCode": "SUBTITLE_SIZE = 34 * SCALE    \nDESC_SIZE = 19 * SCALE        \nSTAT_SIZE = 20 * SCALE\ndef crop_to_16_9(img):\n    width, height = img.size\n    target_ratio = 16 / 9\n    current_ratio = width / height\n    if current_ratio > target_ratio:\n        new_width = int(height * target_ratio)\n        left = (width - new_width) // 2",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -727,7 +852,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "DESC_SIZE = 19 * SCALE        # Adjusted down slightly to be smaller but readable\nSTAT_SIZE = 20 * SCALE\n# --- HELPERS ---\ndef crop_to_16_9(img):\n    width, height = img.size\n    target_ratio = 16 / 9\n    current_ratio = width / height\n    if current_ratio > target_ratio:\n        new_width = int(height * target_ratio)\n        left = (width - new_width) // 2",
+        "peekOfCode": "DESC_SIZE = 19 * SCALE        \nSTAT_SIZE = 20 * SCALE\ndef crop_to_16_9(img):\n    width, height = img.size\n    target_ratio = 16 / 9\n    current_ratio = width / height\n    if current_ratio > target_ratio:\n        new_width = int(height * target_ratio)\n        left = (width - new_width) // 2\n        return img.crop((left, 0, left + new_width, height))",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -736,7 +861,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "STAT_SIZE = 20 * SCALE\n# --- HELPERS ---\ndef crop_to_16_9(img):\n    width, height = img.size\n    target_ratio = 16 / 9\n    current_ratio = width / height\n    if current_ratio > target_ratio:\n        new_width = int(height * target_ratio)\n        left = (width - new_width) // 2\n        return img.crop((left, 0, left + new_width, height))",
+        "peekOfCode": "STAT_SIZE = 20 * SCALE\ndef crop_to_16_9(img):\n    width, height = img.size\n    target_ratio = 16 / 9\n    current_ratio = width / height\n    if current_ratio > target_ratio:\n        new_width = int(height * target_ratio)\n        left = (width - new_width) // 2\n        return img.crop((left, 0, left + new_width, height))\n    else:",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -747,6 +872,15 @@
         "description": "cogs.cards",
         "peekOfCode": "class CardsCog(commands.Cog):\n    def __init__(self, bot: commands.InteractionBot, db: Database):\n        self.bot = bot\n        self.db = db\n        self.active_spawns: Dict[int, SpawnSession] = {}\n        self.active_views: Dict[int, SpawnCardView] = {}\n    async def card_autocomplete(\n        self,\n        inter: disnake.ApplicationCommandInteraction,\n        user_input: str",
         "detail": "cogs.cards",
+        "documentation": {}
+    },
+    {
+        "label": "FL24Cog",
+        "kind": 6,
+        "importPath": "cogs.fl24",
+        "description": "cogs.fl24",
+        "peekOfCode": "class FL24Cog(commands.Cog):\n    def __init__(self, bot: commands.InteractionBot):\n        self.bot = bot\n    @commands.slash_command(\n        name=\"fl24\",\n        description=\"Main command for Flight Radar 24 features.\"\n    )\n    async def fl24(self, inter: disnake.ApplicationCommandInteraction):\n        pass\n    @fl24.sub_command(name=\"track\", description=\"Display information about a flight.\")",
+        "detail": "cogs.fl24",
         "documentation": {}
     },
     {
@@ -765,6 +899,51 @@
         "description": "services.card_service",
         "peekOfCode": "def build_card_text(card: Card) -> str:\n    atk_text = f\"{card.attack} {card.attack_boost}\".strip()\n    hp_text = f\"{card.health} {card.health_boost}\".strip()\n    return (\n        f\"**ATK:** {atk_text}\\n\"\n        f\"**HP:** {hp_text}\\n\"\n        f\"**Rarity:** {card.rarity}\"\n    )\nasync def build_card_embed_and_file(card: Card) -> Tuple[disnake.Embed, Optional[disnake.File]]:\n    embed = disnake.Embed(",
         "detail": "services.card_service",
+        "documentation": {}
+    },
+    {
+        "label": "RateLimiter",
+        "kind": 6,
+        "importPath": "services.tracker",
+        "description": "services.tracker",
+        "peekOfCode": "class RateLimiter:\n    \"\"\"A sliding window rate limiter to prevent API bans.\"\"\"\n    def __init__(self, max_calls: int, period: float):\n        self.max_calls = max_calls\n        self.period = period\n        self.calls = deque()\n    def wait(self):\n        \"\"\"Blocks execution if the rate limit has been reached.\"\"\"\n        now = time.time()\n        # Remove timestamps that are older than our time window (60 seconds)",
+        "detail": "services.tracker",
+        "documentation": {}
+    },
+    {
+        "label": "get_extended_flight_info",
+        "kind": 2,
+        "importPath": "services.tracker",
+        "description": "services.tracker",
+        "peekOfCode": "def get_extended_flight_info(flight_id: str) -> dict:\n    \"\"\"\n    Fetches the high-resolution JetPhotos image URL AND the full aircraft \n    model name using Flightradar24's internal web clickhandler endpoint.\n    \"\"\"\n    result = {\n        \"image_url\": \"N/A\",\n        \"aircraft_model\": \"N/A\"\n    }\n    if not flight_id or flight_id == 'N/A':",
+        "detail": "services.tracker",
+        "documentation": {}
+    },
+    {
+        "label": "get_flight_data",
+        "kind": 2,
+        "importPath": "services.tracker",
+        "description": "services.tracker",
+        "peekOfCode": "def get_flight_data(flight_identifier: str, api_token: str = None) -> list[dict]:\n    target_flight = flight_identifier.upper()\n    token = api_token or os.environ.get(\"FR24_API_TOKEN\")\n    if not token:\n        raise ValueError(\"FR24_API_TOKEN is missing. Set it as an environment variable or pass it to the function.\")\n    processed_flights = []\n    try:\n        with Client(api_token=token) as client:\n            # 🚦 Trigger Rate Limiter before SDK request\n            global_limiter.wait()",
+        "detail": "services.tracker",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "services.tracker",
+        "description": "services.tracker",
+        "peekOfCode": "def main():\n    parser = argparse.ArgumentParser(description=\"Fetch live flight info from Flightradar24.\")\n    parser.add_argument(\"flight_number\", help=\"The flight number or callsign to search for (e.g., DL2204)\")\n    args = parser.parse_args()\n    print(f\"Searching for live data for: {args.flight_number}...\")\n    try:\n        results = get_flight_data(args.flight_number)\n        if not results:\n            print(f\"\\nNo active live flights found matching '{args.flight_number}'.\")\n            return",
+        "detail": "services.tracker",
+        "documentation": {}
+    },
+    {
+        "label": "global_limiter",
+        "kind": 5,
+        "importPath": "services.tracker",
+        "description": "services.tracker",
+        "peekOfCode": "global_limiter = RateLimiter(max_calls=10, period=60.0)\n# ==========================================\n# FLIGHT DATA FUNCTIONS\n# ==========================================\ndef get_extended_flight_info(flight_id: str) -> dict:\n    \"\"\"\n    Fetches the high-resolution JetPhotos image URL AND the full aircraft \n    model name using Flightradar24's internal web clickhandler endpoint.\n    \"\"\"\n    result = {",
+        "detail": "services.tracker",
         "documentation": {}
     },
     {
@@ -790,7 +969,7 @@
         "kind": 2,
         "importPath": "bot",
         "description": "bot",
-        "peekOfCode": "def main():\n    db.initialize()\n    db.seed_from_json(CARD_FILE)\n    bot.add_cog(CardsCog(bot, db))\n    bot.run(BOT_TOKEN)\nif __name__ == \"__main__\":\n    main()",
+        "peekOfCode": "def main():\n    db.initialize()\n    db.seed_from_json(CARD_FILE)\n    bot.add_cog(CardsCog(bot, db))\n    bot.add_cog(FL24Cog(bot))\n    bot.run(BOT_TOKEN)\nif __name__ == \"__main__\":\n    main()",
         "detail": "bot",
         "documentation": {}
     },
@@ -808,7 +987,7 @@
         "kind": 5,
         "importPath": "bot",
         "description": "bot",
-        "peekOfCode": "bot = commands.InteractionBot(intents=intents)\ndb = Database(DATABASE_PATH)\n@bot.event\nasync def on_ready():\n    print(f\"Bot is online as {bot.user}\")\ndef main():\n    db.initialize()\n    db.seed_from_json(CARD_FILE)\n    bot.add_cog(CardsCog(bot, db))\n    bot.run(BOT_TOKEN)",
+        "peekOfCode": "bot = commands.InteractionBot(intents=intents)\ndb = Database(DATABASE_PATH)\n@bot.event\nasync def on_ready():\n    print(f\"Bot is online as {bot.user}\")\ndef main():\n    db.initialize()\n    db.seed_from_json(CARD_FILE)\n    bot.add_cog(CardsCog(bot, db))\n    bot.add_cog(FL24Cog(bot))",
         "detail": "bot",
         "documentation": {}
     },
@@ -817,7 +996,7 @@
         "kind": 5,
         "importPath": "bot",
         "description": "bot",
-        "peekOfCode": "db = Database(DATABASE_PATH)\n@bot.event\nasync def on_ready():\n    print(f\"Bot is online as {bot.user}\")\ndef main():\n    db.initialize()\n    db.seed_from_json(CARD_FILE)\n    bot.add_cog(CardsCog(bot, db))\n    bot.run(BOT_TOKEN)\nif __name__ == \"__main__\":",
+        "peekOfCode": "db = Database(DATABASE_PATH)\n@bot.event\nasync def on_ready():\n    print(f\"Bot is online as {bot.user}\")\ndef main():\n    db.initialize()\n    db.seed_from_json(CARD_FILE)\n    bot.add_cog(CardsCog(bot, db))\n    bot.add_cog(FL24Cog(bot))\n    bot.run(BOT_TOKEN)",
         "detail": "bot",
         "documentation": {}
     },

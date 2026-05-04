@@ -405,5 +405,60 @@
         "rarity": "13",
         "description": "The apex predator of kinetic penetrators, this advanced APFSDS round punches through composite armor like butter at hypersonic velocities.",
         "country": "Germany"
+    },
+    "CH-47": {
+        "attack": 100,
+        "health": 500,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/ch47.png",
+        "spawn_image": "./assets/cards/ch47_spawn.png",
+        "description": "The CH 47 Chinook transports heavy cargo, artillery, and up to 33 troops using its tandem rotors and rear loading ramp.",
+        "rarity": "6",
+        "country": "US"
+    },
+    "JA37": {
+        "attack": 2000,
+        "health": 1200,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/ja37.png",
+        "spawn_image": "./assets/cards/ja37_spawn.png",
+        "description": "The JA37 Viggen utilizes a double delta wing and thrust reverser to intercept aerial targets while operating from short, improvised road bases.",
+        "rarity": "4",
+        "country": "Sweden"
+    },
+    "JA35": {
+        "attack": 1500,
+        "health": 1000,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/ja35.png",
+        "spawn_image": "./assets/cards/ja35_spawn.png",
+        "description": "The Saab JA35 Draken operates as a supersonic interceptor that uses a double delta wing design to perform high speed climbs and engage aerial threats at high altitudes.",
+        "rarity": "5",
+        "country": "Sweden"
+    },
+    "JAS39": {
+        "attack": 4001,
+        "health": 2002,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/jas39.png",
+        "spawn_image": "./assets/cards/jas39_spawn.png",
+        "description": "The JAS 39 Gripen operates from short improvised road bases and requires minimal ground support for rapid refueling and rearming during combat missions.",
+        "rarity": "2",
+        "country": "Sweden"
+    },
+    "F-16XL": {
+        "attack": 15000,
+        "health": 14000,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/f16xl.png",
+        "spawn_image": "./assets/cards/f16xl_spawn.png",
+        "description": "The F 16XL uses a cranked arrow delta wing to double the internal fuel capacity and increase weapon carriage for long range flight missions.",
+        "rarity": "Y",
+        "country": "US"
     }
 }
