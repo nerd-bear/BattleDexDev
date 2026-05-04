@@ -26,20 +26,16 @@ class FL24Cog(commands.Cog):
             description="Enter a flight number",
         )
     ):
-        # 1. Defer the response because scraping/downloading might take longer than 3 seconds
         await inter.response.defer() 
         
         results = get_flight_data(flight_number)
         
-        # 2. Handle no results
         if not results:
             await inter.edit_original_response(content=f"No active live flights found matching `{flight_number}`.")
             return
             
-        # 3. Grab the FIRST flight in the returned list
         flight = results[0] 
 
-        # 4. Extract data
         callsign = flight['callsign']
         registration = flight['registration']
         aircraft_model = flight['aircraft_model']
@@ -53,7 +49,6 @@ class FL24Cog(commands.Cog):
         updated_at = flight['updated_at']
         image_url = flight['image_url']
         
-        # 5. Build the embed
         embed = disnake.Embed(description=f"**{aircraft_model}** | REG: **{registration}**",
                             colour=0x303030,
                             timestamp=datetime.now())
@@ -82,11 +77,9 @@ class FL24Cog(commands.Cog):
         embed.set_footer(text="Data Provided by FlightRadar24 & Planespotters",
                         icon_url="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/webp/flightradar24-light.webp")
         
-        # 6. Apply the image (Planespotters allows direct Discord hotlinking!)
         if image_url != "N/A":
             embed.set_image(url=image_url)
 
-        # 7. Send the embed
         await inter.edit_original_response(embed=embed)
 
 

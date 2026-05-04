@@ -8,9 +8,6 @@ from datetime import datetime
 from fr24sdk.client import Client
 from fr24sdk.exceptions import ApiError
 
-# ==========================================
-# RATE LIMITER SETUP (Still useful for FR24 SDK)
-# ==========================================
 class RateLimiter:
     """A sliding window rate limiter to prevent API bans."""
     def __init__(self, max_calls: int, period: float):
@@ -36,9 +33,6 @@ class RateLimiter:
 global_limiter = RateLimiter(max_calls=10, period=60.0)
 
 
-# ==========================================
-# FLIGHT DATA FUNCTIONS
-# ==========================================
 def get_planespotters_image(registration: str) -> str:
     """
     Fetches the aircraft image URL from the free Planespotters.net API 
@@ -50,7 +44,6 @@ def get_planespotters_image(registration: str) -> str:
     url = f"https://api.planespotters.net/pub/photos/reg/{registration}"
     
     try:
-        # Planespotters just requires a polite user-agent
         headers = {'User-Agent': 'DiscordBot/1.0 FlightTracker (Python requests)'}
         response = requests.get(url, headers=headers, timeout=5)
         response.raise_for_status()
@@ -66,7 +59,6 @@ def get_planespotters_image(registration: str) -> str:
 
 
 def get_flight_data(flight_identifier: str, api_token: str = None) -> list[dict]:
-    # .strip() prevents accidental spaces pasted by Discord users
     target_flight = flight_identifier.upper().strip()
     token = api_token or os.environ.get("FR24_API_TOKEN")
     
@@ -110,7 +102,6 @@ def get_flight_data(flight_identifier: str, api_token: str = None) -> list[dict]
                 else:
                     v_trend = "N/A"
 
-                # time
                 timestamp_str = raw_data.get('timestamp', '')
                 try:
                     dt = datetime.strptime(timestamp_str, "%Y-%m-%dT%H:%M:%SZ")
@@ -120,7 +111,7 @@ def get_flight_data(flight_identifier: str, api_token: str = None) -> list[dict]
 
                 registration = raw_data.get('reg', 'N/A')
                 
-                # Aggressively hunt for the aircraft model in all known FR24 SDK keys
+                # da hunt
                 aircraft_model = (
                     raw_data.get('aircraft_code') or 
                     raw_data.get('equip') or 
@@ -129,7 +120,6 @@ def get_flight_data(flight_identifier: str, api_token: str = None) -> list[dict]
                     "Unknown Aircraft"
                 )
                 
-                # Fetch image from Planespotters
                 image_url = get_planespotters_image(registration)
 
                 processed_flights.append({

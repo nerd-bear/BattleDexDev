@@ -189,6 +189,14 @@
         "documentation": {}
     },
     {
+        "label": "commands",
+        "importPath": "disnake.ext",
+        "description": "disnake.ext",
+        "isExtraImport": true,
+        "detail": "disnake.ext",
+        "documentation": {}
+    },
+    {
         "label": "Database",
         "importPath": "database",
         "description": "database",
@@ -366,6 +374,14 @@
         "description": "cogs.fl24",
         "isExtraImport": true,
         "detail": "cogs.fl24",
+        "documentation": {}
+    },
+    {
+        "label": "QoLCog",
+        "importPath": "cogs.qol",
+        "description": "cogs.qol",
+        "isExtraImport": true,
+        "detail": "cogs.qol",
         "documentation": {}
     },
     {
@@ -893,6 +909,33 @@
         "documentation": {}
     },
     {
+        "label": "Components",
+        "kind": 6,
+        "importPath": "cogs.qol",
+        "description": "cogs.qol",
+        "peekOfCode": "class Components(disnake.ui.LayoutView):    \n    container1 = disnake.ui.Container(\n        disnake.ui.TextDisplay(content=\"# Battle Dex is now here! Fuck yeah\"),\n        disnake.ui.MediaGallery(\n            disnake.MediaGalleryItem(\n                media=\"attachment://0f663482e9a64b46e77775806ca60479.png\",\n            ),\n        ),\n        disnake.ui.ActionRow(\n                disnake.ui.Button(",
+        "detail": "cogs.qol",
+        "documentation": {}
+    },
+    {
+        "label": "QoLCog",
+        "kind": 6,
+        "importPath": "cogs.qol",
+        "description": "cogs.qol",
+        "peekOfCode": "class QoLCog(commands.Cog):\n    def __init__(self, bot: commands.InteractionBot):\n        self.bot = bot\n    @commands.Cog.listener()\n    async def on_guild_join(self, guild: disnake.Guild):\n        channel = None\n        for ch in guild.text_channels:\n            if ch.permissions_for(guild.default_role).send_messages:\n                channel = ch\n                break",
+        "detail": "cogs.qol",
+        "documentation": {}
+    },
+    {
+        "label": "setup",
+        "kind": 2,
+        "importPath": "cogs.qol",
+        "description": "cogs.qol",
+        "peekOfCode": "def setup(bot: commands.InteractionBot):\n    bot.add_cog(QoLCog(bot))",
+        "detail": "cogs.qol",
+        "documentation": {}
+    },
+    {
         "label": "normalize_name",
         "kind": 2,
         "importPath": "services.card_service",
@@ -924,7 +967,7 @@
         "kind": 2,
         "importPath": "services.tracker",
         "description": "services.tracker",
-        "peekOfCode": "def get_planespotters_image(registration: str) -> str:\n    \"\"\"\n    Fetches the aircraft image URL from the free Planespotters.net API \n    using the aircraft's tail registration.\n    \"\"\"\n    if not registration or registration == 'N/A':\n        return \"N/A\"\n    url = f\"https://api.planespotters.net/pub/photos/reg/{registration}\"\n    try:\n        # Planespotters just requires a polite user-agent",
+        "peekOfCode": "def get_planespotters_image(registration: str) -> str:\n    \"\"\"\n    Fetches the aircraft image URL from the free Planespotters.net API \n    using the aircraft's tail registration.\n    \"\"\"\n    if not registration or registration == 'N/A':\n        return \"N/A\"\n    url = f\"https://api.planespotters.net/pub/photos/reg/{registration}\"\n    try:\n        headers = {'User-Agent': 'DiscordBot/1.0 FlightTracker (Python requests)'}",
         "detail": "services.tracker",
         "documentation": {}
     },
@@ -933,7 +976,7 @@
         "kind": 2,
         "importPath": "services.tracker",
         "description": "services.tracker",
-        "peekOfCode": "def get_flight_data(flight_identifier: str, api_token: str = None) -> list[dict]:\n    # .strip() prevents accidental spaces pasted by Discord users\n    target_flight = flight_identifier.upper().strip()\n    token = api_token or os.environ.get(\"FR24_API_TOKEN\")\n    if not token:\n        raise ValueError(\"FR24_API_TOKEN is missing. Set it as an environment variable or pass it to the function.\")\n    processed_flights = []\n    try:\n        with Client(api_token=token) as client:\n            global_limiter.wait()",
+        "peekOfCode": "def get_flight_data(flight_identifier: str, api_token: str = None) -> list[dict]:\n    target_flight = flight_identifier.upper().strip()\n    token = api_token or os.environ.get(\"FR24_API_TOKEN\")\n    if not token:\n        raise ValueError(\"FR24_API_TOKEN is missing. Set it as an environment variable or pass it to the function.\")\n    processed_flights = []\n    try:\n        with Client(api_token=token) as client:\n            global_limiter.wait()\n            response = client.live.flight_positions.get_full(flights=[target_flight])",
         "detail": "services.tracker",
         "documentation": {}
     },
@@ -951,7 +994,7 @@
         "kind": 5,
         "importPath": "services.tracker",
         "description": "services.tracker",
-        "peekOfCode": "global_limiter = RateLimiter(max_calls=10, period=60.0)\n# ==========================================\n# FLIGHT DATA FUNCTIONS\n# ==========================================\ndef get_planespotters_image(registration: str) -> str:\n    \"\"\"\n    Fetches the aircraft image URL from the free Planespotters.net API \n    using the aircraft's tail registration.\n    \"\"\"\n    if not registration or registration == 'N/A':",
+        "peekOfCode": "global_limiter = RateLimiter(max_calls=10, period=60.0)\ndef get_planespotters_image(registration: str) -> str:\n    \"\"\"\n    Fetches the aircraft image URL from the free Planespotters.net API \n    using the aircraft's tail registration.\n    \"\"\"\n    if not registration or registration == 'N/A':\n        return \"N/A\"\n    url = f\"https://api.planespotters.net/pub/photos/reg/{registration}\"\n    try:",
         "detail": "services.tracker",
         "documentation": {}
     },
@@ -978,7 +1021,7 @@
         "kind": 2,
         "importPath": "bot",
         "description": "bot",
-        "peekOfCode": "def main():\n    db.initialize()\n    db.seed_from_json(CARD_FILE)\n    bot.add_cog(CardsCog(bot, db))\n    bot.add_cog(FL24Cog(bot))\n    bot.run(BOT_TOKEN)\nif __name__ == \"__main__\":\n    main()",
+        "peekOfCode": "def main():\n    db.initialize()\n    db.seed_from_json(CARD_FILE)\n    bot.add_cog(CardsCog(bot, db))\n    bot.add_cog(FL24Cog(bot))\n    bot.add_cog(QoLCog(bot))\n    bot.run(BOT_TOKEN)\nif __name__ == \"__main__\":\n    main()",
         "detail": "bot",
         "documentation": {}
     },
@@ -1005,7 +1048,7 @@
         "kind": 5,
         "importPath": "bot",
         "description": "bot",
-        "peekOfCode": "db = Database(DATABASE_PATH)\n@bot.event\nasync def on_ready():\n    print(f\"Bot is online as {bot.user}\")\ndef main():\n    db.initialize()\n    db.seed_from_json(CARD_FILE)\n    bot.add_cog(CardsCog(bot, db))\n    bot.add_cog(FL24Cog(bot))\n    bot.run(BOT_TOKEN)",
+        "peekOfCode": "db = Database(DATABASE_PATH)\n@bot.event\nasync def on_ready():\n    print(f\"Bot is online as {bot.user}\")\ndef main():\n    db.initialize()\n    db.seed_from_json(CARD_FILE)\n    bot.add_cog(CardsCog(bot, db))\n    bot.add_cog(FL24Cog(bot))\n    bot.add_cog(QoLCog(bot))",
         "detail": "bot",
         "documentation": {}
     },
