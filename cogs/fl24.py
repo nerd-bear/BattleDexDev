@@ -40,7 +40,6 @@ class FL24Cog(commands.Cog):
             return
             
         for data in results:
-            # 4. Extract data
             callsign = data['callsign']
             registration = data['registration']
             aircraft_model = data['aircraft_model']
@@ -48,10 +47,7 @@ class FL24Cog(commands.Cog):
             longitude = data['longitude']
             altitude = data['altitude_ft']
             vertical_speed_trend = data['vertical_speed_trend']
-            
-            # Using .get() here just in case you named it ground_speed_kts or gnd_speed_kts
             ground_speed = data.get('gnd_speed_kts', data.get('ground_speed_kts', 0)) 
-            
             heading = data['heading_deg']
             squawk = data['squawk']
             updated_at = data['updated_at']
