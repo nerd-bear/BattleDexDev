@@ -170,15 +170,15 @@ class CardsCog(commands.Cog):
             )
             return
 
-        success = self.db.transfer_card(
-            inter.author.id, user.id, card_obj.id, quantity)
+        success = self.db.add_card_to_inventory(
+            inter.author.id, card_obj.id, quantity)
         if not success:
             await inter.response.send_message(
-                f"You do not own enough copies of **✈︎ {card_obj.name}**.",
+                f"An unknown error occurred while giving the card.",
                 ephemeral=True
             )
             return
-
+        
         await inter.response.send_message(
             f"🎁 {inter.author.mention} *ADMIN* gave **✈︎ {card_obj.name}** × {quantity} to {user.mention}."
         )
