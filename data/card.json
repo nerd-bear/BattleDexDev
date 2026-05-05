@@ -54,17 +54,6 @@
         "description": "A towering juggernaut of bleeding-edge tech, breaking the frontline with impenetrable energy shields and world-ending artillery.",
         "country": "Russia"
     },
-    "XB-70": {
-        "attack": 15000,
-        "health": 12000,
-        "attack_boost": 20,
-        "health_boost": 0,
-        "image": "./assets/cards/xb70.png",
-        "spawn_image": "./assets/cards/xb70_spawn.png",
-        "rarity": "1",
-        "description": "Riding its own supersonic shockwave, the Valkyrie cruises at Mach 3, a titanium spearhead untouchable by anything less than a surface-to-air missile.",
-        "country": "US"
-    },
     "F-18HARV": {
         "attack": 10500,
         "health": 6200,
