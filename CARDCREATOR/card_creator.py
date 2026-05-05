@@ -1,6 +1,7 @@
-#this is required to gen descriptions
+# this is required to gen descriptions
 # pip install -q -U google-genai
-
+#
+# $env:GEMINI_API_KEY = "api_key_goon"
 
 
 import tkinter as tk
@@ -8,10 +9,12 @@ from tkinter import filedialog, messagebox, ttk
 from PIL import Image, ImageDraw, ImageFont
 import os
 import re
+from dotenv import load_dotenv
 import json
 from google import genai
 
-client = genai.Client(api_key="AIzaSyAPsDPUc0RPiJpnXDUXKn8O4ZNb30m8w3k")
+load_dotenv() 
+client = genai.Client()
 
 SYSTEM_PROMPT = "Provide a single sentence description of the aircraft provided. Use clear, simple language. Use active voice. Focus on practical, actionable insights. Avoid metaphors, clichés, and generalizations. Do not use em dashes."
 
@@ -46,6 +49,7 @@ CARD_WIDTH = 357 * SCALE
 CARD_HEIGHT = 500 * SCALE
 
 BACKGROUND_PATH = os.path.join(SCRIPT_DIR, "Assets", "STD_BG.jpg")
+active_background_path = BACKGROUND_PATH
 
 TITLE_TOP_MARGIN = 10 * SCALE
 TITLE_TO_IMAGE_GAP = 20 * SCALE
@@ -183,10 +187,10 @@ def resize_keep_aspect(img, max_size):
 def create_card(title, image_path, subtitle, description, icon_filename, basename: str, hp_value: str, atk_value: str):
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-    if not os.path.exists(BACKGROUND_PATH):
-        raise FileNotFoundError(f"Background image not found at: {BACKGROUND_PATH}")
+    if not os.path.exists(active_background_path):
+        raise FileNotFoundError(f"Background image not found at: {active_background_path}")
 
-    bg = Image.open(BACKGROUND_PATH).convert("RGBA")
+    bg = Image.open(active_background_path).convert("RGBA")
     bg = crop_to_aspect(bg, CARD_WIDTH, CARD_HEIGHT)
     bg = bg.resize((CARD_WIDTH, CARD_HEIGHT), Image.Resampling.LANCZOS)
 
@@ -343,7 +347,7 @@ def save_card_to_json(name, card_filename, spawn_filename, description, rarity, 
 def run_app():
     root = tk.Tk()
     root.title("BattleDex Card Creator")
-    root.geometry("450x640")
+    root.geometry("450x700")
     root.configure(padx=20, pady=20)
     
     def generate_ai_description():
@@ -369,10 +373,20 @@ def run_app():
         filepath = filedialog.askopenfilename(
             title="Select Main Image",
             filetypes=[("Image Files", "*.png;*.jpg;*.jpeg;*.webp")]
-        )
+        )       
         if filepath:
             img_entry.delete(0, tk.END)
             img_entry.insert(0, filepath)
+            
+    def browse_image_bg():
+        filepath = filedialog.askopenfilename(
+            title="Select Background Image",
+            filetypes=[("Image Files", "*.png;*.jpg;*.jpeg;*.webp")]
+        )       
+        if filepath:
+            bg_entry.delete(0, tk.END)
+            bg_entry.insert(0, filepath)
+                
 
     def handle_generate():
         main_name = name_entry.get().strip()
@@ -382,6 +396,7 @@ def run_app():
         hp = hp_entry.get().strip()
         atk = atk_entry.get().strip()
         rarity = rarity_var.get()
+        bg_path = bg_entry.get().strip()
 
         if not all([main_name, i, d, hp, atk, rarity]):
             messagebox.showwarning("Missing Info", "Please fill out all fields before generating.")
@@ -391,6 +406,10 @@ def run_app():
         basename = main_name
 
         try:
+            global active_background_path
+            if bg_path:
+                active_background_path = bg_path
+            
             card_name, spawn_name = create_card(
                 main_name, i, main_name, d,
                 icon_filename,
@@ -448,6 +467,14 @@ def run_app():
     img_entry = tk.Entry(img_frame)
     img_entry.pack(side="left", fill="x", expand=True, padx=(0, 5))
     tk.Button(img_frame, text="Browse", command=browse_image).pack(side="right")
+    
+    tk.Label(root, text="Background Image:").pack(anchor="w")
+    img_frame2 = tk.Frame(root)
+    img_frame2.pack(fill="x", pady=(0, 10))
+    bg_entry = tk.Entry(img_frame2)
+    bg_entry.pack(side="left", fill="x", expand=True, padx=(0, 5))
+    tk.Button(img_frame2, text="Browse", command=browse_image_bg).pack(side="right")
+    bg_entry.insert(0, BACKGROUND_PATH)
     
     tk.Label(root, text="HP:").pack(anchor="w")
     hp_entry = tk.Entry(root, width=50)

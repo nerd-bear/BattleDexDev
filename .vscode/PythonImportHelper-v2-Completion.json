@@ -75,6 +75,22 @@
         "documentation": {}
     },
     {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
         "label": "json",
         "kind": 6,
         "isExtraImport": true,
@@ -417,14 +433,6 @@
         "documentation": {}
     },
     {
-        "label": "load_dotenv",
-        "importPath": "dotenv",
-        "description": "dotenv",
-        "isExtraImport": true,
-        "detail": "dotenv",
-        "documentation": {}
-    },
-    {
         "label": "random",
         "kind": 6,
         "isExtraImport": true,
@@ -526,7 +534,7 @@
         "kind": 2,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "def sanitize_filename(name):\n    return re.sub(r'[^a-z0-9]', '', name.lower())\ndef resize_keep_aspect(img, max_size):\n    img.thumbnail((max_size, max_size), Image.Resampling.LANCZOS)\n    return img\ndef create_card(title, image_path, subtitle, description, icon_filename, basename: str, hp_value: str, atk_value: str):\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\n    if not os.path.exists(BACKGROUND_PATH):\n        raise FileNotFoundError(f\"Background image not found at: {BACKGROUND_PATH}\")\n    bg = Image.open(BACKGROUND_PATH).convert(\"RGBA\")",
+        "peekOfCode": "def sanitize_filename(name):\n    return re.sub(r'[^a-z0-9]', '', name.lower())\ndef resize_keep_aspect(img, max_size):\n    img.thumbnail((max_size, max_size), Image.Resampling.LANCZOS)\n    return img\ndef create_card(title, image_path, subtitle, description, icon_filename, basename: str, hp_value: str, atk_value: str):\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\n    if not os.path.exists(active_background_path):\n        raise FileNotFoundError(f\"Background image not found at: {active_background_path}\")\n    bg = Image.open(active_background_path).convert(\"RGBA\")",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -535,7 +543,7 @@
         "kind": 2,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "def resize_keep_aspect(img, max_size):\n    img.thumbnail((max_size, max_size), Image.Resampling.LANCZOS)\n    return img\ndef create_card(title, image_path, subtitle, description, icon_filename, basename: str, hp_value: str, atk_value: str):\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\n    if not os.path.exists(BACKGROUND_PATH):\n        raise FileNotFoundError(f\"Background image not found at: {BACKGROUND_PATH}\")\n    bg = Image.open(BACKGROUND_PATH).convert(\"RGBA\")\n    bg = crop_to_aspect(bg, CARD_WIDTH, CARD_HEIGHT)\n    bg = bg.resize((CARD_WIDTH, CARD_HEIGHT), Image.Resampling.LANCZOS)",
+        "peekOfCode": "def resize_keep_aspect(img, max_size):\n    img.thumbnail((max_size, max_size), Image.Resampling.LANCZOS)\n    return img\ndef create_card(title, image_path, subtitle, description, icon_filename, basename: str, hp_value: str, atk_value: str):\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\n    if not os.path.exists(active_background_path):\n        raise FileNotFoundError(f\"Background image not found at: {active_background_path}\")\n    bg = Image.open(active_background_path).convert(\"RGBA\")\n    bg = crop_to_aspect(bg, CARD_WIDTH, CARD_HEIGHT)\n    bg = bg.resize((CARD_WIDTH, CARD_HEIGHT), Image.Resampling.LANCZOS)",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -544,7 +552,7 @@
         "kind": 2,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "def create_card(title, image_path, subtitle, description, icon_filename, basename: str, hp_value: str, atk_value: str):\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\n    if not os.path.exists(BACKGROUND_PATH):\n        raise FileNotFoundError(f\"Background image not found at: {BACKGROUND_PATH}\")\n    bg = Image.open(BACKGROUND_PATH).convert(\"RGBA\")\n    bg = crop_to_aspect(bg, CARD_WIDTH, CARD_HEIGHT)\n    bg = bg.resize((CARD_WIDTH, CARD_HEIGHT), Image.Resampling.LANCZOS)\n    draw = ImageDraw.Draw(bg)\n    title_font = ImageFont.truetype(TITLE_FONT_PATH, TITLE_SIZE)\n    subtitle_font = ImageFont.truetype(SUBTITLE_FONT_PATH, SUBTITLE_SIZE)",
+        "peekOfCode": "def create_card(title, image_path, subtitle, description, icon_filename, basename: str, hp_value: str, atk_value: str):\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\n    if not os.path.exists(active_background_path):\n        raise FileNotFoundError(f\"Background image not found at: {active_background_path}\")\n    bg = Image.open(active_background_path).convert(\"RGBA\")\n    bg = crop_to_aspect(bg, CARD_WIDTH, CARD_HEIGHT)\n    bg = bg.resize((CARD_WIDTH, CARD_HEIGHT), Image.Resampling.LANCZOS)\n    draw = ImageDraw.Draw(bg)\n    title_font = ImageFont.truetype(TITLE_FONT_PATH, TITLE_SIZE)\n    subtitle_font = ImageFont.truetype(SUBTITLE_FONT_PATH, SUBTITLE_SIZE)",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -562,7 +570,7 @@
         "kind": 2,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "def run_app():\n    root = tk.Tk()\n    root.title(\"BattleDex Card Creator\")\n    root.geometry(\"450x640\")\n    root.configure(padx=20, pady=20)\n    def generate_ai_description():\n        name = name_entry.get().strip()\n        if not name:\n            messagebox.showwarning(\"Input Error\", \"Enter a card name first.\")\n            return",
+        "peekOfCode": "def run_app():\n    root = tk.Tk()\n    root.title(\"BattleDex Card Creator\")\n    root.geometry(\"450x700\")\n    root.configure(padx=20, pady=20)\n    def generate_ai_description():\n        name = name_entry.get().strip()\n        if not name:\n            messagebox.showwarning(\"Input Error\", \"Enter a card name first.\")\n            return",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -580,7 +588,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "client = genai.Client(api_key=\"AIzaSyAPsDPUc0RPiJpnXDUXKn8O4ZNb30m8w3k\")\nSYSTEM_PROMPT = \"Provide a single sentence description of the aircraft provided. Use clear, simple language. Use active voice. Focus on practical, actionable insights. Avoid metaphors, clichés, and generalizations. Do not use em dashes.\"\nSCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\nPROJECT_ROOT = r\"C:\\Users\\nerdb\\OneDrive\\Desktop\\coding-projects\\GoonDex\"\nOUTPUT_DIR = os.path.join(PROJECT_ROOT, \"assets\", \"cards\")\nJSON_PATH = os.path.join(PROJECT_ROOT, \"data\", \"card.json\")\nCOUNTRY_MAP = {\n    \"Belgium\": \"belgium.png\",\n    \"Canada\": \"canada.png\",\n    \"Chile\": \"chile.png\",",
+        "peekOfCode": "client = genai.Client()\nSYSTEM_PROMPT = \"Provide a single sentence description of the aircraft provided. Use clear, simple language. Use active voice. Focus on practical, actionable insights. Avoid metaphors, clichés, and generalizations. Do not use em dashes.\"\nSCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\nPROJECT_ROOT = r\"C:\\Users\\nerdb\\OneDrive\\Desktop\\coding-projects\\GoonDex\"\nOUTPUT_DIR = os.path.join(PROJECT_ROOT, \"assets\", \"cards\")\nJSON_PATH = os.path.join(PROJECT_ROOT, \"data\", \"card.json\")\nCOUNTRY_MAP = {\n    \"Belgium\": \"belgium.png\",\n    \"Canada\": \"canada.png\",\n    \"Chile\": \"chile.png\",",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -643,7 +651,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "SCALE = 3\nCARD_WIDTH = 357 * SCALE\nCARD_HEIGHT = 500 * SCALE\nBACKGROUND_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"STD_BG.jpg\")\nTITLE_TOP_MARGIN = 10 * SCALE\nTITLE_TO_IMAGE_GAP = 20 * SCALE\nIMAGE_SIDE_MARGIN = 10 * SCALE\nIMAGE_TO_SUBTITLE_GAP = 25 * SCALE\nTEXT_SIDE_MARGIN = 20 * SCALE\nSUBTITLE_TO_DESC_GAP = 15 * SCALE",
+        "peekOfCode": "SCALE = 3\nCARD_WIDTH = 357 * SCALE\nCARD_HEIGHT = 500 * SCALE\nBACKGROUND_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"STD_BG.jpg\")\nactive_background_path = BACKGROUND_PATH\nTITLE_TOP_MARGIN = 10 * SCALE\nTITLE_TO_IMAGE_GAP = 20 * SCALE\nIMAGE_SIDE_MARGIN = 10 * SCALE\nIMAGE_TO_SUBTITLE_GAP = 25 * SCALE\nTEXT_SIDE_MARGIN = 20 * SCALE",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -652,7 +660,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "CARD_WIDTH = 357 * SCALE\nCARD_HEIGHT = 500 * SCALE\nBACKGROUND_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"STD_BG.jpg\")\nTITLE_TOP_MARGIN = 10 * SCALE\nTITLE_TO_IMAGE_GAP = 20 * SCALE\nIMAGE_SIDE_MARGIN = 10 * SCALE\nIMAGE_TO_SUBTITLE_GAP = 25 * SCALE\nTEXT_SIDE_MARGIN = 20 * SCALE\nSUBTITLE_TO_DESC_GAP = 15 * SCALE\nBOTTOM_MARGIN = 20 * SCALE",
+        "peekOfCode": "CARD_WIDTH = 357 * SCALE\nCARD_HEIGHT = 500 * SCALE\nBACKGROUND_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"STD_BG.jpg\")\nactive_background_path = BACKGROUND_PATH\nTITLE_TOP_MARGIN = 10 * SCALE\nTITLE_TO_IMAGE_GAP = 20 * SCALE\nIMAGE_SIDE_MARGIN = 10 * SCALE\nIMAGE_TO_SUBTITLE_GAP = 25 * SCALE\nTEXT_SIDE_MARGIN = 20 * SCALE\nSUBTITLE_TO_DESC_GAP = 15 * SCALE",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -661,7 +669,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "CARD_HEIGHT = 500 * SCALE\nBACKGROUND_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"STD_BG.jpg\")\nTITLE_TOP_MARGIN = 10 * SCALE\nTITLE_TO_IMAGE_GAP = 20 * SCALE\nIMAGE_SIDE_MARGIN = 10 * SCALE\nIMAGE_TO_SUBTITLE_GAP = 25 * SCALE\nTEXT_SIDE_MARGIN = 20 * SCALE\nSUBTITLE_TO_DESC_GAP = 15 * SCALE\nBOTTOM_MARGIN = 20 * SCALE\nICON_RIGHT_MARGIN = 10 * SCALE",
+        "peekOfCode": "CARD_HEIGHT = 500 * SCALE\nBACKGROUND_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"STD_BG.jpg\")\nactive_background_path = BACKGROUND_PATH\nTITLE_TOP_MARGIN = 10 * SCALE\nTITLE_TO_IMAGE_GAP = 20 * SCALE\nIMAGE_SIDE_MARGIN = 10 * SCALE\nIMAGE_TO_SUBTITLE_GAP = 25 * SCALE\nTEXT_SIDE_MARGIN = 20 * SCALE\nSUBTITLE_TO_DESC_GAP = 15 * SCALE\nBOTTOM_MARGIN = 20 * SCALE",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
@@ -670,7 +678,16 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "BACKGROUND_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"STD_BG.jpg\")\nTITLE_TOP_MARGIN = 10 * SCALE\nTITLE_TO_IMAGE_GAP = 20 * SCALE\nIMAGE_SIDE_MARGIN = 10 * SCALE\nIMAGE_TO_SUBTITLE_GAP = 25 * SCALE\nTEXT_SIDE_MARGIN = 20 * SCALE\nSUBTITLE_TO_DESC_GAP = 15 * SCALE\nBOTTOM_MARGIN = 20 * SCALE\nICON_RIGHT_MARGIN = 10 * SCALE\nICON_TOP_MARGIN = 8 * SCALE",
+        "peekOfCode": "BACKGROUND_PATH = os.path.join(SCRIPT_DIR, \"Assets\", \"STD_BG.jpg\")\nactive_background_path = BACKGROUND_PATH\nTITLE_TOP_MARGIN = 10 * SCALE\nTITLE_TO_IMAGE_GAP = 20 * SCALE\nIMAGE_SIDE_MARGIN = 10 * SCALE\nIMAGE_TO_SUBTITLE_GAP = 25 * SCALE\nTEXT_SIDE_MARGIN = 20 * SCALE\nSUBTITLE_TO_DESC_GAP = 15 * SCALE\nBOTTOM_MARGIN = 20 * SCALE\nICON_RIGHT_MARGIN = 10 * SCALE",
+        "detail": "CARDCREATOR.card_creator",
+        "documentation": {}
+    },
+    {
+        "label": "active_background_path",
+        "kind": 5,
+        "importPath": "CARDCREATOR.card_creator",
+        "description": "CARDCREATOR.card_creator",
+        "peekOfCode": "active_background_path = BACKGROUND_PATH\nTITLE_TOP_MARGIN = 10 * SCALE\nTITLE_TO_IMAGE_GAP = 20 * SCALE\nIMAGE_SIDE_MARGIN = 10 * SCALE\nIMAGE_TO_SUBTITLE_GAP = 25 * SCALE\nTEXT_SIDE_MARGIN = 20 * SCALE\nSUBTITLE_TO_DESC_GAP = 15 * SCALE\nBOTTOM_MARGIN = 20 * SCALE\nICON_RIGHT_MARGIN = 10 * SCALE\nICON_TOP_MARGIN = 8 * SCALE",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },

@@ -471,5 +471,16 @@
         "description": "NASA uses the X 59 aircraft to test quiet supersonic technology that provides data for updating regulations on high speed commercial flight over land.",
         "rarity": "X",
         "country": "NASA"
+    },
+    "F-15D": {
+        "attack": 14000,
+        "health": 2000,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/f15d.png",
+        "spawn_image": "./assets/cards/f15d_spawn.png",
+        "description": "The F 15D utilizes a two seat cockpit for flight training while retaining the full speed and air to air weapon systems of the single seat model.",
+        "rarity": "3",
+        "country": "United States"
     }
 }
