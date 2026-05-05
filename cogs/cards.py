@@ -138,8 +138,8 @@ class CardsCog(commands.Cog):
     @admin.sub_command(name="give", description="Give a card to a user.")
     async def admin_give(
         self,
-        inter: disnake.ApplicationCommandInteraction,
-        user: disnake.User = commands.Param(
+            inter: disnake.ApplicationCommandInteraction,
+            user: disnake.User = commands.Param(
             description="User to give the card to"),
         card: str = commands.Param(
             description="Card to give",
@@ -172,12 +172,12 @@ class CardsCog(commands.Cog):
 
         success = self.db.add_card_to_inventory(
             inter.author.id, card_obj.id, quantity)
-        if not success:
-            await inter.response.send_message(
-                f"An unknown error occurred while giving the card.",
-                ephemeral=True
-            )
-            return
+        # if not success:
+        #     await inter.response.send_message(
+        #         f"An unknown error occurred while giving the card.",
+        #         ephemeral=True
+        #     )
+        #     return
         
         await inter.response.send_message(
             f"🎁 {inter.author.mention} *ADMIN* gave **✈︎ {card_obj.name}** × {quantity} to {user.mention}."
