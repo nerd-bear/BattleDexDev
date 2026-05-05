@@ -11,7 +11,7 @@ import re
 import json
 from google import genai
 
-client = genai.Client(api_key="AIzaSyD9jEIw1OktxRjjpiqHwA_FZkw_I4-HyDM")
+client = genai.Client(api_key="AIzaSyAPsDPUc0RPiJpnXDUXKn8O4ZNb30m8w3k")
 
 SYSTEM_PROMPT = "Provide a single sentence description of the aircraft provided. Use clear, simple language. Use active voice. Focus on practical, actionable insights. Avoid metaphors, clichés, and generalizations. Do not use em dashes."
 
@@ -36,7 +36,8 @@ COUNTRY_MAP = {
     "Sweden": "sweden.png",
     "United Kingdom": "united-kingdom.png",
     "United States": "united-states.png",
-    "Vietnam": "vietnam.png"
+    "Vietnam": "vietnam.png",
+    "NASA": "nasa.png"
 }
 
 SCALE = 3

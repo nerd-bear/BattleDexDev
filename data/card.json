@@ -460,5 +460,16 @@
         "description": "The F 16XL uses a cranked arrow delta wing to double the internal fuel capacity and increase weapon carriage for long range flight missions.",
         "rarity": "Y",
         "country": "US"
+    },
+    "X-59": {
+        "attack": 0,
+        "health": 11000,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/x59.png",
+        "spawn_image": "./assets/cards/x59_spawn.png",
+        "description": "NASA uses the X 59 aircraft to test quiet supersonic technology that provides data for updating regulations on high speed commercial flight over land.",
+        "rarity": "X",
+        "country": "NASA"
     }
 }

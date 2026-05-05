@@ -580,7 +580,7 @@
         "kind": 5,
         "importPath": "CARDCREATOR.card_creator",
         "description": "CARDCREATOR.card_creator",
-        "peekOfCode": "client = genai.Client(api_key=\"AIzaSyD9jEIw1OktxRjjpiqHwA_FZkw_I4-HyDM\")\nSYSTEM_PROMPT = \"Provide a single sentence description of the aircraft provided. Use clear, simple language. Use active voice. Focus on practical, actionable insights. Avoid metaphors, clichés, and generalizations. Do not use em dashes.\"\nSCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\nPROJECT_ROOT = r\"C:\\Users\\nerdb\\OneDrive\\Desktop\\coding-projects\\GoonDex\"\nOUTPUT_DIR = os.path.join(PROJECT_ROOT, \"assets\", \"cards\")\nJSON_PATH = os.path.join(PROJECT_ROOT, \"data\", \"card.json\")\nCOUNTRY_MAP = {\n    \"Belgium\": \"belgium.png\",\n    \"Canada\": \"canada.png\",\n    \"Chile\": \"chile.png\",",
+        "peekOfCode": "client = genai.Client(api_key=\"AIzaSyAPsDPUc0RPiJpnXDUXKn8O4ZNb30m8w3k\")\nSYSTEM_PROMPT = \"Provide a single sentence description of the aircraft provided. Use clear, simple language. Use active voice. Focus on practical, actionable insights. Avoid metaphors, clichés, and generalizations. Do not use em dashes.\"\nSCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\nPROJECT_ROOT = r\"C:\\Users\\nerdb\\OneDrive\\Desktop\\coding-projects\\GoonDex\"\nOUTPUT_DIR = os.path.join(PROJECT_ROOT, \"assets\", \"cards\")\nJSON_PATH = os.path.join(PROJECT_ROOT, \"data\", \"card.json\")\nCOUNTRY_MAP = {\n    \"Belgium\": \"belgium.png\",\n    \"Canada\": \"canada.png\",\n    \"Chile\": \"chile.png\",",
         "detail": "CARDCREATOR.card_creator",
         "documentation": {}
     },
