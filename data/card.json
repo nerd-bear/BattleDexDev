@@ -471,5 +471,16 @@
         "description": "The F 15D utilizes a two seat cockpit for flight training while retaining the full speed and air to air weapon systems of the single seat model.",
         "rarity": "3",
         "country": "United States"
+    },
+    "SR-71A": {
+        "attack": 3,
+        "health": 100000,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/sr71a.png",
+        "spawn_image": "./assets/cards/sr71a_spawn.png",
+        "description": "The SR 71A flies at speeds exceeding Mach 3 and altitudes above 80,000 feet to collect strategic intelligence while operating beyond the reach of defensive missiles.",
+        "rarity": "Y",
+        "country": "United States"
     }
 }

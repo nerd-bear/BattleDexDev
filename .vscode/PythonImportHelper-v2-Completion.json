@@ -132,6 +132,30 @@
         "documentation": {}
     },
     {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
         "label": "List",
         "importPath": "typing",
         "description": "typing",
@@ -322,6 +346,15 @@
         "description": "services.tracker",
         "isExtraImport": true,
         "detail": "services.tracker",
+        "documentation": {}
+    },
+    {
+        "label": "hashlib",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "hashlib",
+        "description": "hashlib",
+        "detail": "hashlib",
         "documentation": {}
     },
     {
@@ -968,6 +1001,33 @@
         "description": "services.card_service",
         "peekOfCode": "def build_card_text(card: Card) -> str:\n    atk_text = f\"{card.attack} {card.attack_boost}\".strip()\n    hp_text = f\"{card.health} {card.health_boost}\".strip()\n    return (\n        f\"**ATK:** {atk_text}\\n\"\n        f\"**HP:** {hp_text}\\n\"\n        f\"**Rarity:** {card.rarity}\"\n    )\nasync def build_card_embed_and_file(card: Card) -> Tuple[disnake.Embed, Optional[disnake.File]]:\n    embed = disnake.Embed(",
         "detail": "services.card_service",
+        "documentation": {}
+    },
+    {
+        "label": "DEFAULT_IMAGE_PATH",
+        "kind": 5,
+        "importPath": "services.card_service",
+        "description": "services.card_service",
+        "peekOfCode": "DEFAULT_IMAGE_PATH = \"./assets/cards/error_card.png\"\nDEFAULT_SPAWN_IMAGE_PATH = \"./assets/cards/error_spawn.png\"\ndef normalize_name(value: str) -> str:\n    value = value.lower().strip()\n    value = re.sub(r'[^a-z0-9]', '', value)\n    return value\ndef build_card_text(card: Card) -> str:\n    atk_text = f\"{card.attack} {card.attack_boost}\".strip()\n    hp_text = f\"{card.health} {card.health_boost}\".strip()\n    return (",
+        "detail": "services.card_service",
+        "documentation": {}
+    },
+    {
+        "label": "DEFAULT_SPAWN_IMAGE_PATH",
+        "kind": 5,
+        "importPath": "services.card_service",
+        "description": "services.card_service",
+        "peekOfCode": "DEFAULT_SPAWN_IMAGE_PATH = \"./assets/cards/error_spawn.png\"\ndef normalize_name(value: str) -> str:\n    value = value.lower().strip()\n    value = re.sub(r'[^a-z0-9]', '', value)\n    return value\ndef build_card_text(card: Card) -> str:\n    atk_text = f\"{card.attack} {card.attack_boost}\".strip()\n    hp_text = f\"{card.health} {card.health_boost}\".strip()\n    return (\n        f\"**ATK:** {atk_text}\\n\"",
+        "detail": "services.card_service",
+        "documentation": {}
+    },
+    {
+        "label": "SHA3",
+        "kind": 6,
+        "importPath": "services.sha3",
+        "description": "services.sha3",
+        "peekOfCode": "class SHA3:\n    @staticmethod\n    def salt_hash(\n        input_str: str, salt: Optional[bytes] = None\n    ) -> Tuple[Union[str, bytes], bytes]:\n        \"\"\"\n        Generate a salted hash of the input string using PBKDF2 HMAC-SHA256.\n        \"\"\"\n        if salt is None:\n            salt = SHA3.generate_salt(size=32, isHex=True)",
+        "detail": "services.sha3",
         "documentation": {}
     },
     {

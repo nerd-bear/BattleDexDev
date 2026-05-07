@@ -1,10 +1,12 @@
+import disnake
 import os
 import re
 from typing import Optional, Tuple
-
 import disnake
-
 from models import Card
+
+DEFAULT_IMAGE_PATH = "./assets/cards/error_card.png"
+DEFAULT_SPAWN_IMAGE_PATH = "./assets/cards/error_spawn.png"
 
 
 def normalize_name(value: str) -> str:
@@ -23,7 +25,6 @@ def build_card_text(card: Card) -> str:
         f"**Rarity:** {card.rarity}"
     )
 
-
 async def build_card_embed_and_file(card: Card) -> Tuple[disnake.Embed, Optional[disnake.File]]:
     embed = disnake.Embed(
         title=card.name,
@@ -31,22 +32,33 @@ async def build_card_embed_and_file(card: Card) -> Tuple[disnake.Embed, Optional
         color=disnake.Color.blurple()
     )
 
-    if not card.image:
-        return embed, None
-
-    image_path = card.image
-
-    if image_path.startswith('http://') or image_path.startswith('https://'):
-        embed.set_image(url=image_path)
-        return embed, None
-
-    if os.path.exists(image_path):
-        filename = os.path.basename(image_path)
-        file = disnake.File(image_path, filename=filename)
+    def attach_local_image(path: str):
+        filename = os.path.basename(path)
+        file = disnake.File(path, filename=filename)
         embed.set_image(url=f'attachment://{filename}')
         return embed, file
 
+    image_path = card.image
+
+    # no image provided 
+    if not image_path:
+        return attach_local_image(DEFAULT_IMAGE_PATH)
+
+    # URL image
+    if image_path.startswith(('http://', 'https://')):
+        embed.set_image(url=image_path)
+        return embed, None
+
+    # file exists
+    if os.path.exists(image_path):
+        return attach_local_image(image_path)
+
+    # smth else fails 
+    if os.path.exists(DEFAULT_IMAGE_PATH):
+        return attach_local_image(DEFAULT_IMAGE_PATH)
+
     return embed, None
+
 
 
 async def build_spawn_embed_and_file(card: Card) -> Tuple[disnake.Embed, Optional[disnake.File]]:
@@ -55,19 +67,31 @@ async def build_spawn_embed_and_file(card: Card) -> Tuple[disnake.Embed, Optiona
         color=disnake.Color.orange()
     )
 
+    def attach_local_image(path: str):
+        filename = os.path.basename(path)
+        file = disnake.File(path, filename=filename)
+        embed.set_image(url=f'attachment://{filename}')
+        return embed, file
+
     image_path = card.spawn_image or card.image
 
+    # No image 
     if not image_path:
+        if os.path.exists(DEFAULT_SPAWN_IMAGE_PATH):
+            return attach_local_image(DEFAULT_SPAWN_IMAGE_PATH)
         return embed, None
 
-    if image_path.startswith('http://') or image_path.startswith('https://'):
+    # URL
+    if image_path.startswith(('http://', 'https://')):
         embed.set_image(url=image_path)
         return embed, None
 
+    # file exists
     if os.path.exists(image_path):
-        filename = os.path.basename(image_path)
-        file = disnake.File(image_path, filename=filename)
-        embed.set_image(url=f'attachment://{filename}')
-        return embed, file
+        return attach_local_image(image_path)
+
+   # smth else fails 
+    if os.path.exists(DEFAULT_SPAWN_IMAGE_PATH):
+        return attach_local_image(DEFAULT_SPAWN_IMAGE_PATH)
 
     return embed, None
