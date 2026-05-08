@@ -8,6 +8,25 @@ from models import SpawnSession
 from services.card_service import build_card_embed_and_file, build_spawn_embed_and_file
 from views.spawn_view import SpawnCardView
 
+# yes its hard coded, and its temporary
+# also most permanent solution is a temporary one
+ADMIN_GUILD_ID = 1346993156335599676
+
+def is_admin_guild_admin():
+    async def predicate(inter: disnake.ApplicationCommandInteraction):
+        # if inter.guild is None or inter.guild.id != ADMIN_GUILD_ID:
+        #     raise commands.CheckFailure(
+        #         "These admin commands can only be used in the admin guild."
+        #     )
+
+        if not inter.author.guild_permissions.administrator:
+            raise commands.CheckFailure(
+                "You must be an administrator to use this command."
+            )
+
+        return True
+
+    return commands.check(predicate)
 
 class CardsCog(commands.Cog):
     def __init__(self, bot: commands.InteractionBot, db: Database):
@@ -72,10 +91,9 @@ class CardsCog(commands.Cog):
 
     @commands.slash_command(
         name="admin",
-        description="Main command for all card admin features.",
-        default_member_permissions=disnake.Permissions(administrator=True),
-        guild_ids=[1346993156335599676]
+        description="Main command for all card admin features."
     )
+    @is_admin_guild_admin()
     async def admin(self, inter: disnake.ApplicationCommandInteraction):
         pass
 

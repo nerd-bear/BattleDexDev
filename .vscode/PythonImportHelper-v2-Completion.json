@@ -941,6 +941,24 @@
         "documentation": {}
     },
     {
+        "label": "is_admin_guild_admin",
+        "kind": 2,
+        "importPath": "cogs.cards",
+        "description": "cogs.cards",
+        "peekOfCode": "def is_admin_guild_admin():\n    async def predicate(inter: disnake.ApplicationCommandInteraction):\n        # if inter.guild is None or inter.guild.id != ADMIN_GUILD_ID:\n        #     raise commands.CheckFailure(\n        #         \"These admin commands can only be used in the admin guild.\"\n        #     )\n        if not inter.author.guild_permissions.administrator:\n            raise commands.CheckFailure(\n                \"You must be an administrator to use this command.\"\n            )",
+        "detail": "cogs.cards",
+        "documentation": {}
+    },
+    {
+        "label": "ADMIN_GUILD_ID",
+        "kind": 5,
+        "importPath": "cogs.cards",
+        "description": "cogs.cards",
+        "peekOfCode": "ADMIN_GUILD_ID = 1346993156335599676\ndef is_admin_guild_admin():\n    async def predicate(inter: disnake.ApplicationCommandInteraction):\n        # if inter.guild is None or inter.guild.id != ADMIN_GUILD_ID:\n        #     raise commands.CheckFailure(\n        #         \"These admin commands can only be used in the admin guild.\"\n        #     )\n        if not inter.author.guild_permissions.administrator:\n            raise commands.CheckFailure(\n                \"You must be an administrator to use this command.\"",
+        "detail": "cogs.cards",
+        "documentation": {}
+    },
+    {
         "label": "FL24Cog",
         "kind": 6,
         "importPath": "cogs.fl24",
