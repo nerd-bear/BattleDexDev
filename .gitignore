@@ -6,3 +6,4 @@ eppstein.py
 ./MobileNetSSD_deploy.caffemodel
 ./MobileNetSSD_deploy.prototxt
 ./assets/promotional/promo_banner_charlie.psd
+assets/promotional/promo_banner_charlie.psd
