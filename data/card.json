@@ -482,5 +482,16 @@
         "description": "The SR 71A flies at speeds exceeding Mach 3 and altitudes above 80,000 feet to collect strategic intelligence while operating beyond the reach of defensive missiles.",
         "rarity": "Y",
         "country": "United States"
+    },
+    "F-4E Terminator": {
+        "attack": 2000,
+        "health": 1000,
+        "attack_boost": 0,
+        "health_boost": 0,
+        "image": "./assets/cards/f4eterminator.png",
+        "spawn_image": "./assets/cards/f4eterminator_spawn.png",
+        "description": "The F 4E Terminator employs upgraded radar and digital avionics to launch precision guided munitions against ground targets from long distances.",
+        "rarity": "5",
+        "country": "United States"
     }
 }

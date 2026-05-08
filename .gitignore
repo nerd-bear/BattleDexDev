@@ -5,3 +5,4 @@ eppstein.py
 ./goon.py
 ./MobileNetSSD_deploy.caffemodel
 ./MobileNetSSD_deploy.prototxt
+./assets/promotional/promo_banner_charlie.psd
