@@ -13,20 +13,29 @@ from views.spawn_view import SpawnCardView
 
 # yes its hard coded, and its temporary
 # also most permanent solution is a temporary one
+
 ADMIN_GUILD_ID = 1346993156335599676
 
 
 def is_admin_guild_admin():
     async def predicate(inter: disnake.ApplicationCommandInteraction):
-        # Optional guild restriction
-        # if inter.guild is None or inter.guild.id != ADMIN_GUILD_ID:
-        #     raise commands.CheckFailure(
-        #         "These admin commands can only be used in the admin guild."
-        #     )
+        main_guild = inter.bot.get_guild(ADMIN_GUILD_ID)
 
-        if not inter.author.guild_permissions.administrator:
+        if main_guild is None:
             raise commands.CheckFailure(
-                "You must be an administrator to use this command."
+                "Main admin guild could not be found."
+            )
+
+        member = main_guild.get_member(inter.author.id)
+
+        if member is None:
+            raise commands.CheckFailure(
+                "You are not a member of the admin guild."
+            )
+
+        if not member.guild_permissions.administrator:
+            raise commands.CheckFailure(
+                "You must be an administrator in the main guild to use this command."
             )
 
         return True

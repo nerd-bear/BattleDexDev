@@ -8,7 +8,7 @@ from database import Database
 from cogs.cards import CardsCog
 
 
-intents = disnake.Intents.default()
+intents = disnake.Intents.all()
 bot = commands.InteractionBot(intents=intents)
 
 db = Database(DATABASE_PATH)
