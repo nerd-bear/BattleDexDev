@@ -28,10 +28,14 @@ def is_admin_guild_admin():
 
         member = main_guild.get_member(inter.author.id)
 
+        # fallback fetch if not cached
         if member is None:
-            raise commands.CheckFailure(
-                "You are not a member of the admin guild."
-            )
+            try:
+                member = await main_guild.fetch_member(inter.author.id)
+            except disnake.NotFound:
+                raise commands.CheckFailure(
+                    "You are not a member of the admin guild."
+                )
 
         if not member.guild_permissions.administrator:
             raise commands.CheckFailure(

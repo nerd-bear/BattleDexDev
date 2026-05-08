@@ -945,7 +945,7 @@
         "kind": 2,
         "importPath": "cogs.cards",
         "description": "cogs.cards",
-        "peekOfCode": "def is_admin_guild_admin():\n    async def predicate(inter: disnake.ApplicationCommandInteraction):\n        main_guild = inter.bot.get_guild(ADMIN_GUILD_ID)\n        if main_guild is None:\n            raise commands.CheckFailure(\n                \"Main admin guild could not be found.\"\n            )\n        member = main_guild.get_member(inter.author.id)\n        if member is None:\n            raise commands.CheckFailure(",
+        "peekOfCode": "def is_admin_guild_admin():\n    async def predicate(inter: disnake.ApplicationCommandInteraction):\n        main_guild = inter.bot.get_guild(ADMIN_GUILD_ID)\n        if main_guild is None:\n            raise commands.CheckFailure(\n                \"Main admin guild could not be found.\"\n            )\n        member = main_guild.get_member(inter.author.id)\n        # fallback fetch if not cached\n        if member is None:",
         "detail": "cogs.cards",
         "documentation": {}
     },
@@ -954,7 +954,7 @@
         "kind": 5,
         "importPath": "cogs.cards",
         "description": "cogs.cards",
-        "peekOfCode": "ADMIN_GUILD_ID = 1346993156335599676\ndef is_admin_guild_admin():\n    async def predicate(inter: disnake.ApplicationCommandInteraction):\n        main_guild = inter.bot.get_guild(ADMIN_GUILD_ID)\n        if main_guild is None:\n            raise commands.CheckFailure(\n                \"Main admin guild could not be found.\"\n            )\n        member = main_guild.get_member(inter.author.id)\n        if member is None:",
+        "peekOfCode": "ADMIN_GUILD_ID = 1346993156335599676\ndef is_admin_guild_admin():\n    async def predicate(inter: disnake.ApplicationCommandInteraction):\n        main_guild = inter.bot.get_guild(ADMIN_GUILD_ID)\n        if main_guild is None:\n            raise commands.CheckFailure(\n                \"Main admin guild could not be found.\"\n            )\n        member = main_guild.get_member(inter.author.id)\n        # fallback fetch if not cached",
         "detail": "cogs.cards",
         "documentation": {}
     },
