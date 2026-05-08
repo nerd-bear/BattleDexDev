@@ -936,7 +936,7 @@
         "kind": 6,
         "importPath": "cogs.cards",
         "description": "cogs.cards",
-        "peekOfCode": "class CardsCog(commands.Cog):\n    def __init__(self, bot: commands.InteractionBot, db: Database):\n        self.bot = bot\n        self.db = db\n        self.active_spawns: Dict[int, SpawnSession] = {}\n        self.active_views: Dict[int, SpawnCardView] = {}\n    async def card_autocomplete(\n        self,\n        inter: disnake.ApplicationCommandInteraction,\n        user_input: str",
+        "peekOfCode": "class CardsCog(commands.Cog):\n    def __init__(self, bot: commands.InteractionBot, db: Database):\n        self.bot = bot\n        self.db = db\n        self.active_spawns: Dict[int, SpawnSession] = {}\n        self.active_views: Dict[int, SpawnCardView] = {}\n    # =========================================================\n    # GLOBAL ERROR HANDLER\n    # =========================================================\n    @commands.Cog.listener()",
         "detail": "cogs.cards",
         "documentation": {}
     },
@@ -945,7 +945,7 @@
         "kind": 2,
         "importPath": "cogs.cards",
         "description": "cogs.cards",
-        "peekOfCode": "def is_admin_guild_admin():\n    async def predicate(inter: disnake.ApplicationCommandInteraction):\n        # if inter.guild is None or inter.guild.id != ADMIN_GUILD_ID:\n        #     raise commands.CheckFailure(\n        #         \"These admin commands can only be used in the admin guild.\"\n        #     )\n        if not inter.author.guild_permissions.administrator:\n            raise commands.CheckFailure(\n                \"You must be an administrator to use this command.\"\n            )",
+        "peekOfCode": "def is_admin_guild_admin():\n    async def predicate(inter: disnake.ApplicationCommandInteraction):\n        # Optional guild restriction\n        # if inter.guild is None or inter.guild.id != ADMIN_GUILD_ID:\n        #     raise commands.CheckFailure(\n        #         \"These admin commands can only be used in the admin guild.\"\n        #     )\n        if not inter.author.guild_permissions.administrator:\n            raise commands.CheckFailure(\n                \"You must be an administrator to use this command.\"",
         "detail": "cogs.cards",
         "documentation": {}
     },
@@ -954,7 +954,7 @@
         "kind": 5,
         "importPath": "cogs.cards",
         "description": "cogs.cards",
-        "peekOfCode": "ADMIN_GUILD_ID = 1346993156335599676\ndef is_admin_guild_admin():\n    async def predicate(inter: disnake.ApplicationCommandInteraction):\n        # if inter.guild is None or inter.guild.id != ADMIN_GUILD_ID:\n        #     raise commands.CheckFailure(\n        #         \"These admin commands can only be used in the admin guild.\"\n        #     )\n        if not inter.author.guild_permissions.administrator:\n            raise commands.CheckFailure(\n                \"You must be an administrator to use this command.\"",
+        "peekOfCode": "ADMIN_GUILD_ID = 1346993156335599676\ndef is_admin_guild_admin():\n    async def predicate(inter: disnake.ApplicationCommandInteraction):\n        # Optional guild restriction\n        # if inter.guild is None or inter.guild.id != ADMIN_GUILD_ID:\n        #     raise commands.CheckFailure(\n        #         \"These admin commands can only be used in the admin guild.\"\n        #     )\n        if not inter.author.guild_permissions.administrator:\n            raise commands.CheckFailure(",
         "detail": "cogs.cards",
         "documentation": {}
     },

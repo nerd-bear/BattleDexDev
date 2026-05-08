@@ -2,6 +2,9 @@
 
 ✅ ADD RARITY
 ADD SORT WHEN CHECKING INV
+FIX "its your first one!" because right now,
+every plane you catch even if you already
+have it is "its your first one!"
 
 PLANES:
 

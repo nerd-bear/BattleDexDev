@@ -5,15 +5,20 @@ from disnake.ext import commands
 
 from database import Database
 from models import SpawnSession
-from services.card_service import build_card_embed_and_file, build_spawn_embed_and_file
+from services.card_service import (
+    build_card_embed_and_file,
+    build_spawn_embed_and_file,
+)
 from views.spawn_view import SpawnCardView
 
 # yes its hard coded, and its temporary
 # also most permanent solution is a temporary one
 ADMIN_GUILD_ID = 1346993156335599676
 
+
 def is_admin_guild_admin():
     async def predicate(inter: disnake.ApplicationCommandInteraction):
+        # Optional guild restriction
         # if inter.guild is None or inter.guild.id != ADMIN_GUILD_ID:
         #     raise commands.CheckFailure(
         #         "These admin commands can only be used in the admin guild."
@@ -28,12 +33,54 @@ def is_admin_guild_admin():
 
     return commands.check(predicate)
 
+
 class CardsCog(commands.Cog):
     def __init__(self, bot: commands.InteractionBot, db: Database):
         self.bot = bot
         self.db = db
         self.active_spawns: Dict[int, SpawnSession] = {}
         self.active_views: Dict[int, SpawnCardView] = {}
+
+    # =========================================================
+    # GLOBAL ERROR HANDLER
+    # =========================================================
+
+    @commands.Cog.listener()
+    async def on_slash_command_error(
+        self,
+        inter: disnake.ApplicationCommandInteraction,
+        error
+    ):
+        if isinstance(error, commands.CheckFailure):
+            if inter.response.is_done():
+                await inter.followup.send(
+                    str(error),
+                    ephemeral=True
+                )
+            else:
+                await inter.response.send_message(
+                    str(error),
+                    ephemeral=True
+                )
+            return
+
+        # Optional generic fallback
+        if inter.response.is_done():
+            await inter.followup.send(
+                "An unexpected error occurred.",
+                ephemeral=True
+            )
+        else:
+            await inter.response.send_message(
+                "An unexpected error occurred.",
+                ephemeral=True
+            )
+
+        raise error
+
+    # =========================================================
+    # AUTOCOMPLETE
+    # =========================================================
 
     async def card_autocomplete(
         self,
@@ -47,18 +94,23 @@ class CardsCog(commands.Cog):
 
         return self.db.search_card_names(text, limit=25)
 
+    # =========================================================
+    # SPAWN MESSAGE
+    # =========================================================
+
     async def create_spawn_message(
         self,
         inter: disnake.ApplicationCommandInteraction,
         card_obj
     ):
         embed, file = await build_spawn_embed_and_file(card_obj)
+
         embed.title = "🃏 A wild card appeared!"
         embed.description = (
             "Press **Catch** and type the exact card name to claim it.\n\n"
             f"**Hints**\n"
-            f"ATK: {card_obj.attack} {card_obj.attack_boost}".strip() + "\n"
-            f"HP: {card_obj.health} {card_obj.health_boost}".strip() + "\n"
+            f"ATK: {card_obj.attack} {card_obj.attack_boost}\n"
+            f"HP: {card_obj.health} {card_obj.health_boost}\n"
             f"Rarity: {card_obj.rarity}"
         )
 
@@ -75,12 +127,19 @@ class CardsCog(commands.Cog):
             card_id=card_obj.id,
             card_name=card_obj.name
         )
+
         self.active_spawns[message.id] = session
 
         view = SpawnCardView(self, session)
         view.message = message
+
         self.active_views[message.id] = view
+
         await message.edit(view=view)
+
+    # =========================================================
+    # ROOT COMMANDS
+    # =========================================================
 
     @commands.slash_command(
         name="battle",
@@ -97,7 +156,14 @@ class CardsCog(commands.Cog):
     async def admin(self, inter: disnake.ApplicationCommandInteraction):
         pass
 
-    @battle.sub_command(name="info", description="Display information about a card.")
+    # =========================================================
+    # /battle info
+    # =========================================================
+
+    @battle.sub_command(
+        name="info",
+        description="Display information about a card."
+    )
     async def info(
         self,
         inter: disnake.ApplicationCommandInteraction,
@@ -107,6 +173,7 @@ class CardsCog(commands.Cog):
         )
     ):
         card_obj = self.db.get_card_by_name(card)
+
         if not card_obj:
             await inter.response.send_message(
                 f"Card `{card}` was not found.",
@@ -121,7 +188,14 @@ class CardsCog(commands.Cog):
         else:
             await inter.response.send_message(embed=embed)
 
-    @admin.sub_command(name="spawn", description="Spawn a specific card.")
+    # =========================================================
+    # /admin spawn
+    # =========================================================
+
+    @admin.sub_command(
+        name="spawn",
+        description="Spawn a specific card."
+    )
     async def spawn(
         self,
         inter: disnake.ApplicationCommandInteraction,
@@ -133,8 +207,9 @@ class CardsCog(commands.Cog):
     ):
         await inter.response.defer()
 
-        if card is not None:  # If a specific card was requested card is not default and this block runs
+        if card is not None:
             card_obj = self.db.get_card_by_name(card)
+
             if not card_obj:
                 await inter.edit_original_response(
                     content=f"Card `{card}` was not found."
@@ -145,6 +220,7 @@ class CardsCog(commands.Cog):
 
         else:
             card_obj = self.db.get_random_card_by_rarity()
+
             if not card_obj:
                 await inter.edit_original_response(
                     content="No cards are available to spawn."
@@ -153,18 +229,30 @@ class CardsCog(commands.Cog):
 
             await self.create_spawn_message(inter, card_obj)
 
-    @admin.sub_command(name="give", description="Give a card to a user.")
+    # =========================================================
+    # /admin give
+    # =========================================================
+
+    @admin.sub_command(
+        name="give",
+        description="Give a card to a user."
+    )
     async def admin_give(
         self,
-            inter: disnake.ApplicationCommandInteraction,
-            user: disnake.User = commands.Param(
-            description="User to give the card to"),
+        inter: disnake.ApplicationCommandInteraction,
+        user: disnake.User = commands.Param(
+            description="User to give the card to"
+        ),
         card: str = commands.Param(
             description="Card to give",
             autocomplete=card_autocomplete
         ),
         quantity: int = commands.Param(
-            default=1, ge=1, le=100, description="Amount to give")
+            default=1,
+            ge=1,
+            le=100,
+            description="Amount to give"
+        )
     ):
         if user.bot:
             await inter.response.send_message(
@@ -181,6 +269,7 @@ class CardsCog(commands.Cog):
             return
 
         card_obj = self.db.get_card_by_name(card)
+
         if not card_obj:
             await inter.response.send_message(
                 f"Card `{card}` was not found.",
@@ -188,43 +277,44 @@ class CardsCog(commands.Cog):
             )
             return
 
+        # FIXED: give card to target user instead of admin
         success = self.db.add_card_to_inventory(
-            inter.author.id, card_obj.id, quantity)
-        # if not success:
-        #     await inter.response.send_message(
-        #         f"An unknown error occurred while giving the card.",
-        #         ephemeral=True
-        #     )
-        #     return
-        
-        await inter.response.send_message(
-            f"🎁 {inter.author.mention} *ADMIN* gave **✈︎ {card_obj.name}** × {quantity} to {user.mention}."
+            user.id,
+            card_obj.id,
+            quantity
         )
 
-    # @battle.sub_command(
-    #     name="spawn_random",
-    #     description="Spawn a random card using rarity-weighted odds."
-    # )
-    # async def spawn_random(self, inter: disnake.ApplicationCommandInteraction):
-    #     await inter.response.defer()
+        if not success:
+            await inter.response.send_message(
+                "An unknown error occurred while giving the card.",
+                ephemeral=True
+            )
+            return
 
-    #     card_obj = self.db.get_random_card_by_rarity()
-    #     if not card_obj:
-    #         await inter.edit_original_response(
-    #             content="No cards are available to spawn."
-    #         )
-    #         return
+        await inter.response.send_message(
+            f"🎁 {inter.author.mention} *ADMIN* gave "
+            f"**✈︎ {card_obj.name}** × {quantity} "
+            f"to {user.mention}."
+        )
 
-    #     await self.create_spawn_message(inter, card_obj)
+    # =========================================================
+    # /battle inventory
+    # =========================================================
 
-    @battle.sub_command(name="inventory", description="View your inventory or another user's inventory.")
+    @battle.sub_command(
+        name="inventory",
+        description="View your inventory or another user's inventory."
+    )
     async def inventory(
         self,
         inter: disnake.ApplicationCommandInteraction,
         user: disnake.User = commands.Param(
-            default=None, description="User to inspect")
+            default=None,
+            description="User to inspect"
+        )
     ):
         target = user or inter.author
+
         items = self.db.get_user_inventory(target.id)
 
         if not items:
@@ -238,24 +328,38 @@ class CardsCog(commands.Cog):
             title=f"{target.display_name}'s Card Inventory",
             color=disnake.Color.gold()
         )
+
         embed.description = "\n".join(
-            f"• **{name}** × {qty}" for name, qty in items[:50]
+            f"• **{name}** × {qty}"
+            for name, qty in items[:50]
         )
 
         await inter.response.send_message(embed=embed)
 
-    @battle.sub_command(name="give", description="Gift a card to another user.")
+    # =========================================================
+    # /battle give
+    # =========================================================
+
+    @battle.sub_command(
+        name="give",
+        description="Gift a card to another user."
+    )
     async def give(
         self,
         inter: disnake.ApplicationCommandInteraction,
         user: disnake.User = commands.Param(
-            description="User to gift the card to"),
+            description="User to gift the card to"
+        ),
         card: str = commands.Param(
             description="Card to gift",
             autocomplete=card_autocomplete
         ),
         quantity: int = commands.Param(
-            default=1, ge=1, le=100, description="Amount to gift")
+            default=1,
+            ge=1,
+            le=100,
+            description="Amount to gift"
+        )
     ):
         if user.bot:
             await inter.response.send_message(
@@ -272,6 +376,7 @@ class CardsCog(commands.Cog):
             return
 
         card_obj = self.db.get_card_by_name(card)
+
         if not card_obj:
             await inter.response.send_message(
                 f"Card `{card}` was not found.",
@@ -280,20 +385,38 @@ class CardsCog(commands.Cog):
             return
 
         success = self.db.transfer_card(
-            inter.author.id, user.id, card_obj.id, quantity)
+            inter.author.id,
+            user.id,
+            card_obj.id,
+            quantity
+        )
+
         if not success:
             await inter.response.send_message(
-                f"You do not own enough copies of **✈︎ {card_obj.name}**.",
+                f"You do not own enough copies of "
+                f"**✈︎ {card_obj.name}**.",
                 ephemeral=True
             )
             return
 
         await inter.response.send_message(
-            f"🎁 {inter.author.mention} gave **✈︎ {card_obj.name}** × {quantity} to {user.mention}."
+            f"🎁 {inter.author.mention} gave "
+            f"**✈︎ {card_obj.name}** × {quantity} "
+            f"to {user.mention}."
         )
 
-    @battle.sub_command(name="all", description="Display every card.")
-    async def all_cards(self, inter: disnake.ApplicationCommandInteraction):
+    # =========================================================
+    # /battle all
+    # =========================================================
+
+    @battle.sub_command(
+        name="all",
+        description="Display every card."
+    )
+    async def all_cards(
+        self,
+        inter: disnake.ApplicationCommandInteraction
+    ):
         cards = self.db.list_all_card_names(limit=9999)
 
         if not cards:
@@ -305,23 +428,39 @@ class CardsCog(commands.Cog):
 
         for i, card in enumerate(cards):
             card_obj = self.db.get_card_by_name(card)
+
             if not card_obj:
                 msg = f"Card `{card}` was not found."
+
                 if i == 0 and not inter.response.is_done():
-                    await inter.response.send_message(msg, ephemeral=True)
+                    await inter.response.send_message(
+                        msg,
+                        ephemeral=True
+                    )
                 else:
-                    await inter.followup.send(msg, ephemeral=True)
+                    await inter.followup.send(
+                        msg,
+                        ephemeral=True
+                    )
+
                 continue
 
             embed, file = await build_card_embed_and_file(card_obj)
 
             if i == 0:
                 if file:
-                    await inter.response.send_message(embed=embed, file=file)
+                    await inter.response.send_message(
+                        embed=embed,
+                        file=file
+                    )
                 else:
                     await inter.response.send_message(embed=embed)
+
             else:
                 if file:
-                    await inter.followup.send(embed=embed, file=file)
+                    await inter.followup.send(
+                        embed=embed,
+                        file=file
+                    )
                 else:
                     await inter.followup.send(embed=embed)
