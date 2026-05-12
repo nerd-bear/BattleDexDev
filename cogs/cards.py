@@ -28,7 +28,6 @@ def is_admin_guild_admin():
 
         member = main_guild.get_member(inter.author.id)
 
-        # fallback fetch if not cached
         if member is None:
             try:
                 member = await main_guild.fetch_member(inter.author.id)
@@ -54,10 +53,6 @@ class CardsCog(commands.Cog):
         self.active_spawns: Dict[int, SpawnSession] = {}
         self.active_views: Dict[int, SpawnCardView] = {}
 
-    # =========================================================
-    # GLOBAL ERROR HANDLER
-    # =========================================================
-
     @commands.Cog.listener()
     async def on_slash_command_error(
         self,
@@ -77,7 +72,6 @@ class CardsCog(commands.Cog):
                 )
             return
 
-        # Optional generic fallback
         if inter.response.is_done():
             await inter.followup.send(
                 "An unexpected error occurred.",
@@ -91,10 +85,6 @@ class CardsCog(commands.Cog):
 
         raise error
 
-    # =========================================================
-    # AUTOCOMPLETE
-    # =========================================================
-
     async def card_autocomplete(
         self,
         inter: disnake.ApplicationCommandInteraction,
@@ -106,10 +96,6 @@ class CardsCog(commands.Cog):
             return self.db.list_all_card_names(limit=25)
 
         return self.db.search_card_names(text, limit=25)
-
-    # =========================================================
-    # SPAWN MESSAGE
-    # =========================================================
 
     async def create_spawn_message(
         self,
@@ -150,10 +136,6 @@ class CardsCog(commands.Cog):
 
         await message.edit(view=view)
 
-    # =========================================================
-    # ROOT COMMANDS
-    # =========================================================
-
     @commands.slash_command(
         name="battle",
         description="Main command for all card battle features."
@@ -168,10 +150,6 @@ class CardsCog(commands.Cog):
     @is_admin_guild_admin()
     async def admin(self, inter: disnake.ApplicationCommandInteraction):
         pass
-
-    # =========================================================
-    # /battle info
-    # =========================================================
 
     @battle.sub_command(
         name="info",
@@ -200,10 +178,6 @@ class CardsCog(commands.Cog):
             await inter.response.send_message(embed=embed, file=file)
         else:
             await inter.response.send_message(embed=embed)
-
-    # =========================================================
-    # /admin spawn
-    # =========================================================
 
     @admin.sub_command(
         name="spawn",
@@ -241,10 +215,6 @@ class CardsCog(commands.Cog):
                 return
 
             await self.create_spawn_message(inter, card_obj)
-
-    # =========================================================
-    # /admin give
-    # =========================================================
 
     @admin.sub_command(
         name="give",
@@ -290,7 +260,6 @@ class CardsCog(commands.Cog):
             )
             return
 
-        # FIXED: give card to target user instead of admin
         success = self.db.add_card_to_inventory(
             user.id,
             card_obj.id,
@@ -309,10 +278,6 @@ class CardsCog(commands.Cog):
             f"**✈︎ {card_obj.name}** × {quantity} "
             f"to {user.mention}."
         )
-
-    # =========================================================
-    # /battle inventory
-    # =========================================================
 
     @battle.sub_command(
         name="inventory",
@@ -348,10 +313,6 @@ class CardsCog(commands.Cog):
         )
 
         await inter.response.send_message(embed=embed)
-
-    # =========================================================
-    # /battle give
-    # =========================================================
 
     @battle.sub_command(
         name="give",
@@ -417,10 +378,6 @@ class CardsCog(commands.Cog):
             f"**✈︎ {card_obj.name}** × {quantity} "
             f"to {user.mention}."
         )
-
-    # =========================================================
-    # /battle all
-    # =========================================================
 
     @battle.sub_command(
         name="all",

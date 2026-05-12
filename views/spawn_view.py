@@ -51,23 +51,19 @@ class CatchCardModal(disnake.ui.Modal):
             )
             return
 
-        # 1. Update the database
         self.cog.db.add_card_to_inventory(inter.author.id, active.card_id, 1)
         active.claimed_by = inter.author.id
 
-        # 2. Stop the active view
         view = self.cog.active_views.get(self.session.message_id)
         if view:
             view.stop()
 
-        # 3. Create a brand NEW view that only contains a dead button.
-        # This completely avoids Discord component syncing bugs.
         disabled_view = disnake.ui.View()
         disabled_view.add_item(
-            disnake.ui.Button(label="Catch", style=disnake.ButtonStyle.secondary, disabled=True)
+            disnake.ui.Button(
+                label="Catch", style=disnake.ButtonStyle.secondary, disabled=True)
         )
 
-        # 4. Fetch the message reliably
         message = inter.message or (view.message if view else None)
 
         if message and message.embeds:
@@ -82,7 +78,6 @@ class CatchCardModal(disnake.ui.Modal):
                     filename = url.split("/")[-1].split("?")[0]
                     embed.set_image(url=f"attachment://{filename}")
 
-            # Edit the message with the new disabled_view
             await message.edit(embed=embed, view=disabled_view)
 
         await inter.response.send_message(
@@ -141,11 +136,11 @@ class SpawnCardView(disnake.ui.View):
             return
 
         self.cog.active_spawns.pop(self.session.message_id, None)
-        
-        # Nuke existing items and slap a dead button in its place
+
         self.clear_items()
         self.add_item(
-            disnake.ui.Button(label="Catch", style=disnake.ButtonStyle.secondary, disabled=True)
+            disnake.ui.Button(
+                label="Catch", style=disnake.ButtonStyle.secondary, disabled=True)
         )
 
         try:
@@ -161,7 +156,6 @@ class SpawnCardView(disnake.ui.View):
                         filename = url.split("/")[-1].split("?")[0]
                         embed.set_image(url=f"attachment://{filename}")
 
-                # Edit with the newly updated self (which now only has a disabled button)
                 await self.message.edit(embed=embed, view=self)
         except Exception:
             pass

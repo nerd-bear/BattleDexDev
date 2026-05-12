@@ -27,7 +27,6 @@ def main():
     bot.add_cog(FL24Cog(bot))
     bot.add_cog(QoLCog(bot))
     bot.run(BOT_TOKEN)
-    
 
 
 if __name__ == "__main__":

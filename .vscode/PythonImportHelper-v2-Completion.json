@@ -936,7 +936,7 @@
         "kind": 6,
         "importPath": "cogs.cards",
         "description": "cogs.cards",
-        "peekOfCode": "class CardsCog(commands.Cog):\n    def __init__(self, bot: commands.InteractionBot, db: Database):\n        self.bot = bot\n        self.db = db\n        self.active_spawns: Dict[int, SpawnSession] = {}\n        self.active_views: Dict[int, SpawnCardView] = {}\n    # =========================================================\n    # GLOBAL ERROR HANDLER\n    # =========================================================\n    @commands.Cog.listener()",
+        "peekOfCode": "class CardsCog(commands.Cog):\n    def __init__(self, bot: commands.InteractionBot, db: Database):\n        self.bot = bot\n        self.db = db\n        self.active_spawns: Dict[int, SpawnSession] = {}\n        self.active_views: Dict[int, SpawnCardView] = {}\n    @commands.Cog.listener()\n    async def on_slash_command_error(\n        self,\n        inter: disnake.ApplicationCommandInteraction,",
         "detail": "cogs.cards",
         "documentation": {}
     },
@@ -945,7 +945,7 @@
         "kind": 2,
         "importPath": "cogs.cards",
         "description": "cogs.cards",
-        "peekOfCode": "def is_admin_guild_admin():\n    async def predicate(inter: disnake.ApplicationCommandInteraction):\n        main_guild = inter.bot.get_guild(ADMIN_GUILD_ID)\n        if main_guild is None:\n            raise commands.CheckFailure(\n                \"Main admin guild could not be found.\"\n            )\n        member = main_guild.get_member(inter.author.id)\n        # fallback fetch if not cached\n        if member is None:",
+        "peekOfCode": "def is_admin_guild_admin():\n    async def predicate(inter: disnake.ApplicationCommandInteraction):\n        main_guild = inter.bot.get_guild(ADMIN_GUILD_ID)\n        if main_guild is None:\n            raise commands.CheckFailure(\n                \"Main admin guild could not be found.\"\n            )\n        member = main_guild.get_member(inter.author.id)\n        if member is None:\n            try:",
         "detail": "cogs.cards",
         "documentation": {}
     },
@@ -954,7 +954,7 @@
         "kind": 5,
         "importPath": "cogs.cards",
         "description": "cogs.cards",
-        "peekOfCode": "ADMIN_GUILD_ID = 1346993156335599676\ndef is_admin_guild_admin():\n    async def predicate(inter: disnake.ApplicationCommandInteraction):\n        main_guild = inter.bot.get_guild(ADMIN_GUILD_ID)\n        if main_guild is None:\n            raise commands.CheckFailure(\n                \"Main admin guild could not be found.\"\n            )\n        member = main_guild.get_member(inter.author.id)\n        # fallback fetch if not cached",
+        "peekOfCode": "ADMIN_GUILD_ID = 1346993156335599676\ndef is_admin_guild_admin():\n    async def predicate(inter: disnake.ApplicationCommandInteraction):\n        main_guild = inter.bot.get_guild(ADMIN_GUILD_ID)\n        if main_guild is None:\n            raise commands.CheckFailure(\n                \"Main admin guild could not be found.\"\n            )\n        member = main_guild.get_member(inter.author.id)\n        if member is None:",
         "detail": "cogs.cards",
         "documentation": {}
     },
@@ -981,7 +981,7 @@
         "kind": 6,
         "importPath": "cogs.qol",
         "description": "cogs.qol",
-        "peekOfCode": "class Components(disnake.ui.View):\n    def __init__(self):\n        # timeout=None ensures the buttons don't stop working after 3 minutes\n        super().__init__(timeout=None)\n        # Add the \"Set channel\" button\n        self.add_item(disnake.ui.Button(\n            style=disnake.ButtonStyle.primary,\n            label=\"Set channel\",\n            emoji=\"🔩\",\n            custom_id=\"cdc2a0083fcc4521e53f1bf21a83517f\"",
+        "peekOfCode": "class Components(disnake.ui.View):\n    def __init__(self):\n        super().__init__(timeout=None)\n        self.add_item(disnake.ui.Button(\n            style=disnake.ButtonStyle.primary,\n            label=\"Set channel\",\n            emoji=\"🔩\",\n            custom_id=\"cdc2a0083fcc4521e53f1bf21a83517f\"\n        ))\n        self.add_item(disnake.ui.Button(",
         "detail": "cogs.qol",
         "documentation": {}
     },
@@ -990,7 +990,7 @@
         "kind": 6,
         "importPath": "cogs.qol",
         "description": "cogs.qol",
-        "peekOfCode": "class QoLCog(commands.Cog):\n    def __init__(self, bot: commands.InteractionBot):\n        self.bot = bot\n    @commands.Cog.listener()\n    async def on_guild_join(self, guild: disnake.Guild):\n        # Find the first channel the bot can speak in\n        channel = None\n        for ch in guild.text_channels:\n            if ch.permissions_for(guild.me).send_messages: # Note: checked against bot's perms, not default_role\n                channel = ch",
+        "peekOfCode": "class QoLCog(commands.Cog):\n    def __init__(self, bot: commands.InteractionBot):\n        self.bot = bot\n    @commands.Cog.listener()\n    async def on_guild_join(self, guild: disnake.Guild):\n        channel = None\n        for ch in guild.text_channels:\n            if ch.permissions_for(guild.me).send_messages:\n                channel = ch\n                break",
         "detail": "cogs.qol",
         "documentation": {}
     },
@@ -1062,7 +1062,7 @@
         "kind": 2,
         "importPath": "services.tracker",
         "description": "services.tracker",
-        "peekOfCode": "def get_planespotters_image(registration: str) -> str:\n    \"\"\"\n    Fetches the aircraft image URL from the free Planespotters.net API \n    using the aircraft's tail registration.\n    \"\"\"\n    if not registration or registration == 'N/A':\n        return \"N/A\"\n    url = f\"https://api.planespotters.net/pub/photos/reg/{registration}\"\n    try:\n        headers = {'User-Agent': 'DiscordBot/1.0 FlightTracker (Python requests)'}",
+        "peekOfCode": "def get_planespotters_image(registration: str) -> str:\n    \"\"\"\n    Fetches the aircraft image URL from the free Planespotters.net API \n    using the aircraft's tail registration.\n    \"\"\"\n    if not registration or registration == 'N/A':\n        return \"N/A\"\n    url = f\"https://api.planespotters.net/pub/photos/reg/{registration}\"\n    try:\n        headers = {",
         "detail": "services.tracker",
         "documentation": {}
     },
@@ -1071,7 +1071,7 @@
         "kind": 2,
         "importPath": "services.tracker",
         "description": "services.tracker",
-        "peekOfCode": "def get_flight_data(flight_identifier: str, api_token: str = None) -> list[dict]:\n    target_flight = flight_identifier.upper().strip()\n    token = api_token or os.environ.get(\"FR24_API_TOKEN\")\n    if not token:\n        raise ValueError(\"FR24_API_TOKEN is missing. Set it as an environment variable or pass it to the function.\")\n    processed_flights = []\n    try:\n        with Client(api_token=token) as client:\n            global_limiter.wait()\n            response = client.live.flight_positions.get_full(flights=[target_flight])",
+        "peekOfCode": "def get_flight_data(flight_identifier: str, api_token: str = None) -> list[dict]:\n    target_flight = flight_identifier.upper().strip()\n    token = api_token or os.environ.get(\"FR24_API_TOKEN\")\n    if not token:\n        raise ValueError(\n            \"FR24_API_TOKEN is missing. Set it as an environment variable or pass it to the function.\")\n    processed_flights = []\n    try:\n        with Client(api_token=token) as client:\n            global_limiter.wait()",
         "detail": "services.tracker",
         "documentation": {}
     },
@@ -1080,7 +1080,7 @@
         "kind": 2,
         "importPath": "services.tracker",
         "description": "services.tracker",
-        "peekOfCode": "def main():\n    parser = argparse.ArgumentParser(description=\"Fetch live flight info from Flightradar24.\")\n    parser.add_argument(\"flight_number\", help=\"The flight number or callsign to search for (e.g., DL2204)\")\n    args = parser.parse_args()\n    print(f\"Searching for live data for: {args.flight_number}...\")\n    try:\n        results = get_flight_data(args.flight_number)\n        if not results:\n            print(f\"\\nNo active live flights found matching '{args.flight_number}'.\")\n            return",
+        "peekOfCode": "def main():\n    parser = argparse.ArgumentParser(\n        description=\"Fetch live flight info from Flightradar24.\")\n    parser.add_argument(\n        \"flight_number\", help=\"The flight number or callsign to search for (e.g., DL2204)\")\n    args = parser.parse_args()\n    print(f\"Searching for live data for: {args.flight_number}...\")\n    try:\n        results = get_flight_data(args.flight_number)\n        if not results:",
         "detail": "services.tracker",
         "documentation": {}
     },
@@ -1197,7 +1197,7 @@
         "kind": 2,
         "importPath": "database",
         "description": "database",
-        "peekOfCode": "def rarity_to_weight(rarity: str) -> float:\n    rarity = str(rarity).upper()\n    if rarity == \"Y\":\n        return 0.01\n    if rarity == \"X\":\n        return 0.05\n    try:\n        tier = int(rarity)\n        # Higher tier = rarer → lower weight\n        return max(0.1, 15 - tier)",
+        "peekOfCode": "def rarity_to_weight(rarity: str) -> float:\n    rarity = str(rarity).upper()\n    if rarity == \"Y\":\n        return 0.01\n    if rarity == \"X\":\n        return 0.05\n    try:\n        tier = int(rarity)\n        # higher tier = rarer -> lower weight\n        return max(0.1, 15 - tier)",
         "detail": "database",
         "documentation": {}
     },

@@ -501,7 +501,6 @@ def run_app():
     root.mainloop()
 
 
-# HEADLESS
 def run_from_json():
     if not os.path.exists(JSON_PATH):
         print(f"Error: JSON file not found at {JSON_PATH}")

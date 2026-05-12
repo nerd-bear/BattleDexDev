@@ -17,10 +17,12 @@ def rarity_to_weight(rarity: str) -> float:
 
     try:
         tier = int(rarity)
-        # Higher tier = rarer → lower weight
+
+        # higher tier = rarer -> lower weight
         return max(0.1, 15 - tier)
     except:
         return 10.0
+
 
 class Database:
     def __init__(self, path: str):
@@ -52,9 +54,9 @@ class Database:
                 )
             """)
 
-            columns = {row['name']: row['type'] for row in conn.execute('PRAGMA table_info(cards)').fetchall()}
+            columns = {row['name']: row['type'] for row in conn.execute(
+                'PRAGMA table_info(cards)').fetchall()}
 
-            # 🔥 MIGRATION: convert REAL → TEXT safely
             if 'rarity' in columns and columns['rarity'] != 'TEXT':
                 print("[DB] Migrating rarity column to TEXT...")
 
@@ -79,7 +81,6 @@ class Database:
                 for row in old_rows:
                     old_rarity = row['rarity']
 
-                    # convert numeric → string tier
                     try:
                         r = float(old_rarity)
                         tier = str(int(min(max(1, r), 14)))
@@ -207,7 +208,7 @@ class Database:
             """, (like, limit)).fetchall()
 
         return [row['name'] for row in rows]
-    
+
     def get_all_cards(self) -> List[Card]:
         with self.connect() as conn:
             rows = conn.execute("""

@@ -25,6 +25,7 @@ def build_card_text(card: Card) -> str:
         f"**Rarity:** {card.rarity}"
     )
 
+
 async def build_card_embed_and_file(card: Card) -> Tuple[disnake.Embed, Optional[disnake.File]]:
     embed = disnake.Embed(
         title=card.name,
@@ -40,7 +41,7 @@ async def build_card_embed_and_file(card: Card) -> Tuple[disnake.Embed, Optional
 
     image_path = card.image
 
-    # no image provided 
+    # no image provided
     if not image_path:
         return attach_local_image(DEFAULT_IMAGE_PATH)
 
@@ -53,12 +54,11 @@ async def build_card_embed_and_file(card: Card) -> Tuple[disnake.Embed, Optional
     if os.path.exists(image_path):
         return attach_local_image(image_path)
 
-    # smth else fails 
+    # smth else fails
     if os.path.exists(DEFAULT_IMAGE_PATH):
         return attach_local_image(DEFAULT_IMAGE_PATH)
 
     return embed, None
-
 
 
 async def build_spawn_embed_and_file(card: Card) -> Tuple[disnake.Embed, Optional[disnake.File]]:
@@ -75,7 +75,7 @@ async def build_spawn_embed_and_file(card: Card) -> Tuple[disnake.Embed, Optiona
 
     image_path = card.spawn_image or card.image
 
-    # No image 
+    # No image
     if not image_path:
         if os.path.exists(DEFAULT_SPAWN_IMAGE_PATH):
             return attach_local_image(DEFAULT_SPAWN_IMAGE_PATH)
@@ -90,7 +90,7 @@ async def build_spawn_embed_and_file(card: Card) -> Tuple[disnake.Embed, Optiona
     if os.path.exists(image_path):
         return attach_local_image(image_path)
 
-   # smth else fails 
+   # smth else fails
     if os.path.exists(DEFAULT_SPAWN_IMAGE_PATH):
         return attach_local_image(DEFAULT_SPAWN_IMAGE_PATH)
 
